@@ -1,5 +1,5 @@
 # Módulo Proyecto Integrado del IES Gran Capitán
-
+(Pendiente de mover a README-old.md).
 
 - [Módulo Proyecto Integrado del IES Gran Capitán](#módulo-proyecto-integrado-del-ies-gran-capitán)
   - [Instrucciones para el desarrollo del Módulo Proyecto Integrado](#instrucciones-para-el-desarrollo-del-módulo-proyecto-integrado)
