@@ -1,0 +1,3 @@
+[submodule "laradock-atlas-daw"]
+	path = laradock-atlas-daw
+	url = https://github.com/PedroBlanco/laradock-atlas-daw.git
