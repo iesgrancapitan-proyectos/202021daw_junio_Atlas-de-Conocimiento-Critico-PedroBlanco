@@ -1,0 +1,14 @@
+
+
+
+#
+#  <type>[<scope>](<issue#>): <short summary>
+#     │      │         │             │
+#     │      │         │             └─> Summary in present tense. Not capitalized. No period at the end. 
+#     │      │         │
+#     │      │         └─> issue# (optional): issue & pr number
+#     │      │     
+#     │      └─> Scope (optional): eg. common, compiler, authentication, core
+#     │
+#     └─> Type: chore, docs, feat, fix, refactor, style, or test.
+#
