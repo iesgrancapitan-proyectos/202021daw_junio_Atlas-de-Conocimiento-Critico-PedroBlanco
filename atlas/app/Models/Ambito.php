@@ -9,6 +9,8 @@ class Ambito extends Model
 {
     use HasFactory;
 
+    protected $table = 'Ambitos';
+
     protected $fillable = [
         'nombre', 'descripcion'
     ];

@@ -55,20 +55,20 @@ Route::prefix('ambito')->group(function () {
 
     // Mostrar formulario para crear elemento
     // Mostrar a continuación los elementos ya creados
-    Route::get('/', 'App\Http\Controllers\AdministracionController@index')->name('ambito.index');
+    Route::get('/', 'App\Http\Controllers\AmbitoController@index')->name('ambito.index');
 
     // Crear un elemento
-    Route::post('/', 'App\Http\Controllers\AdministracionController@store')->name('ambito.store');
+    Route::post('/', 'App\Http\Controllers\AmbitoController@store')->name('ambito.store');
 
     // Mostrar un elemento
-    Route::get('/{ambito}', 'App\Http\Controllers\AdministracionController@show')->name('ambito.show');
+    Route::get('/{ambito}', 'App\Http\Controllers\AmbitoController@show')->name('ambito.show');
 
     // Mostrar el formulario de edición de un elemento
-    Route::get('/edit/{ambito}', 'App\Http\Controllers\AdministracionController@edit')->name('ambito.edit');
+    Route::get('/edit/{ambito}', 'App\Http\Controllers\AmbitoController@edit')->name('ambito.edit');
 
     // Guardar un elemento editado
-    Route::post('/edit/{ambito}', 'App\Http\Controllers\AdministracionController@update')->name('ambito.update');
+    Route::post('/edit/{ambito}', 'App\Http\Controllers\AmbitoController@update')->name('ambito.update');
 
     // Borrar un elemento
-    Route::delete('/delete/{ambito}', 'App\Http\Controllers\AdministracionController@destroy')->name('ambito.delete');
+    Route::delete('/delete/{ambito}', 'App\Http\Controllers\AmbitoController@destroy')->name('ambito.delete');
 });
