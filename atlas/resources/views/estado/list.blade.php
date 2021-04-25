@@ -1,6 +1,6 @@
 @include('layout.cabecera')
-    <h1>Crear Administraci&oacute;n</h1>
-    <form action="{{route('administracion.store')}}" method="POST">
+    <h1>Crear Estado</h1>
+    <form action="{{route('estado.store')}}" method="POST">
         @csrf
         <div class="form-group">
             <label for="nombre">Nombre: </label>
@@ -14,18 +14,18 @@
             <button type="submit">Crear</button>
         </div>
     </form>
-    @if(isset($administraciones))
+    @if(isset($estados))
     <hr>
-    <h2>Mostrar Administraciones</h2>
+    <h2>Mostrar Estados</h2>
     <ul>
-        @foreach ($administraciones as $administracion)
+        @foreach ($estados as $estado)
         <li>
-            <a href="{{route('administracion.show',['administracion' => $administracion->id])}}">{{$administracion->nombre}}</a>
+            <a href="{{route('estado.show',['estado' => $estado->id])}}">{{$estado->nombre}}</a>
             <br>
-            <a href="{{route('administracion.edit',['administracion' => $administracion->id])}}">
+            <a href="{{route('estado.edit',['estado' => $estado->id])}}">
                 <button>Editar</button>
             </a>
-            <form action="{{route('administracion.delete',['administracion' => $administracion->id])}}" method="POST">
+            <form action="{{route('estado.delete',['estado' => $estado->id])}}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit">Borrar</button>

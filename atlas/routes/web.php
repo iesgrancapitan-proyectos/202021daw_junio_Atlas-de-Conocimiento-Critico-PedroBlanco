@@ -72,3 +72,27 @@ Route::prefix('ambito')->group(function () {
     // Borrar un elemento
     Route::delete('/delete/{ambito}', 'App\Http\Controllers\AmbitoController@destroy')->name('ambito.delete');
 });
+
+// Rutas para los elementos Estado
+Route::prefix('estado')->group(function () {
+    Route::redirect('/', '/estado', 301);
+
+    // Mostrar formulario para crear elemento
+    // Mostrar a continuación los elementos ya creados
+    Route::get('/', 'App\Http\Controllers\EstadoController@index')->name('estado.index');
+
+    // Crear un elemento
+    Route::post('/', 'App\Http\Controllers\EstadoController@store')->name('estado.store');
+
+    // Mostrar un elemento
+    Route::get('/{estado}', 'App\Http\Controllers\EstadoController@show')->name('estado.show');
+
+    // Mostrar el formulario de edición de un elemento
+    Route::get('/edit/{estado}', 'App\Http\Controllers\EstadoController@edit')->name('estado.edit');
+
+    // Guardar un elemento editado
+    Route::post('/edit/{estado}', 'App\Http\Controllers\EstadoController@update')->name('estado.update');
+
+    // Borrar un elemento
+    Route::delete('/delete/{estado}', 'App\Http\Controllers\EstadoController@destroy')->name('estado.delete');
+});
