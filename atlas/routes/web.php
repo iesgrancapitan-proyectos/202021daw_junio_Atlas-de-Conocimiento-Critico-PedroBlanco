@@ -96,3 +96,27 @@ Route::prefix('estado')->group(function () {
     // Borrar un elemento
     Route::delete('/delete/{estado}', 'App\Http\Controllers\EstadoController@destroy')->name('estado.delete');
 });
+
+// Rutas para los elementos Autor
+Route::prefix('autor')->group(function () {
+    Route::redirect('/', '/autor', 301);
+
+    // Mostrar formulario para crear elemento
+    // Mostrar a continuación los elementos ya creados
+    Route::get('/', 'App\Http\Controllers\AutorController@index')->name('autor.index');
+
+    // Crear un elemento
+    Route::post('/', 'App\Http\Controllers\AutorController@store')->name('autor.store');
+
+    // Mostrar un elemento
+    Route::get('/{autor}', 'App\Http\Controllers\AutorController@show')->name('autor.show');
+
+    // Mostrar el formulario de edición de un elemento
+    Route::get('/edit/{autor}', 'App\Http\Controllers\AutorController@edit')->name('autor.edit');
+
+    // Guardar un elemento editado
+    Route::post('/edit/{autor}', 'App\Http\Controllers\AutorController@update')->name('autor.update');
+
+    // Borrar un elemento
+    Route::delete('/delete/{autor}', 'App\Http\Controllers\AutorController@destroy')->name('autor.delete');
+});

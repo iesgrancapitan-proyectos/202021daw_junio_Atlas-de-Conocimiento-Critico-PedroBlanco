@@ -9,6 +9,8 @@ class Autor extends Model
 {
     use HasFactory;
 
+    protected $table = 'Autores';
+
     protected $fillable = [
         'nombre', 'apellidos', 'url'
     ];

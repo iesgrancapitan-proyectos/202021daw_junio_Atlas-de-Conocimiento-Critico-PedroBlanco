@@ -8,60 +8,86 @@ use Illuminate\Http\Request;
 class AutorController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mostramos todos los elementos existentes en el almacenamiento
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        // Primero, recuperamos los datos de la BD
+        $autores = Autor::latest()->get();
+
+        // Segundo, pasamos los datos a la plantilla correspondiente
+        //return view ('autor.list', compact('autores')); // Forma compacta
+        return view ('autor.list')->with([
+            'autores' => $autores,
+            'titulo_pagina' => 'Gestionar Autores'
+            ]); // Mediante método
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Cargamos los datos de un elemento para editar y mostramos el formulario
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view ('autor.create')->with([
+            'titulo_pagina' => 'Crear Autor'
+        ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacenamos un elemento
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        // Primero, validamos
+        $this->validate($request, [
+            'nombre' => 'required',
+            'apellidos' => 'required',
+            'url' => 'required'
+        ]);
+        // Segundo, almacenamos en la BD
+        $autor = Autor::create($request->all());
+
+        //return view('autor');
+        return redirect()->back();
     }
 
     /**
-     * Display the specified resource.
+     * Mostramos un elemento particular
      *
      * @param  \App\Models\Autor  $autor
      * @return \Illuminate\Http\Response
      */
     public function show(Autor $autor)
     {
-        //
+        return view ('autor.show')->with([
+            'autor' => $autor,
+            'titulo_pagina' => 'Mostrar Autor'
+            ]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Cargamos los datos de un elemento para editar y mostramos el formulario
      *
      * @param  \App\Models\Autor  $autor
      * @return \Illuminate\Http\Response
      */
     public function edit(Autor $autor)
     {
-        //
+        return view ('autor.edit')->with([
+            'autor' => $autor,
+            'titulo_pagina' => 'Editar Autor'
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Guardamos los datos de un elemento editado/actualizado
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Autor  $autor
@@ -69,17 +95,28 @@ class AutorController extends Controller
      */
     public function update(Request $request, Autor $autor)
     {
-        //
+        // Primero, validamos
+        $this->validate($request, [
+            'nombre' => 'required',
+            'apellidos' => 'required',
+            'url' => 'required'
+        ]);
+        // Segundo, almacenamos en la BD
+        $autor->update($request->all());
+
+        return redirect()->route('autor.index');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Eliminamos un elemento en particular del almacenamiento
      *
      * @param  \App\Models\Autor  $autor
      * @return \Illuminate\Http\Response
      */
     public function destroy(Autor $autor)
     {
-        //
+        $autor->delete();
+
+        return redirect()->route('autor.index');
     }
 }
