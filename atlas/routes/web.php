@@ -19,7 +19,9 @@ Route::get('/', function () {
 
 // Mostramos información del proyecto
 Route::get('/about', function () {
-    return view('about');
+    return view('about')->with([
+        'titulo_pagina' => 'Acerca de...'
+        ]);;
 });
 
 
