@@ -16,7 +16,7 @@
     </form>
     @if(isset($ambitos))
     <hr>
-    <h2>Mostrar ambitos</h2>
+    <h2>Mostrar &aacute;mbitos</h2>
     <ul>
         @foreach ($ambitos as $ambito)
         <li>
