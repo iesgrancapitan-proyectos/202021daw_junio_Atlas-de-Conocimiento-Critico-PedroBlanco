@@ -18,7 +18,7 @@ class AdministracionController extends Controller
         $administraciones = Administracion::latest()->get();
 
         // Segundo, pasamos los datos a la plantilla correspondiente
-        //return view ('administracion.administracion', compact('administraciones')); // Forma compacta
+        //return view ('administracion.list', compact('administraciones')); // Forma compacta
         return view ('administracion.list')->with([
             'administraciones' => $administraciones,
             'titulo_pagina' => 'Gestionar Administraciones'
