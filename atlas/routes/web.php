@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
 // Mostramos información del proyecto
 Route::get('/about', function () {
     return view('about')->with([
@@ -120,3 +124,5 @@ Route::prefix('autor')->group(function () {
     // Borrar un elemento
     Route::delete('/delete/{autor}', 'App\Http\Controllers\AutorController@destroy')->name('autor.delete');
 });
+
+require __DIR__.'/auth.php';
