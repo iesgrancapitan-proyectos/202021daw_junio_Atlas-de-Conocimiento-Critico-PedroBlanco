@@ -1,4 +1,5 @@
 @include('layout.cabecera')
+@include('layout.menu_usuario')
 <div>
     <h1>Acerca del Proyecto <em>Atlas de Conocimiento Crítico</em></h1>
     <div>

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AdministracionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +27,7 @@ Route::get('/dashboard', function () {
 Route::get('/about', function () {
     return view('about')->with([
         'titulo_pagina' => 'Acerca de...'
-        ]);;
+        ]);
 });
 
 
@@ -33,24 +35,41 @@ Route::get('/about', function () {
 Route::prefix('administracion')->group(function () {
     Route::redirect('/', '/administracion', 301);
 
+    Route::get('/dashboard', function () {
+        return view('administracion.dashboard');
+    })
+                    ->middleware(['auth'])
+                    ->name('dashboard');
+
     // Mostrar formulario para crear elemento
     // Mostrar a continuación los elementos ya creados
-    Route::get('/', 'App\Http\Controllers\AdministracionController@index')->name('administracion.index');
+    Route::get('/', [AdministracionController::class, 'index'])
+                    ->name('administracion.index');
 
     // Crear un elemento
-    Route::post('/', 'App\Http\Controllers\AdministracionController@store')->name('administracion.store');
+    Route::post('/', 'App\Http\Controllers\AdministracionController@store')
+                    ->middleware('auth')
+                    ->name('administracion.store');
 
     // Mostrar un elemento
-    Route::get('/{administracion}', 'App\Http\Controllers\AdministracionController@show')->name('administracion.show');
+    Route::get('/{administracion}', 'App\Http\Controllers\AdministracionController@show')
+                    ->middleware('guest')
+                    ->name('administracion.show');
 
     // Mostrar el formulario de edición de un elemento
-    Route::get('/edit/{administracion}', 'App\Http\Controllers\AdministracionController@edit')->name('administracion.edit');
+    Route::get('/edit/{administracion}', 'App\Http\Controllers\AdministracionController@edit')
+                    ->middleware('auth')
+                    ->name('administracion.edit');
 
     // Guardar un elemento editado
-    Route::post('/edit/{administracion}', 'App\Http\Controllers\AdministracionController@update')->name('administracion.update');
+    Route::post('/edit/{administracion}', 'App\Http\Controllers\AdministracionController@update')
+                    ->middleware('auth')
+                    ->name('administracion.update');
 
     // Borrar un elemento
-    Route::delete('/delete/{administracion}', 'App\Http\Controllers\AdministracionController@destroy')->name('administracion.delete');
+    Route::delete('/delete/{administracion}', 'App\Http\Controllers\AdministracionController@destroy')
+                    ->middleware('auth')
+                    ->name('administracion.delete');
 });
 
 // Rutas para los elementos Ámbito
@@ -59,22 +78,34 @@ Route::prefix('ambito')->group(function () {
 
     // Mostrar formulario para crear elemento
     // Mostrar a continuación los elementos ya creados
-    Route::get('/', 'App\Http\Controllers\AmbitoController@index')->name('ambito.index');
+    Route::get('/', 'App\Http\Controllers\AmbitoController@index')
+                    ->middleware('guest')
+                    ->name('ambito.index');
 
     // Crear un elemento
-    Route::post('/', 'App\Http\Controllers\AmbitoController@store')->name('ambito.store');
+    Route::post('/', 'App\Http\Controllers\AmbitoController@store')
+                    ->middleware('auth')
+                    ->name('ambito.store');
 
     // Mostrar un elemento
-    Route::get('/{ambito}', 'App\Http\Controllers\AmbitoController@show')->name('ambito.show');
+    Route::get('/{ambito}', 'App\Http\Controllers\AmbitoController@show')
+                    ->middleware('guest')
+                    ->name('ambito.show');
 
     // Mostrar el formulario de edición de un elemento
-    Route::get('/edit/{ambito}', 'App\Http\Controllers\AmbitoController@edit')->name('ambito.edit');
+    Route::get('/edit/{ambito}', 'App\Http\Controllers\AmbitoController@edit')
+                    ->middleware('auth')
+                    ->name('ambito.edit');
 
     // Guardar un elemento editado
-    Route::post('/edit/{ambito}', 'App\Http\Controllers\AmbitoController@update')->name('ambito.update');
+    Route::post('/edit/{ambito}', 'App\Http\Controllers\AmbitoController@update')
+                    ->middleware('auth')
+                    ->name('ambito.update');
 
     // Borrar un elemento
-    Route::delete('/delete/{ambito}', 'App\Http\Controllers\AmbitoController@destroy')->name('ambito.delete');
+    Route::delete('/delete/{ambito}', 'App\Http\Controllers\AmbitoController@destroy')
+                    ->middleware('auth')
+                    ->name('ambito.delete');
 });
 
 // Rutas para los elementos Estado
@@ -83,22 +114,34 @@ Route::prefix('estado')->group(function () {
 
     // Mostrar formulario para crear elemento
     // Mostrar a continuación los elementos ya creados
-    Route::get('/', 'App\Http\Controllers\EstadoController@index')->name('estado.index');
+    Route::get('/', 'App\Http\Controllers\EstadoController@index')
+                    ->middleware('guest')
+                    ->name('estado.index');
 
     // Crear un elemento
-    Route::post('/', 'App\Http\Controllers\EstadoController@store')->name('estado.store');
+    Route::post('/', 'App\Http\Controllers\EstadoController@store')
+                    ->middleware('auth')
+                    ->name('estado.store');
 
     // Mostrar un elemento
-    Route::get('/{estado}', 'App\Http\Controllers\EstadoController@show')->name('estado.show');
+    Route::get('/{estado}', 'App\Http\Controllers\EstadoController@show')
+                    ->middleware('guest')
+                    ->name('estado.show');
 
     // Mostrar el formulario de edición de un elemento
-    Route::get('/edit/{estado}', 'App\Http\Controllers\EstadoController@edit')->name('estado.edit');
+    Route::get('/edit/{estado}', 'App\Http\Controllers\EstadoController@edit')
+                    ->middleware('auth')
+                    ->name('estado.edit');
 
     // Guardar un elemento editado
-    Route::post('/edit/{estado}', 'App\Http\Controllers\EstadoController@update')->name('estado.update');
+    Route::post('/edit/{estado}', 'App\Http\Controllers\EstadoController@update')
+                    ->middleware('auth')
+                    ->name('estado.update');
 
     // Borrar un elemento
-    Route::delete('/delete/{estado}', 'App\Http\Controllers\EstadoController@destroy')->name('estado.delete');
+    Route::delete('/delete/{estado}', 'App\Http\Controllers\EstadoController@destroy')
+                    ->middleware('auth')
+                    ->name('estado.delete');
 });
 
 // Rutas para los elementos Autor
@@ -107,22 +150,34 @@ Route::prefix('autor')->group(function () {
 
     // Mostrar formulario para crear elemento
     // Mostrar a continuación los elementos ya creados
-    Route::get('/', 'App\Http\Controllers\AutorController@index')->name('autor.index');
+    Route::get('/', 'App\Http\Controllers\AutorController@index')
+                    ->middleware('guest')
+                    ->name('autor.index');
 
     // Crear un elemento
-    Route::post('/', 'App\Http\Controllers\AutorController@store')->name('autor.store');
+    Route::post('/', 'App\Http\Controllers\AutorController@store')
+                    ->middleware('auth')
+                    ->name('autor.store');
 
     // Mostrar un elemento
-    Route::get('/{autor}', 'App\Http\Controllers\AutorController@show')->name('autor.show');
+    Route::get('/{autor}', 'App\Http\Controllers\AutorController@show')
+                    ->middleware('guest')
+                    ->name('autor.show');
 
     // Mostrar el formulario de edición de un elemento
-    Route::get('/edit/{autor}', 'App\Http\Controllers\AutorController@edit')->name('autor.edit');
+    Route::get('/edit/{autor}', 'App\Http\Controllers\AutorController@edit')
+                    ->middleware('auth')
+                    ->name('autor.edit');
 
     // Guardar un elemento editado
-    Route::post('/edit/{autor}', 'App\Http\Controllers\AutorController@update')->name('autor.update');
+    Route::post('/edit/{autor}', 'App\Http\Controllers\AutorController@update')
+                    ->middleware('auth')
+                    ->name('autor.update');
 
     // Borrar un elemento
-    Route::delete('/delete/{autor}', 'App\Http\Controllers\AutorController@destroy')->name('autor.delete');
+    Route::delete('/delete/{autor}', 'App\Http\Controllers\AutorController@destroy')
+                    ->middleware('auth')
+                    ->name('autor.delete');
 });
 
 require __DIR__.'/auth.php';
