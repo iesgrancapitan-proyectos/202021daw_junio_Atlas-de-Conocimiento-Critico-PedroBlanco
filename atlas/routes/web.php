@@ -35,6 +35,7 @@ Route::get('/about', function () {
 Route::prefix('administracion')->group(function () {
     Route::redirect('/', '/administracion', 301);
 
+    // Dashboard de prueba - interno para Administración
     Route::get('/dashboard', function () {
         return view('administracion.dashboard');
     })
