@@ -47,27 +47,26 @@ Route::prefix('administracion')->group(function () {
                     ->name('administracion.index');
 
     // Crear un elemento
-    Route::post('/', 'App\Http\Controllers\AdministracionController@store')
+    Route::post('/', [AdministracionController::class, 'store'])
                     ->middleware('auth')
                     ->name('administracion.store');
 
     // Mostrar un elemento
-    Route::get('/{administracion}', 'App\Http\Controllers\AdministracionController@show')
-                    ->middleware('guest')
+    Route::get('/{administracion}', [AdministracionController::class, 'show'])
                     ->name('administracion.show');
 
     // Mostrar el formulario de edición de un elemento
-    Route::get('/edit/{administracion}', 'App\Http\Controllers\AdministracionController@edit')
+    Route::get('/edit/{administracion}', [AdministracionController::class, 'edit'])
                     ->middleware('auth')
                     ->name('administracion.edit');
 
     // Guardar un elemento editado
-    Route::post('/edit/{administracion}', 'App\Http\Controllers\AdministracionController@update')
+    Route::post('/edit/{administracion}', [AdministracionController::class, 'update'])
                     ->middleware('auth')
                     ->name('administracion.update');
 
     // Borrar un elemento
-    Route::delete('/delete/{administracion}', 'App\Http\Controllers\AdministracionController@destroy')
+    Route::delete('/delete/{administracion}', [AdministracionController::class, 'destroy'])
                     ->middleware('auth')
                     ->name('administracion.delete');
 });

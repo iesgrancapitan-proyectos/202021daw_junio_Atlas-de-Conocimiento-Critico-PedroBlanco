@@ -22,7 +22,9 @@
                         <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
                     </div>
                     <div>
-                        <button type="submit">Crear</button>
+                        <br/>
+                        <button class="border" type="reset">Limpiar</button>
+                        <button class="border" type="submit">Crear</button>
                     </div>
                 </form>
             </div>
@@ -31,34 +33,40 @@
 </div>
 @endauth
 
-@if(isset($administraciones))
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">Mostrar Administraciones</h2>
                 <br/>
+                @if(isset($administraciones))
                 <ul>
                     @foreach ($administraciones as $administracion)
                     <li>
-                        <a href="{{route('administracion.show',['administracion' => $administracion->id])}}">{{$administracion->nombre}}</a>
+                        <h3 class="font-semibold text-l text-gray-800 leading-tight">{{$administracion->nombre}}</h3>
+                        <br/>
+                        <a href="{{route('administracion.show',['administracion' => $administracion->id])}}">
+                            <button class="border">Mostrar</button>
+                        </a>
                         @auth
-                        <br>
+                        <br/>
                         <a href="{{route('administracion.edit',['administracion' => $administracion->id])}}">
-                            <button>Editar</button>
+                            <button class="border">Editar</button>
                         </a>
                         <form action="{{route('administracion.delete',['administracion' => $administracion->id])}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Borrar</button>
+                            <button class="border" type="submit">Borrar</button>
                         </form>
                         @endauth
                     </li>
                     @endforeach
                 </ul>
+                @else
+                <h3 class="font-semibold text-l text-gray-800 leading-tight">No se ha definido Administraci&oacute;n.</h3>
+                @endif
             </div>
         </div>
     </div>
 </div>
-@endif
 </x-app-layout>
