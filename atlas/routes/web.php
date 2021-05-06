@@ -40,13 +40,6 @@ Route::get('/about', function () {
 Route::prefix('administracion')->group(function () {
     Route::redirect('/', '/administracion', 301);
 
-    // Dashboard de prueba - interno para Administración
-    Route::get('/dashboard', function () {
-        return view('administracion.dashboard');
-    })
-                    ->middleware(['auth'])
-                    ->name('dashboard');
-
     // Mostrar formulario para crear elemento
     // Mostrar a continuación los elementos ya creados
     Route::get('/', [AdministracionController::class, 'index'])
@@ -84,7 +77,6 @@ Route::prefix('ambito')->group(function () {
     // Mostrar formulario para crear elemento
     // Mostrar a continuación los elementos ya creados
     Route::get('/', [AmbitoController::class, 'index'])
-                    ->middleware('guest')
                     ->name('ambito.index');
 
     // Crear un elemento
@@ -120,7 +112,6 @@ Route::prefix('estado')->group(function () {
     // Mostrar formulario para crear elemento
     // Mostrar a continuación los elementos ya creados
     Route::get('/', [EstadoController::class, 'index'])
-                    ->middleware('guest')
                     ->name('estado.index');
 
     // Crear un elemento
@@ -156,7 +147,6 @@ Route::prefix('autor')->group(function () {
     // Mostrar formulario para crear elemento
     // Mostrar a continuación los elementos ya creados
     Route::get('/', [AutorController::class, 'index'])
-                    ->middleware('guest')
                     ->name('autor.index');
 
     // Crear un elemento
