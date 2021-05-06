@@ -12,9 +12,26 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
+                        {{ __('Acerca...') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @auth
+                        <x-nav-link :href="route('administracion.list')" :active="request()->routeIs('administracion.list')">
+                            {{ __('Administración') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('ambito.list')" :active="request()->routeIs('ambito.list')">
+                            {{ __('Ámbitos') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('estado.list')" :active="request()->routeIs('estado.list')">
+                            {{ __('Estados') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('autor.list')" :active="request()->routeIs('autor.list')">
+                            {{ __('Autores') }}
+                        </x-nav-link>
+                    @endauth
                 </div>
             </div>
 
@@ -73,9 +90,26 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')">
+                {{ __('Acerca...') }}
+            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @auth
+                <x-responsive-nav-link :href="route('administracion.list')" :active="request()->routeIs('administracion.list')">
+                    {{ __('Administración') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('ambito.list')" :active="request()->routeIs('ambito.list')">
+                    {{ __('Ámbitos') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('estado.list')" :active="request()->routeIs('estado.list')">
+                    {{ __('Estados') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('autor.list')" :active="request()->routeIs('autor.list')">
+                    {{ __('Autores') }}
+                </x-responsive-nav-link>
+            @endauth
         </div>
 
         <!-- Responsive Settings Options -->
