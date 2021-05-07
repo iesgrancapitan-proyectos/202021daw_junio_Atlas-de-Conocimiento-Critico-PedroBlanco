@@ -16,3 +16,5 @@ Atlas.code-workspace
 **/.history
 
 public/test/*
+
+*.cmd
