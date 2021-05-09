@@ -28,6 +28,9 @@
                         <x-nav-link :href="url('estado')" :active="request()->is('estado')">
                             {{ __('Estados') }}
                         </x-nav-link>
+                        <x-nav-link :href="url('geo')" :active="request()->is('geo')">
+                            {{ __('Localizaciones') }}
+                        </x-nav-link>
                         <x-nav-link :href="url('autor')" :active="request()->is('autor')">
                             {{ __('Autores') }}
                         </x-nav-link>
@@ -105,6 +108,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="url('estado')" :active="request()->is('estado')">
                     {{ __('Estados') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="url('geo')" :active="request()->is('geo')">
+                    {{ __('Localizaciones') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="url('autor')" :active="request()->is('autor')">
                     {{ __('Autores') }}

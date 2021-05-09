@@ -6,7 +6,7 @@ use App\Http\Controllers\AdministracionController;
 use App\Http\Controllers\AmbitoController;
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\EstadoController;
-// use App\Http\Controllers\GeoController;
+use App\Http\Controllers\GeoController;
 // use App\Http\Controllers\MapaController;
 
 /*
@@ -138,6 +138,41 @@ Route::prefix('estado')->group(function () {
     Route::delete('/delete/{estado}', [EstadoController::class, 'destroy'])
                     ->middleware('auth')
                     ->name('estado.delete');
+});
+
+// Rutas para los elementos Geo
+Route::prefix('geo')->group(function () {
+    Route::redirect('/', '/geo', 301);
+
+    // Mostrar formulario para crear elemento
+    // Mostrar a continuación los elementos ya creados
+    Route::get('/', [GeoController::class, 'index'])
+                    ->name('geo.index');
+
+    // Crear un elemento
+    Route::post('/', [GeoController::class, 'store'])
+                    ->middleware('auth')
+                    ->name('geo.store');
+
+    // Mostrar un elemento
+    Route::get('/{geo}', [GeoController::class, 'show'])
+                    ->middleware('guest')
+                    ->name('geo.show');
+
+    // Mostrar el formulario de edición de un elemento
+    Route::get('/edit/{geo}', [GeoController::class, 'edit'])
+                    ->middleware('auth')
+                    ->name('geo.edit');
+
+    // Guardar un elemento editado
+    Route::post('/edit/{geo}', [GeoController::class, 'update'])
+                    ->middleware('auth')
+                    ->name('geo.update');
+
+    // Borrar un elemento
+    Route::delete('/delete/{geo}', [GeoController::class, 'destroy'])
+                    ->middleware('auth')
+                    ->name('geo.delete');
 });
 
 // Rutas para los elementos Autor
