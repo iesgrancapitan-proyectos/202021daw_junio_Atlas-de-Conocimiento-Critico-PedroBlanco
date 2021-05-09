@@ -19,8 +19,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @auth
+                        <x-nav-link :href="url('mapa')" :active="request()->is('mapa')">
+                            {{ __('Mapas') }}
+                        </x-nav-link>
                         <x-nav-link :href="url('administracion')" :active="request()->is('administracion')">
-                            {{ __('Administración') }}
+                            {{ __('Administraciones') }}
                         </x-nav-link>
                         <x-nav-link :href="url('ambito')" :active="request()->is('ambito')">
                             {{ __('Ámbitos') }}
@@ -100,8 +103,11 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             @auth
+                <x-responsive-nav-link :href="url('mapa')" :active="request()->is('mapa')">
+                    {{ __('Mapas') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="url('administracion')" :active="request()->is('administracion')">
-                    {{ __('Administración') }}
+                    {{ __('Administraciones') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="url('ambito')" :active="request()->is('ambito')">
                     {{ __('Ámbitos') }}

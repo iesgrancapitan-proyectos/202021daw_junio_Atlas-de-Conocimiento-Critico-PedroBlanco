@@ -9,12 +9,10 @@ class Mapa extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nombre', 'descripcion', 'url'
-    ];
+    protected $table = "Mapas";
 
-    protected $hidden = [
-        'comentario'
+    protected $fillable = [
+        'nombre', 'descripcion', 'url', 'comentario'
     ];
 
     protected $casts = [
