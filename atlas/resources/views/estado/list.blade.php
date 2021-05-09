@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Gestión de Ámbitos') }}
+            {{ __('Gestión de Estados') }}
         </h2>
     </x-slot>
 @auth
