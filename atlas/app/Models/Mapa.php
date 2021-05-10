@@ -12,12 +12,20 @@ class Mapa extends Model
     protected $table = "Mapas";
 
     protected $fillable = [
-        'nombre', 'descripcion', 'url', 'comentario'
+        'nombre',
+        'descripcion',
+        'url',
+        'comentario',
+        'f_creacion',
+        'f_actualizado',
+        'administracion_id',
+        'ambito_id',
+        'estado_id'
     ];
 
     protected $casts = [
-        'f_actualizado' => 'datetime',
-        'f_creacion' => 'datetime'
+        'f_actualizado' => 'date',
+        'f_creacion' => 'date'
     ];
 
     public function estado()

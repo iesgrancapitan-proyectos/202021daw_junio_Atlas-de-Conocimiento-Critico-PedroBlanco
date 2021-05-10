@@ -15,28 +15,88 @@
                     @csrf
                     <div class="form-group">
                         <label for="nombre">Nombre: </label>
-                        <input type="text" name="nombre" id="nombre">
+                        <input type="text" name="nombre" id="nombre" required>
                     </div>
                     <div class="form-group">
                         <label for="descripcion">Descripci&oacute;n: </label>
-                        <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
+                        <textarea name="descripcion" id="descripcion" cols="30" rows="10" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="url">P&aacute;gina web: </label>
-                        <input type="text" name="url" id="url">
+                        <input type="text" name="url" id="url" required>
                     </div>
                     <div class="form-group">
                         <label for="comentario">Comentario: </label>
-                        <textarea name="comentario" id="comentario" cols="30" rows="10"></textarea>
+                        <textarea name="comentario" id="comentario" cols="30" rows="10" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="f_creacion">Fecha de creaci&oacute;n: </label>
-                        <input type="date" name="f_creacion" id="f_creacion">
+                        <input type="date" name="f_creacion" id="f_creacion" required>
                     </div>
                     <div class="form-group">
                         <label for="f_actualizado">Fecha de actualizaci&oacute;n: </label>
-                        <input type="date" name="f_actualizado" id="f_actualizado">
+                        <input type="date" name="f_actualizado" id="f_actualizado" required>
                     </div>
+                    @if(isset($administraciones))
+                    <div class="form-group">
+                        <label for="administraciones">Administraci&oacute;n: </label>
+                        <select name="administraciones" id="administraciones" required>
+                            @foreach ($administraciones as $administracion)
+                            <option value="{{$administracion->id}}">{{$administracion->nombre}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @else
+                    <div>No se han encontrado Administraciones definidas.</div>
+                    @endif
+                    @if(isset($ambitos))
+                    <div class="form-group">
+                        <label for="ambitos">&Aacute;mbito: </label>
+                        <select name="ambitos" id="ambitos" required>
+                            @foreach ($ambitos as $ambito)
+                            <option value="{{$ambito->id}}">{{$ambito->nombre}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @else
+                    <div>No se han encontrado &Aacute;mbitos definidos.</div>
+                    @endif
+                    @if(isset($estados))
+                    <div class="form-group">
+                        <label for="estados">Estados: </label>
+                        <select name="estados" id="estados" required>
+                            @foreach ($estados as $estado)
+                            <option value="{{$estado->id}}">{{$estado->nombre}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @else
+                    <div>No se han encontrado Estados definidos.</div>
+                    @endif
+                    @if(isset($autores))
+                    <div class="form-group">
+                        <label for="autores">Autor(es): (se puede seleccionar m&aacute;s de una/a)</label>
+                        <select name="autores[]" id="autores" multiple required>
+                            @foreach ($autores as $autor)
+                            <option value="{{$autor->id}}">{{$autor->apellidos}}, {{$autor->nombre}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @else
+                    <div>No se han encontrado Autores definidos.</div>
+                    @endif
+                    @if(isset($geos))
+                    <div class="form-group">
+                        <label for="geos">Localizaci&oacute;n(es) Geogr&aacute;fica(s): (se puede seleccionar m&aacute;s de una)</label>
+                        <select name="geos[]" id="geos" multiple required>
+                            @foreach ($geos as $geo)
+                            <option value="{{$geo->id}}">{{$geo->nombre}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @else
+                    <div>No se han encontrado Localizaciones Geogr&aacute;ficas definidas.</div>
+                    @endif
                     <div>
                         <br/>
                         <button class="border" type="reset">Limpiar</button>
