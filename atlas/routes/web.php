@@ -86,7 +86,6 @@ Route::prefix('ambito')->group(function () {
 
     // Mostrar un elemento
     Route::get('/{ambito}', [AmbitoController::class, 'show'])
-                    ->middleware('guest')
                     ->name('ambito.show');
 
     // Mostrar el formulario de edición de un elemento
@@ -121,7 +120,6 @@ Route::prefix('estado')->group(function () {
 
     // Mostrar un elemento
     Route::get('/{estado}', [EstadoController::class, 'show'])
-                    ->middleware('guest')
                     ->name('estado.show');
 
     // Mostrar el formulario de edición de un elemento
@@ -156,7 +154,6 @@ Route::prefix('geo')->group(function () {
 
     // Mostrar un elemento
     Route::get('/{geo}', [GeoController::class, 'show'])
-                    ->middleware('guest')
                     ->name('geo.show');
 
     // Mostrar el formulario de edición de un elemento
@@ -191,7 +188,6 @@ Route::prefix('autor')->group(function () {
 
     // Mostrar un elemento
     Route::get('/{autor}', [AutorController::class, 'show'])
-                    ->middleware('guest')
                     ->name('autor.show');
 
     // Mostrar el formulario de edición de un elemento
@@ -226,7 +222,6 @@ Route::prefix('mapa')->group(function () {
 
     // Mostrar un elemento
     Route::get('/{mapa}', [MapaController::class, 'show'])
-                    ->middleware('guest')
                     ->name('mapa.show');
 
     // Mostrar el formulario de edición de un elemento
