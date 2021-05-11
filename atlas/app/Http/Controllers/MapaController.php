@@ -119,10 +119,23 @@ class MapaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Mapa $mapa)
-    {
+    {/*
+        $administraciones = Administracion::with(['nombre' => function ($query) {
+            $query->where('administracion.id', '=', $mapa['administracion_id']);
+        }])->get();
+*/
+        // dd ( $administraciones );
+        // dd ( [$mapa, $mapa->administracion(), $mapa->administracion()->get()] );
+
+        // foreach ($mapa->administracion()->get() as $valor) {
+        //     dd ( [ $valor->id, $valor->nombre] );
+        // }
+
+
+
         return view ('mapa.show')->with([
             'mapa' => $mapa,
-            'titulo_pagina' => 'Mostrar Mapa'
+            'titulo_pagina' => 'Mostrar Mapa - '.$mapa->nombre
             ]);
     }
 
