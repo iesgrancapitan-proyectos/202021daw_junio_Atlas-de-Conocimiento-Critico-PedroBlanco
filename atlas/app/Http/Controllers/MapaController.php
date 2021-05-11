@@ -45,6 +45,7 @@ class MapaController extends Controller
     /**
      * Cargamos los datos de necesarios para crear un elemento y mostramos el formulario
      * Nos viene bien para mostrar un elemento desde su propia vista
+     * FIXME: ¿Estamos usando este método?
      *
      * @return \Illuminate\Http\Response
      */
