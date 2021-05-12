@@ -103,9 +103,7 @@ class MapaController extends Controller
         // Segundo, almacenamos en la BD
         $mapa = Mapa::create($temp_mapa);
 
-        // FIXME: Asociar el mapa a su autor (N:M)
         $mapa->autores()->attach($temp_mapa['autores']);
-        // FIXME: Asociar el mapa a su geo (N:M)
         $mapa->geo()->attach($temp_mapa['geos']);
 
         //return view('mapa');
@@ -119,20 +117,7 @@ class MapaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Mapa $mapa)
-    {/*
-        $administraciones = Administracion::with(['nombre' => function ($query) {
-            $query->where('administracion.id', '=', $mapa['administracion_id']);
-        }])->get();
-*/
-        // dd ( $administraciones );
-        // dd ( [$mapa, $mapa->administracion(), $mapa->administracion()->get()] );
-
-        // foreach ($mapa->administracion()->get() as $valor) {
-        //     dd ( [ $valor->id, $valor->nombre] );
-        // }
-
-
-
+    {
         return view ('mapa.show')->with([
             'mapa' => $mapa,
             'titulo_pagina' => 'Mostrar Mapa - '.$mapa->nombre
@@ -147,7 +132,20 @@ class MapaController extends Controller
      */
     public function edit(Mapa $mapa)
     {
+        // Primero, recuperamos los datos de la BD
+        $administraciones = Administracion::latest()->get();
+        $estados = Estado::latest()->get();
+        $ambitos = Ambito::latest()->get();
+        $autores = Autor::latest()->get();
+        $geos = Geo::latest()->get();
+
+        // Segundo, pasamos los datos a la plantilla correspondiente
         return view ('mapa.edit')->with([
+            'administraciones' => $administraciones,
+            'estados' => $estados,
+            'ambitos' => $ambitos,
+            'autores' => $autores,
+            'geos' => $geos,
             'mapa' => $mapa,
             'titulo_pagina' => 'Editar Mapa'
         ]);
@@ -165,10 +163,29 @@ class MapaController extends Controller
         // Primero, validamos
         $this->validate($request, [
             'nombre' => 'required',
-            'descripcion' => 'required'
+            'descripcion' => 'required',
+            'comentario' => 'required',
+            'url' => 'required',
+            'administraciones' => 'required',
+            'estados' => 'required',
+            'ambitos' => 'required',
+            'autores' => 'required',
+            'geos' => 'required',
+            'f_creacion' => 'required',
+            'f_actualizado' => 'required',
         ]);
+
+        $temp_mapa = $request->all();
+
+        $temp_mapa['administracion_id'] = $temp_mapa['administraciones'];
+        $temp_mapa['estado_id'] = $temp_mapa['estados'];
+        $temp_mapa['ambito_id'] = $temp_mapa['ambitos'];
+
         // Segundo, almacenamos en la BD
         $mapa->update($request->all());
+
+        $mapa->autores()->sync($temp_mapa['autores']);
+        $mapa->geo()->sync($temp_mapa['geos']);
 
         return redirect()->route('mapa.index');
     }
