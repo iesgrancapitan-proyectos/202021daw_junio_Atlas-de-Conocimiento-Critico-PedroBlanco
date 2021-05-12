@@ -24,8 +24,8 @@ class Mapa extends Model
     ];
 
     protected $casts = [
-        'f_actualizado' => 'date',
-        'f_creacion' => 'date'
+        'f_actualizado' => 'datetime:Y-m-d',
+        'f_creacion' => 'datetime:Y-m-d'
     ];
 
     public function estado()

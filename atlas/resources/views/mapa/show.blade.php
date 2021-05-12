@@ -62,8 +62,8 @@
                         </ul>
                     </p>
                     <br/>
-                    <p class="border font-semibold text-l text-gray-800 leading-tight">Creado: {{$mapa->f_creacion}}
-                        <br/>Actualizado: {{$mapa->f_actualizado}}
+                    <p class="border font-semibold text-l text-gray-800 leading-tight">Creado: {{$mapa->f_creacion->format('Y-m-d')}}
+                        <br/>Actualizado: {{$mapa->f_actualizado->format('Y-m-d')}}
                     </p>
                     <br/>
                     <a href="{{route('mapa.index')}}">Volver</a>
