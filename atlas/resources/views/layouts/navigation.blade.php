@@ -19,14 +19,20 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @auth
+                        <x-nav-link :href="url('mapa')" :active="request()->is('mapa')">
+                            {{ __('Mapas') }}
+                        </x-nav-link>
                         <x-nav-link :href="url('administracion')" :active="request()->is('administracion')">
-                            {{ __('Administración') }}
+                            {{ __('Administraciones') }}
                         </x-nav-link>
                         <x-nav-link :href="url('ambito')" :active="request()->is('ambito')">
                             {{ __('Ámbitos') }}
                         </x-nav-link>
                         <x-nav-link :href="url('estado')" :active="request()->is('estado')">
                             {{ __('Estados') }}
+                        </x-nav-link>
+                        <x-nav-link :href="url('geo')" :active="request()->is('geo')">
+                            {{ __('Localizaciones') }}
                         </x-nav-link>
                         <x-nav-link :href="url('autor')" :active="request()->is('autor')">
                             {{ __('Autores') }}
@@ -97,14 +103,20 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             @auth
+                <x-responsive-nav-link :href="url('mapa')" :active="request()->is('mapa')">
+                    {{ __('Mapas') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="url('administracion')" :active="request()->is('administracion')">
-                    {{ __('Administración') }}
+                    {{ __('Administraciones') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="url('ambito')" :active="request()->is('ambito')">
                     {{ __('Ámbitos') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="url('estado')" :active="request()->is('estado')">
                     {{ __('Estados') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="url('geo')" :active="request()->is('geo')">
+                    {{ __('Localizaciones') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="url('autor')" :active="request()->is('autor')">
                     {{ __('Autores') }}

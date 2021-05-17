@@ -67,7 +67,7 @@
                     @endforeach
                 </ul>
                 @else
-                <h3 class="font-semibold text-l text-gray-800 leading-tight">No se ha definido &Aacute;mbito.</h3>
+                <h3 class="font-semibold text-l text-gray-800 leading-tight">No se han definido Autores.</h3>
                 @endif
             </div>
         </div>

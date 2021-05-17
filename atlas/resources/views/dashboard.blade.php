@@ -14,6 +14,7 @@
                         <li><a href="/administracion">CRUD de Administraciones.</a></li>
                         <li><a href="/ambito">CRUD de &Aacute;mbitos.</a></li>
                         <li><a href="/estado">CRUD de Estados.</a></li>
+                        <li><a href="/geo">CRUD de Localizaciones Geogr&aacute;ficas.</a></li>
                         <li><a href="/autor">CRUD de Autores.</a></li>
                     </ul>
                 </div>

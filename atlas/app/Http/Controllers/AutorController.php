@@ -27,6 +27,7 @@ class AutorController extends Controller
 
     /**
      * Cargamos los datos de un elemento para editar y mostramos el formulario
+     * FIXME: ¿Estamos usando este método?
      *
      * @return \Illuminate\Http\Response
      */

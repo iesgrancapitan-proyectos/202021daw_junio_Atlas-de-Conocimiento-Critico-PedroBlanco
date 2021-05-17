@@ -6,10 +6,10 @@ Atlas.code-workspace
 ### Copiado y modificado de https://stackoverflow.com/a/57749909/15662904
 ### VisualStudioCode ###
 .vscode/*
-#!.vscode/settings.json
-#!.vscode/tasks.json
-#!.vscode/launch.json
-#!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
@@ -18,3 +18,9 @@ Atlas.code-workspace
 public/test/*
 
 *.cmd
+<<<<<<< HEAD
+=======
+
+atlas/composer.lock
+atlas/package-lock.json
+>>>>>>> main

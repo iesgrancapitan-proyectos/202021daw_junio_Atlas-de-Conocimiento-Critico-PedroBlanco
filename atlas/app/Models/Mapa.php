@@ -9,17 +9,23 @@ class Mapa extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nombre', 'descripcion', 'url'
-    ];
+    protected $table = "Mapas";
 
-    protected $hidden = [
-        'comentario'
+    protected $fillable = [
+        'nombre',
+        'descripcion',
+        'url',
+        'comentario',
+        'f_creacion',
+        'f_actualizado',
+        'administracion_id',
+        'ambito_id',
+        'estado_id'
     ];
 
     protected $casts = [
-        'f_actualizado' => 'datetime',
-        'f_creacion' => 'datetime'
+        'f_actualizado' => 'datetime:Y-m-d',
+        'f_creacion' => 'datetime:Y-m-d'
     ];
 
     public function estado()

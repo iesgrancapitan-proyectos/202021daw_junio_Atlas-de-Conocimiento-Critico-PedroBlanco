@@ -9,6 +9,8 @@ class Geo extends Model
 {
     use HasFactory;
 
+    protected $table = 'Geo';
+
     protected $fillable = [
         'dir3', 'nombre'
     ];

@@ -6,8 +6,8 @@ use App\Http\Controllers\AdministracionController;
 use App\Http\Controllers\AmbitoController;
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\EstadoController;
-// use App\Http\Controllers\GeoController;
-// use App\Http\Controllers\MapaController;
+use App\Http\Controllers\GeoController;
+use App\Http\Controllers\MapaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,7 +86,6 @@ Route::prefix('ambito')->group(function () {
 
     // Mostrar un elemento
     Route::get('/{ambito}', [AmbitoController::class, 'show'])
-                    ->middleware('guest')
                     ->name('ambito.show');
 
     // Mostrar el formulario de edición de un elemento
@@ -121,7 +120,6 @@ Route::prefix('estado')->group(function () {
 
     // Mostrar un elemento
     Route::get('/{estado}', [EstadoController::class, 'show'])
-                    ->middleware('guest')
                     ->name('estado.show');
 
     // Mostrar el formulario de edición de un elemento
@@ -140,6 +138,40 @@ Route::prefix('estado')->group(function () {
                     ->name('estado.delete');
 });
 
+// Rutas para los elementos Geo
+Route::prefix('geo')->group(function () {
+    Route::redirect('/', '/geo', 301);
+
+    // Mostrar formulario para crear elemento
+    // Mostrar a continuación los elementos ya creados
+    Route::get('/', [GeoController::class, 'index'])
+                    ->name('geo.index');
+
+    // Crear un elemento
+    Route::post('/', [GeoController::class, 'store'])
+                    ->middleware('auth')
+                    ->name('geo.store');
+
+    // Mostrar un elemento
+    Route::get('/{geo}', [GeoController::class, 'show'])
+                    ->name('geo.show');
+
+    // Mostrar el formulario de edición de un elemento
+    Route::get('/edit/{geo}', [GeoController::class, 'edit'])
+                    ->middleware('auth')
+                    ->name('geo.edit');
+
+    // Guardar un elemento editado
+    Route::post('/edit/{geo}', [GeoController::class, 'update'])
+                    ->middleware('auth')
+                    ->name('geo.update');
+
+    // Borrar un elemento
+    Route::delete('/delete/{geo}', [GeoController::class, 'destroy'])
+                    ->middleware('auth')
+                    ->name('geo.delete');
+});
+
 // Rutas para los elementos Autor
 Route::prefix('autor')->group(function () {
     Route::redirect('/', '/autor', 301);
@@ -156,7 +188,6 @@ Route::prefix('autor')->group(function () {
 
     // Mostrar un elemento
     Route::get('/{autor}', [AutorController::class, 'show'])
-                    ->middleware('guest')
                     ->name('autor.show');
 
     // Mostrar el formulario de edición de un elemento
@@ -173,6 +204,40 @@ Route::prefix('autor')->group(function () {
     Route::delete('/delete/{autor}', [AutorController::class, 'destroy'])
                     ->middleware('auth')
                     ->name('autor.delete');
+});
+
+// Rutas para los elementos Mapa
+Route::prefix('mapa')->group(function () {
+    Route::redirect('/', '/mapa', 301);
+
+    // Mostrar formulario para crear elemento
+    // Mostrar a continuación los elementos ya creados
+    Route::get('/', [MapaController::class, 'index'])
+                    ->name('mapa.index');
+
+    // Crear un elemento
+    Route::post('/', [MapaController::class, 'store'])
+                    ->middleware('auth')
+                    ->name('mapa.store');
+
+    // Mostrar un elemento
+    Route::get('/{mapa}', [MapaController::class, 'show'])
+                    ->name('mapa.show');
+
+    // Mostrar el formulario de edición de un elemento
+    Route::get('/edit/{mapa}', [MapaController::class, 'edit'])
+                    ->middleware('auth')
+                    ->name('mapa.edit');
+
+    // Guardar un elemento editado
+    Route::post('/edit/{mapa}', [MapaController::class, 'update'])
+                    ->middleware('auth')
+                    ->name('mapa.update');
+
+    // Borrar un elemento
+    Route::delete('/delete/{mapa}', [MapaController::class, 'destroy'])
+                    ->middleware('auth')
+                    ->name('mapa.delete');
 });
 
 require __DIR__.'/auth.php';
