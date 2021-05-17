@@ -18,9 +18,6 @@ Atlas.code-workspace
 public/test/*
 
 *.cmd
-<<<<<<< HEAD
-=======
 
 atlas/composer.lock
 atlas/package-lock.json
->>>>>>> main
