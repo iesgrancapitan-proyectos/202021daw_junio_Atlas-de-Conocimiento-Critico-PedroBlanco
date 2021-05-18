@@ -19,5 +19,5 @@ public/test/*
 
 *.cmd
 
-atlas*/composer.lock
-atlas*/package-lock.json
+atlas/composer.lock
+atlas/package-lock.json
