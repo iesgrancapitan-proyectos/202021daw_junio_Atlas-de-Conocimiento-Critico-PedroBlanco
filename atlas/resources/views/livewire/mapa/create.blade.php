@@ -33,17 +33,25 @@
                         <div class="mb-4" style="clear: both;">
                             <div style="float: left;">
                                 <label for="f_creacion" class="block text-gray-700 text-sm font-bold mb-2">Fecha de creaci&oacute;n: </label>
-                                <input type="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="f_creacion" id="f_creacion" wire:model="f_creacion" required>
+                                <input type="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="f_creacion" id="f_creacion" wire:model="f_creacion"
+                                @if(isset($f_creacion))
+                                value="{{$f_creacion}}"
+                                @endif
+                                required>
                             </div>
                             <div style="float: right;">
                                 <label for="f_actualizado" class="block text-gray-700 text-sm font-bold mb-2">Fecha de actualizaci&oacute;n: </label>
-                                <input type="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="f_actualizado" id="f_actualizado" wire:model="f_actualizado" required>
+                                <input type="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="f_actualizado" id="f_actualizado" wire:model="f_actualizado"
+                                @if(isset($f_actualizado))
+                                value="{{$f_actualizado}}"
+                                @endif
+                                required>
                             </div>
                         </div>
                         @if(isset($administraciones))
                         <div class="mb-4">
-                            <label for="administraciones" class="block text-gray-700 text-sm font-bold mb-2">Administraci&oacute;n: </label>
-                            <select name="administraciones" id="administraciones" wire:model="administraciones" required>
+                            <label for="administracion_id" class="block text-gray-700 text-sm font-bold mb-2">Administraci&oacute;n: </label>
+                            <select name="administracion_id" id="administracion_id" wire:model="administracion_id" required>
                                 @foreach ($administraciones as $administracion)
                                 <option value="{{$administracion->id}}" {{-- FIXME: tal vez se más rápido marcar selected con JavaScript --}}
                                     @if($administracion->id === $administracion_id)
@@ -58,8 +66,8 @@
                         @endif
                         @if(isset($ambitos))
                         <div class="mb-4">
-                            <label for="ambitos" class="block text-gray-700 text-sm font-bold mb-2">&Aacute;mbito: </label>
-                            <select name="ambitos" id="ambitos" wire:model="ambitos" required>
+                            <label for="ambito_id" class="block text-gray-700 text-sm font-bold mb-2">&Aacute;mbito: </label>
+                            <select name="ambito_id" id="ambito_id" wire:model="ambito_id" required>
                                 @foreach ($ambitos as $ambito)
                                 <option value="{{$ambito->id}}" {{-- FIXME: tal vez se más rápido marcar selected con JavaScript --}}
                                     @if($ambito->id === $ambito_id)
@@ -74,8 +82,8 @@
                         @endif
                         @if(isset($estados))
                         <div class="mb-4">
-                            <label for="estados" class="block text-gray-700 text-sm font-bold mb-2">Estados: </label>
-                            <select name="estados" id="estados" wire:model="estados" required>
+                            <label for="estado_id" class="block text-gray-700 text-sm font-bold mb-2">Estados: </label>
+                            <select name="estado_id" id="estado_id" wire:model="estado_id" required>
                                 @foreach ($estados as $estado)
                                 <option value="{{$estado->id}}" {{-- FIXME: tal vez se más rápido marcar selected con JavaScript --}}
                                     @if($estado->id === $estado_id)
@@ -90,11 +98,11 @@
                         @endif
                         @if(isset($autores))
                         <div class="mb-4">
-                            <label for="autores" class="block text-gray-700 text-sm font-bold mb-2">Autor(es): (se puede seleccionar m&aacute;s de una/a)</label>
-                            <select name="autores[]" id="autores" wire:model="autores" multiple required>
+                            <label for="autores_id" class="block text-gray-700 text-sm font-bold mb-2">Autor(es): (se puede seleccionar m&aacute;s de una/a)</label>
+                            <select name="autores_id[]" id="autores_id" wire:model="autores_id" multiple required>
                                 @foreach ($autores as $autor)
                                 <option value="{{$autor->id}}" {{-- FIXME: tal vez se más rápido marcar selected con JavaScript --}}
-                                    @if($autores_id->contains($autor->id))
+                                    @if ( isset($autores_id) && ($autores_id->contains($autor->id) ) )
                                     selected
                                     @endif
                                     >{{$autor->apellidos}}, {{$autor->nombre}}</option>
@@ -106,11 +114,11 @@
                         @endif
                         @if(isset($geos))
                         <div class="mb-4">
-                            <label for="geos" class="block text-gray-700 text-sm font-bold mb-2">Localizaci&oacute;n(es) Geogr&aacute;fica(s): (se puede seleccionar m&aacute;s de una)</label>
-                            <select name="geos[]" id="geos" wire:model="geos" multiple required>
+                            <label for="geos_id" class="block text-gray-700 text-sm font-bold mb-2">Localizaci&oacute;n(es) Geogr&aacute;fica(s): (se puede seleccionar m&aacute;s de una)</label>
+                            <select name="geos_id[]" id="geos_id" wire:model="geos_id" multiple required>
                                 @foreach ($geos as $geo)
                                 <option value="{{$geo->id}}" {{-- FIXME: tal vez se más rápido marcar selected con JavaScript --}}
-                                    @if($geos_id->contains($geo->id))
+                                    @if ( isset($geos_id) && ($geos_id->contains($geo->id) ) )
                                     selected
                                     @endif
                                     >{{$geo->nombre}}</option>

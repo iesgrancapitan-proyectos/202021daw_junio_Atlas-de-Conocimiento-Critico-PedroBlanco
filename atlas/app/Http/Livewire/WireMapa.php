@@ -11,6 +11,7 @@ use App\Models\Estado;
 use App\Models\Autor;
 use App\Models\Geo;
 
+use Illuminate\Support\Collection;
 
 class WireMapa extends Component
 {
@@ -26,7 +27,6 @@ class WireMapa extends Component
             $estado_id,
             $_id;
 
-    // *** Hay que definir y usar estas dos variables como Colecciones de Autor y Geo...
     public  $autores_id,
             $geos_id;
 
@@ -35,6 +35,7 @@ class WireMapa extends Component
             $ambitos,
             $autores,
             $geos;
+
     public $isOpen = 0;
 
     public $mensajes = array(
@@ -47,7 +48,6 @@ class WireMapa extends Component
         $this->contenedor = Mapa::latest()->get();;
 
         return view('livewire.wire-mapa');
-        //return view('livewire.generic.list');
     }
 
     public function create()
@@ -77,8 +77,9 @@ class WireMapa extends Component
         $this->ambito_id = '';
         $this->estado_id = '';
         $this->_id = '';
-        $this->autores_id = '';
-        $this->geos_id = '';
+
+        $this->autores_id = collect ();
+        $this->geos_id = collect ();
 
         $this->administraciones = Administracion::latest()->get();
         $this->estados = Estado::latest()->get();
@@ -99,8 +100,10 @@ class WireMapa extends Component
             'administracion_id' => 'required',
             'ambito_id' => 'required',
             'estado_id' => 'required',
-            'autores_id' => 'required',
-            'geos_id' => 'required',
+            // Habrá que activar la validación en otro sitio?
+            // FIXME: Comprobar si funciona aquí o no
+            // 'autores_id' => 'required|array|min:1',
+            // 'geos_id' => 'required|array|min:1',
         ]);
 
         $temp_mapa = Mapa::updateOrCreate(['id' => $this->_id], [
@@ -120,7 +123,7 @@ class WireMapa extends Component
 
 
         session()->flash('message',
-            $this->_id ? 'Mapa definido correctamente.' : 'Mapa actualizado correctamente.');
+            $this->_id ? 'Mapa actualizado correctamente.' : 'Mapa creado correctamente.');
 
         $this->closeModal();
         $this->resetInputFields();
@@ -134,8 +137,8 @@ class WireMapa extends Component
         $this->descripcion = $mapa->descripcion;
         $this->url = $mapa->url;
         $this->comentario = $mapa->comentario;
-        $this->f_creacion = $mapa->f_creacion;
-        $this->f_actualizado = $mapa->f_actualizado;
+        $this->f_creacion = $mapa->f_creacion->format('Y-m-d');
+        $this->f_actualizado = $mapa->f_actualizado->format('Y-m-d');
         $this->administracion_id = $mapa->administracion_id;
         $this->ambito_id = $mapa->ambito_id;
         $this->estado_id = $mapa->estado_id;
