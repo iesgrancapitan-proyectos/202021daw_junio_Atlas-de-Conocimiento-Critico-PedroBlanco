@@ -16,6 +16,36 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('autor') }}" :active="request()->routeIs('autor')">
+                        {{ __('Autores') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('administracion') }}" :active="request()->routeIs('administracion')">
+                        {{ __('Administración') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('ambito') }}" :active="request()->routeIs('ambito')">
+                        {{ __('Ámbitos') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('estado') }}" :active="request()->routeIs('estado')">
+                        {{ __('Estados') }}
+                    </x-jet-nav-link>
+                </div>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{ route('geo') }}" :active="request()->routeIs('geo')">
+                    {{ __('Localizaciones') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{ route('mapa') }}" :active="request()->routeIs('mapa')">
+                    {{ __('Mapas') }}
+                </x-jet-nav-link>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

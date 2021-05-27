@@ -43,6 +43,24 @@ class WireMapa extends Component
         'boton_crear' => 'Crear nuevo Mapa'
     );
 
+    protected $rules = [
+        'nombre' => 'required',
+        'descripcion' => 'required',
+        'url' => 'required',
+        'comentario' => 'required',
+        'f_creacion' => 'required',
+        'f_actualizado' => 'required',
+        'administracion_id' => 'required',
+        'ambito_id' => 'required',
+        'estado_id' => 'required',
+        // Habrá que activar la validación en otro sitio?
+        // FIXME: Comprobar si funciona aquí o no
+        // 'autores_id' => 'required',
+        // 'geos_id' => 'required',
+        'autores_id.*' => 'required',
+        'geos_id.*' => 'required',
+    ];
+
     public function render()
     {
         $this->contenedor = Mapa::latest()->get();;
@@ -53,6 +71,7 @@ class WireMapa extends Component
     public function create()
     {
         $this->resetInputFields();
+        $this->emitTo ( 'livewire.mapa.create', 'mount', null );
         $this->openModal();
     }
 
@@ -76,10 +95,10 @@ class WireMapa extends Component
         $this->administracion_id = '';
         $this->ambito_id = '';
         $this->estado_id = '';
-        $this->_id = '';
+        $this->_id = null;
 
-        $this->autores_id = collect ();
-        $this->geos_id = collect ();
+        $this->autores_id = Array();
+        $this->geos_id = Array();
 
         $this->administraciones = Administracion::latest()->get();
         $this->estados = Estado::latest()->get();
@@ -90,21 +109,14 @@ class WireMapa extends Component
 
     public function store()
     {
-        $this->validate([
-            'nombre' => 'required',
-            'descripcion' => 'required',
-            'url' => 'required',
-            'comentario' => 'required',
-            'f_creacion' => 'required',
-            'f_actualizado' => 'required',
-            'administracion_id' => 'required',
-            'ambito_id' => 'required',
-            'estado_id' => 'required',
-            // Habrá que activar la validación en otro sitio?
-            // FIXME: Comprobar si funciona aquí o no
-            // 'autores_id' => 'required|array|min:1',
-            // 'geos_id' => 'required|array|min:1',
-        ]);
+        //dd($this);
+        // dd($this->autores);
+        // dd($this->geos);
+        // dd($this->autores_id);
+        // dd(array_keys($this->autores_id));
+        // dd(array_keys($this->selected_autores_id));
+
+        $this->validate();
 
         $temp_mapa = Mapa::updateOrCreate(['id' => $this->_id], [
             'nombre' => $this->nombre,
@@ -118,8 +130,11 @@ class WireMapa extends Component
             'estado_id' => $this->estado_id,
         ]);
 
-        $temp_mapa->autores()->sync($this->autores_id);
-        $temp_mapa->geo()->sync($this->geos_id);
+        $temp_mapa->autores()->sync(array_keys($this->autores_id));
+        $temp_mapa->geo()->sync(array_keys($this->geos_id));
+
+        // $temp_mapa->autores()->sync($this->autores);
+        // $temp_mapa->geo()->sync($this->geos);
 
 
         session()->flash('message',
@@ -131,6 +146,8 @@ class WireMapa extends Component
 
     public function edit($id)
     {
+        $this->emitTo ( 'livewire.mapa.create', 'mount', $id );
+
         $mapa = Mapa::findOrFail($id);
         $this->_id = $id;
         $this->nombre = $mapa->nombre;
@@ -143,8 +160,8 @@ class WireMapa extends Component
         $this->ambito_id = $mapa->ambito_id;
         $this->estado_id = $mapa->estado_id;
 
-        $this->autores_id = $mapa->autores;
-        $this->geos_id = $mapa->geo;
+        $this->autores_id = array_flip ( $mapa->autores()->get()->pluck('id')->toArray() );
+        $this->geos_id = array_flip ( $mapa->geo()->get()->pluck('id')->toArray() );
 
         $this->administraciones = Administracion::latest()->get();
         $this->estados = Estado::latest()->get();
@@ -159,5 +176,10 @@ class WireMapa extends Component
     {
         Mapa::find($id)->delete();
         session()->flash('message', 'Mapa borrado correctamente.');
+    }
+
+    public function mount()
+    {
+
     }
 }

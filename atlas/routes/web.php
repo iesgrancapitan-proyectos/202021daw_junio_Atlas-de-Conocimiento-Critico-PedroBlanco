@@ -28,14 +28,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('administracion', WireAdministracion::class);
+Route::get('administracion', WireAdministracion::class)->name('administracion');
 
-Route::get('ambito', WireAmbito::class);
+Route::get('ambito', WireAmbito::class)->name('ambito');
 
-Route::get('estado', WireEstado::class);
+Route::get('estado', WireEstado::class)->name('estado');
 
-Route::get('autor', WireAutor::class);
+Route::get('autor', WireAutor::class)->name('autor');
 
-Route::get('geo', WireGeo::class);
+Route::get('geo', WireGeo::class)->name('geo');
 
-Route::get('mapa', WireMapa::class);
+Route::get('mapa', WireMapa::class)->name('mapa');
