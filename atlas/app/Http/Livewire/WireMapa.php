@@ -59,6 +59,8 @@ class WireMapa extends Component
         // 'geos_id' => 'required',
         'autores_id.*' => 'required',
         'geos_id.*' => 'required',
+        'autores' => 'required',
+        'geos' => 'required',
     ];
 
     public function render()
@@ -109,7 +111,7 @@ class WireMapa extends Component
 
     public function store()
     {
-        //dd($this);
+        dd($this);
         // dd($this->autores);
         // dd($this->geos);
         // dd($this->autores_id);
@@ -146,7 +148,7 @@ class WireMapa extends Component
 
     public function edit($id)
     {
-        $this->emitTo ( 'livewire.mapa.create', 'mount', $id );
+        //$this->emitTo ( 'livewire.mapa.create', 'mount', $id );
 
         $mapa = Mapa::findOrFail($id);
         $this->_id = $id;
@@ -160,6 +162,7 @@ class WireMapa extends Component
         $this->ambito_id = $mapa->ambito_id;
         $this->estado_id = $mapa->estado_id;
 
+        // Guardamos los ids de los autores y los geos conectados al mapa actual en un array
         $this->autores_id = array_flip ( $mapa->autores()->get()->pluck('id')->toArray() );
         $this->geos_id = array_flip ( $mapa->geo()->get()->pluck('id')->toArray() );
 

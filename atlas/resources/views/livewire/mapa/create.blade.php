@@ -100,9 +100,25 @@
                         @if(isset($autores))
                         <div class="mb-4">
                             <label for="autores_id" class="block text-gray-700 text-sm font-bold mb-2">Autor(es): (se puede seleccionar m&aacute;s de una/a)</label>
+
                             {{-- <select name="autores_id[]" id="autores_id" wire:init="mount({{ $_id }})" wire:model.defer="autores_id" multiple required> --}}
-                            <select name="autores_id[]" id="autores_id" wire:model.defer="autores_id" multiple required>
-                            {{-- <select name="autores_id[]" id="autores_id" multiple required> --}}
+
+                            {{-- Con esta línea van los datos bien, no se muestran seleccionados y no vuelven bien cuando son modificados --}}
+                            {{-- <select name="autores_id[]" id="autores_id" wire:model.defer="autores" multiple required> --}}
+
+                            {{-- Con esta línea van los datos bien, no se muestran seleccionados y da error cuando son modificados --}}
+                            {{-- <select name="autores_id[]" id="autores_id" wire:model="autores" multiple required> --}}
+
+                            {{-- Con esta línea van y vienen bien los datos pero no se muestran como seleccionados --}}
+                            {{-- <select name="autores_id[]" id="autores_id" wire:model.defer="autores_id" multiple required> --}}
+
+                            {{-- Con esta línea van los datos bien y se muestran seleccionados, pero no vuelven bien --}}
+                            <select name="autores_id[]" id="autores_id" multiple required>
+
+                            {{-- Con esta línea van y vienen bien los datos pero no se muestran como seleccionados --}}
+                            {{-- Al devolver los datos, los cambiados tienen una representación diferente --}}
+                            {{-- <select name="autores[]" id="autores" wire:model.defer="autores_id" multiple required> --}}
+
                                 @foreach ($autores as $autor)
                                 <option value="{{$autor->id}}"
                                     @if ( isset ( $autores_id[$autor->id] ) )
@@ -120,10 +136,24 @@
                             {{-- <label for="geos" class="block text-gray-700 text-sm font-bold mb-2">Localizaci&oacute;n(es) Geogr&aacute;fica(s): (se puede seleccionar m&aacute;s de una)</label> --}}
                             <label for="geos_id" class="block text-gray-700 text-sm font-bold mb-2">Localizaci&oacute;n(es) Geogr&aacute;fica(s): (se puede seleccionar m&aacute;s de una)</label>
 
-                            <select name="geos_id[]" id="geos_id" wire:model.defer="geos_id" multiple required>
-                            {{-- <select name="geos_id[]" id="geos_id" wire:init="$emitTo( 'livewire.mapa.create', 'mount({{ $_id }}' )" wire:model.defer="geos_id" multiple required> --}}
+                            {{-- Con esta línea van y vienen bien los datos pero no se muestran como seleccionados --}}
                             {{-- <select name="geos_id[]" id="geos_id" wire:model.defer="geos_id" multiple required> --}}
-                            {{-- <select name="geos_id[]" id="geos_id" multiple required> --}}
+
+                            {{-- <select name="geos_id[]" id="geos_id" wire:init="$emitTo( 'livewire.mapa.create', 'mount({{ $_id }}' )" wire:model.defer="geos_id" multiple required> --}}
+
+                            {{-- Con esta línea van los datos bien, no se muestran seleccionados y no vuelven bien cuando son modificados --}}
+                            {{-- <select name="geos_id[]" id="geos_id" wire:model.defer="geos" multiple required> --}}
+
+                            {{-- Con esta línea van los datos bien, no se muestran seleccionados y da error cuando son modificados --}}
+                            {{-- <select name="geos_id[]" id="geos_id" wire:model="geos" multiple required> --}}
+
+                            {{-- Con esta línea van los datos bien y se muestran seleccionados, pero no vuelven bien --}}
+                            <select name="geos_id[]" id="geos_id" multiple required>
+
+                            {{-- Con esta línea van y vienen bien los datos pero no se muestran como seleccionados --}}
+                            {{-- Al devolver los datos, los cambiados tienen una representación diferente --}}
+                            {{-- <select name="geos[]" id="geos" wire:model.defer="geos_id" multiple required> --}}
+
                                 @foreach ($geos as $geo)
                                 <option value="{{$geo->id}}"
                                     @if ( isset ( $geos_id[$geo->id] ) )
