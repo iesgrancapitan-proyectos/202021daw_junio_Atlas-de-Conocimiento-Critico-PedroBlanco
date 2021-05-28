@@ -11,6 +11,8 @@ use App\Models\Estado;
 use App\Models\Autor;
 use App\Models\Geo;
 
+use Illuminate\Support\Facades\Log;
+
 use Illuminate\Support\Collection;
 
 class WireMapa extends Component
@@ -29,6 +31,9 @@ class WireMapa extends Component
 
     public  $autores_id,
             $geos_id;
+
+    public  $select_autores_id,
+            $select_geos_id;
 
     public  $administraciones,
             $estados,
@@ -61,6 +66,8 @@ class WireMapa extends Component
         'geos_id.*' => 'required',
         'autores' => 'required',
         'geos' => 'required',
+        'select_autores_id.*' => 'required',
+        'select_geos_id.*' => 'required',
     ];
 
     public function render()
@@ -102,6 +109,9 @@ class WireMapa extends Component
         $this->autores_id = Array();
         $this->geos_id = Array();
 
+        $this->select_autores_id = Array();
+        $this->select_geos_id = Array();
+
         $this->administraciones = Administracion::latest()->get();
         $this->estados = Estado::latest()->get();
         $this->ambitos = Ambito::latest()->get();
@@ -111,7 +121,7 @@ class WireMapa extends Component
 
     public function store()
     {
-        dd($this);
+        // dd($this);
         // dd($this->autores);
         // dd($this->geos);
         // dd($this->autores_id);
@@ -132,8 +142,8 @@ class WireMapa extends Component
             'estado_id' => $this->estado_id,
         ]);
 
-        $temp_mapa->autores()->sync(array_keys($this->autores_id));
-        $temp_mapa->geo()->sync(array_keys($this->geos_id));
+        $temp_mapa->autores()->sync($this->select_autores_id);
+        $temp_mapa->geo()->sync($this->select_geos_id);
 
         // $temp_mapa->autores()->sync($this->autores);
         // $temp_mapa->geo()->sync($this->geos);
@@ -148,8 +158,6 @@ class WireMapa extends Component
 
     public function edit($id)
     {
-        //$this->emitTo ( 'livewire.mapa.create', 'mount', $id );
-
         $mapa = Mapa::findOrFail($id);
         $this->_id = $id;
         $this->nombre = $mapa->nombre;
@@ -162,9 +170,15 @@ class WireMapa extends Component
         $this->ambito_id = $mapa->ambito_id;
         $this->estado_id = $mapa->estado_id;
 
-        // Guardamos los ids de los autores y los geos conectados al mapa actual en un array
-        $this->autores_id = array_flip ( $mapa->autores()->get()->pluck('id')->toArray() );
-        $this->geos_id = array_flip ( $mapa->geo()->get()->pluck('id')->toArray() );
+        // La lista de autores y geos seleccionados (tb unidos originalmente)
+        $this->select_autores_id = $mapa->autores()->get()->pluck('id')->toArray();
+        $this->select_geos_id = $mapa->geo()->get()->pluck('id')->toArray();
+
+        // Guardamos los ids de los autores y los geos conectados al mapa actual en un array _flipped_ a los anteriores
+        // Para facilitar la búsqueda en la plantilla
+        $this->autores_id = array_flip ( $this->select_autores_id );
+        $this->geos_id = array_flip ( $this->select_geos_id );
+
 
         $this->administraciones = Administracion::latest()->get();
         $this->estados = Estado::latest()->get();
@@ -184,5 +198,33 @@ class WireMapa extends Component
     public function mount()
     {
 
+    }
+
+    public function toggleAutor($id)
+    {
+        $_pos = array_search ( $id, $this->select_autores_id, true );
+        // Log::debug('Autor - '.$_pos );
+
+        if ( $_pos === false ) {
+            array_push ($this->select_autores_id, $id);
+            // Log::debug( 'WireMapa->toggleAutor('.$id.') -> '.print_r( $this->select_autores_id, true ) );
+        } else {
+            unset( $this->select_autores_id[$_pos] );
+            // Log::debug( 'WireMapa->toggleAutor('.$id.')['.$_pos.'] <- '.print_r( $this->select_autores_id, true ) );
+        }
+    }
+
+    public function toggleGeo ( $id )
+    {
+        $_pos = array_search ( $id, $this->select_geos_id, true );
+        // Log::debug('Geo - '.$_pos );
+
+        if ( $_pos === false ) {
+            array_push ($this->select_geos_id, $id);
+            // Log::debug( 'WireMapa->toggleGeo('.$id.') -> '.print_r( $this->select_geos_id, true ) );
+        } else {
+            unset( $this->select_geos_id[$_pos] );
+            // Log::debug( 'WireMapa->toggleGeo('.$id.')['.$_pos.'] <- '.print_r( $this->select_geos_id, true ) );
+        }
     }
 }

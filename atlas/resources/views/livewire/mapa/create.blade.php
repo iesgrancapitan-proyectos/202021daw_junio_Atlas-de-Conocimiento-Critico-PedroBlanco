@@ -2,7 +2,7 @@
     {{-- The Master doesn't talk, he acts. --}}
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <div class="fixed inset-0 transition-opacity">
-            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            <div wire:click="closeModal()" class="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
         <!-- This element is to trick the browser into centering the modal contents. -->
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>?
@@ -99,7 +99,8 @@
                         @endif
                         @if(isset($autores))
                         <div class="mb-4">
-                            <label for="autores_id" class="block text-gray-700 text-sm font-bold mb-2">Autor(es): (se puede seleccionar m&aacute;s de una/a)</label>
+                            {{-- <label for="autores_id" class="block text-gray-700 text-sm font-bold mb-2">Autor(es): (se puede seleccionar m&aacute;s de una/a)</label> --}}
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Autor(es):</label>
 
                             {{-- <select name="autores_id[]" id="autores_id" wire:init="mount({{ $_id }})" wire:model.defer="autores_id" multiple required> --}}
 
@@ -113,20 +114,36 @@
                             {{-- <select name="autores_id[]" id="autores_id" wire:model.defer="autores_id" multiple required> --}}
 
                             {{-- Con esta línea van los datos bien y se muestran seleccionados, pero no vuelven bien --}}
-                            <select name="autores_id[]" id="autores_id" multiple required>
+                            {{-- <select name="autores_id[]" id="autores_id" multiple required> --}}
 
                             {{-- Con esta línea van y vienen bien los datos pero no se muestran como seleccionados --}}
                             {{-- Al devolver los datos, los cambiados tienen una representación diferente --}}
                             {{-- <select name="autores[]" id="autores" wire:model.defer="autores_id" multiple required> --}}
 
+                            {{-- Los datos van bien, no se muestran seleccionados y vuelven raros --}}
+                            {{-- <select name="a[]" id="a" wire:model="select_autores_id" multiple required> --}}
+{{--
                                 @foreach ($autores as $autor)
                                 <option value="{{$autor->id}}"
+                                    wire:click="toggleAutor({{$autor->id}})"
                                     @if ( isset ( $autores_id[$autor->id] ) )
                                     selected
                                     @endif
                                     >{{$autor->apellidos}}, {{$autor->nombre}}</option>
                                 @endforeach
-                            </select>
+                            </select> --}}
+
+                            @foreach ($autores as $autor)
+                            <input type="checkbox" name="autor_{{$autor->id}}" id="autor_{{$autor->id}}" value="{{$autor->id}}"
+                                wire:click="toggleAutor({{$autor->id}})"
+                                @if ( isset ( $autores_id[$autor->id] ) )
+                                checked
+                                @endif
+                                />
+                            <label for="autor_{{$autor->id}}">{{$autor->apellidos}}, {{$autor->nombre}}</label>
+                            <br/>
+                            @endforeach
+
                         </div>
                         @else
                         <div>No se han encontrado Autores definidos.</div>
@@ -134,7 +151,7 @@
                         @if(isset($geos))
                         <div class="mb-4">
                             {{-- <label for="geos" class="block text-gray-700 text-sm font-bold mb-2">Localizaci&oacute;n(es) Geogr&aacute;fica(s): (se puede seleccionar m&aacute;s de una)</label> --}}
-                            <label for="geos_id" class="block text-gray-700 text-sm font-bold mb-2">Localizaci&oacute;n(es) Geogr&aacute;fica(s): (se puede seleccionar m&aacute;s de una)</label>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Localizaci&oacute;n(es) Geogr&aacute;fica(s):</label>
 
                             {{-- Con esta línea van y vienen bien los datos pero no se muestran como seleccionados --}}
                             {{-- <select name="geos_id[]" id="geos_id" wire:model.defer="geos_id" multiple required> --}}
@@ -148,20 +165,38 @@
                             {{-- <select name="geos_id[]" id="geos_id" wire:model="geos" multiple required> --}}
 
                             {{-- Con esta línea van los datos bien y se muestran seleccionados, pero no vuelven bien --}}
-                            <select name="geos_id[]" id="geos_id" multiple required>
+                            {{-- <select name="geos_id[]" id="geos_id" multiple required> --}}
 
                             {{-- Con esta línea van y vienen bien los datos pero no se muestran como seleccionados --}}
                             {{-- Al devolver los datos, los cambiados tienen una representación diferente --}}
                             {{-- <select name="geos[]" id="geos" wire:model.defer="geos_id" multiple required> --}}
 
+                            {{-- Los datos van bien, no se muestran seleccionados y vuelven raros --}}
+                            {{-- <select name="g[]" id="g" wire:model="select_geos_id" multiple required> --}}
+
+{{--
                                 @foreach ($geos as $geo)
                                 <option value="{{$geo->id}}"
+                                    wire:click="toggleGeo({{$geo->id}})"
                                     @if ( isset ( $geos_id[$geo->id] ) )
                                     selected
                                     @endif
                                     >{{$geo->nombre}}</option>
                                 @endforeach
-                            </select>
+                            </select> --}}
+
+
+                            @foreach ($geos as $geo)
+                            <input type="checkbox" name="geo_{{$geo->id}}" id="geo_{{$geo->id}}" value="geo_{{$geo->id}}"
+                                wire:click="toggleGeo({{$geo->id}})"
+                                @if ( isset ( $geos_id[$geo->id] ) )
+                                checked
+                                @endif
+                                />
+                                <label for="geo_{{$geo->id}}">{{$geo->nombre}}</label>
+                                <br/>
+                            @endforeach
+
                         </div>
                         @else
                         <div>No se han encontrado Localizaciones Geogr&aacute;ficas definidas.</div>
