@@ -18,14 +18,13 @@ class Modelo1 extends Migration
 
 		Schema::create ( 'Estados', function ( Blueprint $table ) {
 			$table->id();
-			$table->string('nombre', 100)->unique();
+			$table->string('nombre', 100);
 			$table->text('descripcion');
 			$table->timestamps();
 		});
 
         Schema::create ( 'Autores', function ( Blueprint $table ) {
 			$table->id();
-			// FIXME: ¿Tengo que hacer únicos la combinación Nombre y Apellidos? Para usar Upserts en el Seeder
 			$table->string('nombre', 20);
 			$table->string('apellidos', 40);
 			$table->string('url', 2083)->collation('ascii_bin')->charset('ascii');
@@ -34,14 +33,14 @@ class Modelo1 extends Migration
 
         Schema::create ( 'Administraciones', function ( Blueprint $table ) {
 			$table->id();
-			$table->string('nombre', 100)->unique();
+			$table->string('nombre', 100);
 			$table->text('descripcion');
 			$table->timestamps();
 		});
 
         Schema::create ( 'Geo', function ( Blueprint $table ) {
 			$table->id();
-			$table->string('nombre', 100)->unique();
+			$table->string('nombre', 100);
 			// DIR3: Ver página 10 https://administracionelectronica.gob.es/ctt/resources/Soluciones/238/Descargas/manual%20de%20atributos.pdf?idIniciativa=238&idElemento=12232
 			$table->string('dir3', 9);
 			$table->timestamps();
@@ -49,14 +48,14 @@ class Modelo1 extends Migration
 
 		Schema::create ( 'Ambitos', function ( Blueprint $table ) {
 			$table->id();
-			$table->string('nombre', 100)->unique();
+			$table->string('nombre', 100);
 			$table->text('descripcion');
 			$table->timestamps();
 		});
 
         Schema::create ( 'Mapas', function ( Blueprint $table ) {
 			$table->id();
-			$table->string('nombre', 100)->unique();
+			$table->string('nombre', 100);
 			$table->text('descripcion');
 			$table->string('url', 2083)->collation('ascii_bin')->charset('ascii');
 			$table->text('comentario');
