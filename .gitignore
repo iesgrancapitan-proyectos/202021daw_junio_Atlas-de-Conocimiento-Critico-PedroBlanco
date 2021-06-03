@@ -22,3 +22,5 @@ public/test/*
 atlas/composer.lock
 atlas/package-lock.json
 atlas/public/vendor/*
+
+atlas-old/*
