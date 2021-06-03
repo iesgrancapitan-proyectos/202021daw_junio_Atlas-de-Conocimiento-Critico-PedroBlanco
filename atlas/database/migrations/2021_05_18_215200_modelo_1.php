@@ -25,7 +25,7 @@ class Modelo1 extends Migration
 
         Schema::create ( 'Autores', function ( Blueprint $table ) {
 			$table->id();
-			// FIXME: ¿Tengo que hacer únicos la combinación Nombre y Apellidos?
+			// FIXME: ¿Tengo que hacer únicos la combinación Nombre y Apellidos? Para usar Upserts en el Seeder
 			$table->string('nombre', 20);
 			$table->string('apellidos', 40);
 			$table->string('url', 2083)->collation('ascii_bin')->charset('ascii');
