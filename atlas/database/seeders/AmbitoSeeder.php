@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-use App\Models\Ambito
+use App\Models\Ambito;
 
 class AmbitoSeeder extends Seeder
 {

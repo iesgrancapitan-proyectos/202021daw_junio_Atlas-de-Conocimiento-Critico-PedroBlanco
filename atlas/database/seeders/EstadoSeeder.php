@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-use App\Models\Estado
+use App\Models\Estado;
 
 class EstadoSeeder extends Seeder
 {
@@ -132,5 +132,5 @@ class EstadoSeeder extends Seeder
 
     }
 
-    
+
 }

@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-use App\Models\Administracion
+use App\Models\Administracion;
 
 class AdministracionSeeder extends Seeder
 {
@@ -24,7 +24,7 @@ class AdministracionSeeder extends Seeder
         ['nombre'],
         ['nombre', 'descripcion'],
         );
-        
+
         Administracion::upsert([
             'nombre' => 'Empleo',
             'descripcion' => 'Sector de la Administración relacionado con la políticas de Empleo.',
@@ -32,7 +32,7 @@ class AdministracionSeeder extends Seeder
         ['nombre'],
         ['nombre', 'descripcion'],
         );
-        
+
         Administracion::upsert([
             'nombre' => 'Sanidad',
             'descripcion' => 'Sanidad Pública y la administración que le presta servicio.',
@@ -40,7 +40,7 @@ class AdministracionSeeder extends Seeder
         ['nombre'],
         ['nombre', 'descripcion'],
         );
-        
+
         Administracion::upsert([
             'nombre' => 'Educación',
             'descripcion' => 'Educación Pública y la administración que le presta servicio.',
@@ -48,7 +48,7 @@ class AdministracionSeeder extends Seeder
         ['nombre'],
         ['nombre', 'descripcion'],
         );
-        
+
         Administracion::upsert([
             'nombre' => 'Admón. al servicio de la Justicia',
             'descripcion' => 'Denominada "administración de la Administración de Justicia" según jurisprudencia del Tribunal Constitucional, que la considera el conjunto de medios personales y materiales que se colocan al servicio de la Administración de Justicia.',
@@ -56,7 +56,7 @@ class AdministracionSeeder extends Seeder
         ['nombre'],
         ['nombre', 'descripcion'],
         );
-        
+
         Administracion::upsert([
             'nombre' => 'Otros sectores públicos',
             'descripcion' => 'Otros sectores públicos de carácter oficial que no se encuadran en las otras categorías.',
@@ -64,7 +64,7 @@ class AdministracionSeeder extends Seeder
         ['nombre'],
         ['nombre', 'descripcion'],
         );
-        
+
         Administracion::upsert([
             'nombre' => 'No aplicable',
             'descripcion' => 'No aplicable',
@@ -72,6 +72,6 @@ class AdministracionSeeder extends Seeder
         ['nombre'],
         ['nombre', 'descripcion'],
         );
-        
+
     }
 }
