@@ -32,6 +32,7 @@ class ImportacionSeeder extends Seeder
                 // ¿Fichero ordenado por fecha? ¿Por cual fecha?
                 // ¿Columnas mínimas? ¿De qué entidades?
                 // ¿Array asociativo a partir del título del fichero?
+                // ('nombre','apellidos') de Autor lo consideramos clave única (en la importación sólo)
 
         // Quitamos línea de títulos (¿o extraemos a un array asociativo?)
 
@@ -43,7 +44,9 @@ class ImportacionSeeder extends Seeder
             // Extraemos Estado
                 // Upsert Estado
             // Extraemos Autor
-                // Upsert Autor
+                // ¿Upsert? Autor - No tenemos un campo único y la combinación ('nombre','apellidos') no es única
+                // No podemos añadir un campo NULLABLE y UNIQUE (sólo una fila podría ser NULL)
+                // Así que al menos en la importación suponemos que el autor es único y por tanto lo tratamos así (pero sin Upsert)
             // Extraemos Geo
                 // Upsert Geo
             // Extraemos Mapa
