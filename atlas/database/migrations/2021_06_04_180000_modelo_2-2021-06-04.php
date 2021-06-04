@@ -14,8 +14,8 @@ class Modelo220210604 extends Migration
     public function up()
     {
         Schema::table ( 'Geo', function ( Blueprint $table ) {
-            $table->decimal('longitud', 11, 8)->nullable();
-            $table->decimal('latitud', 10, 8)->nullable();
+            $table->decimal('longitud', 11, 8);
+            $table->decimal('latitud', 10, 8);
         });
     }
 
