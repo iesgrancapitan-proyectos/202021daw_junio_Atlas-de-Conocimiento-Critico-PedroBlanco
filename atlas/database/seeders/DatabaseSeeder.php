@@ -19,6 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AdministracionSeeder::class);
         $this->call(EstadoSeeder::class);
 
-        $this->call(ImportacionClass::class);
+        $this->call(ImportacionSeeder::class);
     }
 }
