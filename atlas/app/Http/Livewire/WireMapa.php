@@ -41,6 +41,8 @@ class WireMapa extends Component
             $autores,
             $geos;
 
+    public $geos_markers;
+
     public $isOpen = 0;
 
     public $mensajes = array(
@@ -73,6 +75,8 @@ class WireMapa extends Component
     public function render()
     {
         $this->contenedor = Mapa::latest()->get();
+
+        $this->geos_markers = $this->get_geos_markers();
 
         return view('livewire.wire-mapa');
     }
@@ -117,6 +121,8 @@ class WireMapa extends Component
         $this->ambitos = Ambito::latest()->get();
         $this->autores = Autor::latest()->get();
         $this->geos = Geo::latest()->get();
+
+        $this->geos_markers = $this->get_geos_markers();
     }
 
     public function store()
@@ -226,5 +232,30 @@ class WireMapa extends Component
             unset( $this->select_geos_id[$_pos] );
             // Log::debug( 'WireMapa->toggleGeo('.$id.')['.$_pos.'] <- '.print_r( $this->select_geos_id, true ) );
         }
+    }
+
+    protected function get_geos_markers ()
+    {
+
+        $geos_array = [];
+
+        $geos_collection = Geo::get(['longitud','latitud'])->toArray();
+
+        foreach ( $geos_collection as $geo ) {
+            $geos_array[] = [(double)$geo['longitud'],(double)$geo['latitud']];
+        };
+
+
+        // $geos_array = [
+        //     [-4.84772405594904,37.9567116],[-3.49205561203722,37.9557275]
+        // ];
+
+        // return json_encode ( $geos_array );
+
+        // dd ( $geos_array, json_encode ( $geos_array ) );
+        return $geos_array;
+
+        // return [[-4.84772405594904,37.9567116],[-3.49205561203722,37.9557275]];
+
     }
 }
