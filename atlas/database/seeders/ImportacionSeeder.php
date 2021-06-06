@@ -20,6 +20,7 @@ class ImportacionSeeder extends Seeder
      */
     public function run()
     {
+        // FIXME: Convertir ruta en relativa o configurable mediante .env
         $directorio = '/var/www/atlas/database/seeders/data/';
         $nombre_archivo_csv = '2021-06-04.csv';
         $archivo_csv = false;
