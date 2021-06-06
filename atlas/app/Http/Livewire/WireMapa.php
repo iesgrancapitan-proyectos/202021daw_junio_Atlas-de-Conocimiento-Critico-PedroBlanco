@@ -72,7 +72,7 @@ class WireMapa extends Component
 
     public function render()
     {
-        $this->contenedor = Mapa::latest()->get();;
+        $this->contenedor = Mapa::latest()->get();
 
         return view('livewire.wire-mapa');
     }
