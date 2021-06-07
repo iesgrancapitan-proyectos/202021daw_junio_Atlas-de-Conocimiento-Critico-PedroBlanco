@@ -13,8 +13,15 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('messages.Dashboard') }}
                     </x-jet-nav-link>
+                    {{-- @if ( (null !== auth()->user()->role()->first()) && ((auth()->user()->role()->first()->nombre == 'Administrador') || (auth()->user()->role()->first()->nombre == 'SuperAdministrador')) ) --}}
+                    @can('show-users')
+                        <x-jet-nav-link href="{{ route('livewire.users') }}" :active="request()->routeIs('livewire.users')">
+                            {{ __('messages.Users') }}
+                        </x-jet-nav-link>
+                    @endcan
+                    {{-- @endif --}}
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('autor') }}" :active="request()->routeIs('autor')">
@@ -123,16 +130,16 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                {{ __('messages.manage_account') }}
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                {{ __('messages.Profile') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                                    {{ __('API Tokens') }}
+                                    {{ __('message.API_Tokens') }}
                                 </x-jet-dropdown-link>
                             @endif
 
@@ -145,7 +152,7 @@
                                 <x-jet-dropdown-link href="{{ route('logout') }}"
                                          onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('messages.LogOut') }}
                                 </x-jet-dropdown-link>
                             </form>
                         </x-slot>
@@ -169,7 +176,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('messages.Dashboard') }}
             </x-jet-responsive-nav-link>
         </div>
 
@@ -191,14 +198,20 @@
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
+                    {{ __('messages.Profile') }}
                 </x-jet-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
-                        {{ __('API Tokens') }}
+                        {{ __('messages.API_Tokens') }}
                     </x-jet-responsive-nav-link>
                 @endif
+
+                @can('show-users')
+                    <x-jet-responsive-nav-link href="{{ route('livewire.users') }}" :active="request()->routeIs('livewire.users')">
+                        {{ __('messages.Users') }}
+                    </x-jet-responsive-nav-link>
+                @endcan
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
@@ -207,7 +220,7 @@
                     <x-jet-responsive-nav-link href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                     this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('messages.LogOut') }}
                     </x-jet-responsive-nav-link>
                 </form>
 

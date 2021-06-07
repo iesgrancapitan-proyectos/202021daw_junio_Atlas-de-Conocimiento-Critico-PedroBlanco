@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Livewire\Users;
 use App\Http\Livewire\WireAdministracion;
 use App\Http\Livewire\WireAmbito;
 use App\Http\Livewire\WireEstado;
@@ -39,3 +40,20 @@ Route::get('autor', WireAutor::class)->name('autor');
 Route::get('geo', WireGeo::class)->name('geo');
 
 Route::get('mapa', WireMapa::class)->name('mapa');
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/users', function () {
+//     return view('livewire.users');
+// })->name('livewire.users');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => 'role:super', 'prefix' => 'users', 'as' => 'users.'], function () {
+        Route::resource('users', Users::class);
+    });
+    Route::group(['middleware' => 'role:admin', 'prefix' => 'users', 'as' => 'users.'], function () {
+        Route::resource('users', Users::class);
+    });
+});
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/users', Users::class)
+    ->name('livewire.users');

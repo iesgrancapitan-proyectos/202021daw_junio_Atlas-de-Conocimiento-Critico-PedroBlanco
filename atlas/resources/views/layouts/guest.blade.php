@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
         @livewireStyles
+
         @bukStyles
 
         <!-- Scripts -->
@@ -23,7 +24,10 @@
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
+
         @livewireScripts
+
         @bukScripts
+
     </body>
 </html>
