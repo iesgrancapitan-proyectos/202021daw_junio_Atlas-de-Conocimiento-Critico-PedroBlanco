@@ -327,16 +327,16 @@
         },
         {
             "name": "codeat3/blade-fluentui-system-icons",
-            "version": "1.1.1",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeat3/blade-fluentui-system-icons.git",
-                "reference": "3229d9d3e5b77aea103ad0d6faf6bf08102f6e17"
+                "reference": "8bdc01dd92045472529bc19ad4f14417d7d582ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeat3/blade-fluentui-system-icons/zipball/3229d9d3e5b77aea103ad0d6faf6bf08102f6e17",
-                "reference": "3229d9d3e5b77aea103ad0d6faf6bf08102f6e17",
+                "url": "https://api.github.com/repos/codeat3/blade-fluentui-system-icons/zipball/8bdc01dd92045472529bc19ad4f14417d7d582ef",
+                "reference": "8bdc01dd92045472529bc19ad4f14417d7d582ef",
                 "shasum": ""
             },
             "require": {
@@ -386,9 +386,9 @@
             ],
             "support": {
                 "issues": "https://github.com/codeat3/blade-fluentui-system-icons/issues",
-                "source": "https://github.com/codeat3/blade-fluentui-system-icons/tree/1.1.1"
+                "source": "https://github.com/codeat3/blade-fluentui-system-icons/tree/1.2.1"
             },
-            "time": "2021-05-28T20:21:29+00:00"
+            "time": "2021-06-07T05:44:08+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",
