@@ -32,7 +32,7 @@
                 <table class="table-fixed w-full">
                     <thead>
                         <tr class="bg-gray-100">
-                            <th class="px-4 py-2 w-20">Número</th>
+                            {{-- <th class="px-4 py-2 w-20">Número</th> --}}
                             <th class="px-4 py-2">Nombre</th>
                             <th class="px-4 py-2">Descripci&oacute;n</th>
                             <th class="px-4 py-2">Acci&oacute;n</th>
@@ -41,18 +41,23 @@
                     <tbody>
                         @foreach($contenedor as $item)
                         <tr>
-                            <td class="border px-4 py-2">{{ $item->id }}</td>
+                            {{-- <td class="border px-4 py-2">{{ $item->id }}</td> --}}
                             <td class="border px-4 py-2">{{ $item->nombre }}</td>
                             <td class="border px-4 py-2">{{ $item->descripcion }}
                             <br/>
-                            @foreach($item->geo()->get(['latitud','longitud']) as $valor)
+                            @foreach($item->geo()->get(['nombre','latitud','longitud']) as $valor)
                             {{-- {{$valor->latitud}},{{$valor->longitud}} --}}
 {{--                                console.log({!! json_encode([$valor->latitud,$valor->longitud]) !!});--}}
                             @push('scripts')
                             <script>
+                                console.group();
+                                console.log('{{$item->nombre}}');
                                 console.log([{{$valor->latitud}},{{$valor->longitud}}]);
+                                console.groupEnd();
                                 //L.marker(center).addTo(map);
-                                L.marker([{{$valor->latitud}},{{$valor->longitud}}]).addTo(map);
+                                L.marker([{{$valor->latitud}},{{$valor->longitud}}])
+                                    .bindPopup('{{$item->nombre}}<br/><em>{{$valor->nombre}}</em>')
+                                    .addTo(map);
                             </script>
                             @endpush
                             @endforeach
