@@ -6,50 +6,48 @@
         </div>
         <!-- This element is to trick the browser into centering the modal contents. -->
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>?
-        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full md:max-w-2xl md:w-2xl lg:max-w-4xl lg:w-4xl xl:max-w-6xl xl:w-6xl" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
             <form>
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="">
-                        <div class="mb-4">
+                        <div class="mb-4 block">
                             <label for="inputNombre" class="block text-gray-700 text-sm font-bold mb-2">Nombre:</label>
                             <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="inputNombre" placeholder="Introduzca el nombre" wire:model.defer="nombre">
                             @error('nombre') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
-                        <div class="mb-4">
+                        <div class="mb-4 block">
                             <label for="textDescripcion" class="block text-gray-700 text-sm font-bold mb-2">Descripci&oacute;n:</label>
                             <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="textDescripcion" wire:model.defer="descripcion" placeholder="Introduzca una descripci&oacute;n"></textarea>
                             @error('descripcion') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
-                        <div class="mb-4">
+                        <div class="mb-4 block">
                             <label for="textComentario" class="block text-gray-700 text-sm font-bold mb-2">Comentario:</label>
                             <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="textComentario" wire:model.defer="comentario" placeholder="Introduzca un comentario"></textarea>
                             @error('comentario') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
-                        <div class="mb-4">
+                        <div class="mb-4 block">
                             <label for="inputURL" class="block text-gray-700 text-sm font-bold mb-2">P&aacute;gina web:</label>
                             <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="inputURL" placeholder="Introduzca una p&aacute;gina web" wire:model.defer="url">
                             @error('url') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
-                        <div class="mb-4" style="clear: both;">
-                            <div style="float: left;">
-                                <label for="f_creacion" class="block text-gray-700 text-sm font-bold mb-2">Fecha de creaci&oacute;n: </label>
-                                <input type="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="f_creacion" id="f_creacion" wire:model.defer="f_creacion"
-                                @if(isset($f_creacion))
-                                value="{{$f_creacion}}"
-                                @endif
-                                required>
-                            </div>
-                            <div style="float: right;">
-                                <label for="f_actualizado" class="block text-gray-700 text-sm font-bold mb-2">Fecha de actualizaci&oacute;n: </label>
-                                <input type="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="f_actualizado" id="f_actualizado" wire:model.defer="f_actualizado"
-                                @if(isset($f_actualizado))
-                                value="{{$f_actualizado}}"
-                                @endif
-                                required>
-                            </div>
+                        <div class="mb-4 inline-block">
+                            <label for="f_creacion" class="block text-gray-700 text-sm font-bold mb-2">Fecha de creaci&oacute;n: </label>
+                            <input type="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="f_creacion" id="f_creacion" wire:model.defer="f_creacion"
+                            @if(isset($f_creacion))
+                            value="{{$f_creacion}}"
+                            @endif
+                            required>
+                        </div>
+                        <div class="mb-4 inline-block">
+                            <label for="f_actualizado" class="block text-gray-700 text-sm font-bold mb-2">Fecha de actualizaci&oacute;n: </label>
+                            <input type="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="f_actualizado" id="f_actualizado" wire:model.defer="f_actualizado"
+                            @if(isset($f_actualizado))
+                            value="{{$f_actualizado}}"
+                            @endif
+                            required>
                         </div>
                         @if(isset($administraciones))
-                        <div class="mb-4">
+                        <div class="mb-4 inline-block">
                             <br/>
                             <label for="administracion_id" class="block text-gray-700 text-sm font-bold mb-2">Administraci&oacute;n: </label>
                             <select name="administracion_id" id="administracion_id" wire:model.defer="administracion_id" required>
@@ -66,7 +64,7 @@
                         <div>No se han encontrado Administraciones definidas.</div>
                         @endif
                         @if(isset($ambitos))
-                        <div class="mb-4">
+                        <div class="mb-4 inline-block">
                             <label for="ambito_id" class="block text-gray-700 text-sm font-bold mb-2">&Aacute;mbito: </label>
                             <select name="ambito_id" id="ambito_id" wire:model.defer="ambito_id" required>
                                 @foreach ($ambitos as $ambito)
@@ -82,7 +80,7 @@
                         <div>No se han encontrado &Aacute;mbitos definidos.</div>
                         @endif
                         @if(isset($estados))
-                        <div class="mb-4">
+                        <div class="mb-4 inline-block">
                             <label for="estado_id" class="block text-gray-700 text-sm font-bold mb-2">Estados: </label>
                             <select name="estado_id" id="estado_id" wire:model.defer="estado_id" required>
                                 @foreach ($estados as $estado)
@@ -98,7 +96,7 @@
                         <div>No se han encontrado Estados definidos.</div>
                         @endif
                         @if(isset($autores))
-                        <div class="mb-4">
+                        <div class="mb-4 block">
                             {{-- <label for="autores_id" class="block text-gray-700 text-sm font-bold mb-2">Autor(es): (se puede seleccionar m&aacute;s de una/a)</label> --}}
                             <label class="block text-gray-700 text-sm font-bold mb-2">Autor(es):</label>
 
@@ -149,7 +147,7 @@
                         <div>No se han encontrado Autores definidos.</div>
                         @endif
                         @if(isset($geos))
-                        <div class="mb-4">
+                        <div class="mb-4 block">
                             {{-- <label for="geos" class="block text-gray-700 text-sm font-bold mb-2">Localizaci&oacute;n(es) Geogr&aacute;fica(s): (se puede seleccionar m&aacute;s de una)</label> --}}
                             <label class="block text-gray-700 text-sm font-bold mb-2">Localizaci&oacute;n(es) Geogr&aacute;fica(s):</label>
 
