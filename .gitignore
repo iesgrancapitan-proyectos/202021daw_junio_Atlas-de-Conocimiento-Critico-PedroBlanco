@@ -25,3 +25,6 @@ atlas/public/vendor/*
 
 atlas-old/*
 atlas-viejo/*
+
+.env*
+!.env.example
