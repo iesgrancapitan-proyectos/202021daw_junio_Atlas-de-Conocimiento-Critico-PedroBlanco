@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\Role;
 use App\Models\User;
@@ -21,7 +22,8 @@ class UserSeeder extends Seeder
             'name' => 'super',
             'email' => 'super@example.com',
             'email_verified_at' => null,
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // 'password' => 'password'
+            // 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // 'password' => 'password'
+            'password' => Hash::make('password'),
             'role_id' => Role::where('nombre', 'SuperAdministrador')->first()->id,
         ],
         ['email'],
