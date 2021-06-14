@@ -17,6 +17,12 @@
 
         @bukStyles
 
+        <x-load-leaflet></x-load-leaflet>
+
+        <style>
+            #map { height: 400px; }
+        </style>
+
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
@@ -28,6 +34,8 @@
         @livewireScripts
 
         @bukScripts
+
+        <x-init-leaflet></x-init-leaflet>
 
     </body>
 </html>
