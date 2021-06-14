@@ -5,6 +5,12 @@
     // Create the map
     var map = L.map('map').setView(center, 6.5);
 
+    // Default icon
+    var default_icon = L.icon({
+        iconAnchor: new L.Point(12, 12),
+        iconSize: new L.Point(24, 24),
+        iconUrl: 'img/Atom_negativo_rosa_circulo_24.png'
+    });
 
     // Include OpenStreeMap attribution
     var my_attribution = '&copy; Colaboradores de <a href="https://www.openstreetmap.org/" target="_blank" rel="noreferrer noopener">OpenStreetMap</a>';

@@ -55,7 +55,8 @@
                                 console.log([{{$valor->latitud}},{{$valor->longitud}}]);
                                 console.groupEnd();
                                 //L.marker(center).addTo(map);
-                                L.marker([{{$valor->latitud}},{{$valor->longitud}}])
+                                L.marker([{{$valor->latitud}},{{$valor->longitud}}],
+                                    {icon: default_icon})
                                     .bindPopup('{{$item->nombre}}<br/><em>{{$valor->nombre}}</em>')
                                     .addTo(map);
                             </script>
