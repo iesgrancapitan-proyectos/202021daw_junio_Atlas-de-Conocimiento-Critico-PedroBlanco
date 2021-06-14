@@ -175,13 +175,13 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
+        <div class="pt-2 pb-2 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('messages.Dashboard') }}
             </x-jet-responsive-nav-link>
         </div>
 
-        <div class="pt-4 pb-1 border-t border-gray-200">
+        <div class="pt-1 pb-1 border-t border-gray-200">
             <div class="mt-3 space-y-1">
                 <x-jet-responsive-nav-link href="{{ route('autor') }}" :active="request()->routeIs('autor')">
                     {{ __('Autores') }}
@@ -201,15 +201,10 @@
                 <x-jet-responsive-nav-link href="{{ route('mapa') }}" :active="request()->routeIs('mapa')">
                     {{ __('Mapas') }}
                 </x-jet-responsive-nav-link>
-                @can('show-users')
-                    <x-jet-responsive-nav-link href="{{ route('livewire.users') }}" :active="request()->routeIs('livewire.users')">
-                        {{ __('messages.Users') }}
-                    </x-jet-responsive-nav-link>
-                @endcan
             </div>
         </div>
 
-        <div class="pt-4 pb-1 border-t border-gray-200">
+        <div class="pt-1 pb-1 border-t border-gray-200">
             <div class="mt-3 space-y-1">
                 @can('show-users')
                 <x-jet-responsive-nav-link href="{{ route('livewire.users') }}" :active="request()->routeIs('livewire.users')">
@@ -220,7 +215,7 @@
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
+        <div class="pt-1 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                     <div class="flex-shrink-0 mr-3">
