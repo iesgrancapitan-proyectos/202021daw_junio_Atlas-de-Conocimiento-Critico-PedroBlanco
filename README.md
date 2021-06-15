@@ -27,10 +27,12 @@ Aparte de tener el puerto 80 libre en nuestra máquina, necesitaremos tener inst
 Para desplegar instalar de forma automática la aplicación se puede ejecutar el script ```atlas-quick-start.sh``` que se encuentra en la carpeta raiz del repositorio:
 
 ```shell
-./atlas-quick-start.sh
+git clone --recurse-submodules --branch develop https://github.com/iesgrancapitan-proyectos/202021daw_junio_Atlas-de-Conocimiento-Critico-PedroBlanco.git atlas
+cd atlas
+bash atlas-quick-start.sh
 ```
 
-Después
+Una vez se ha ejecutado el script, deberíamos poder acceder a la aplicación instalada en [http://localhost/](http://localhost/).
 
 ### Instalación y despliegue por pasos
 

@@ -4,11 +4,13 @@
 
 # Descargamos la aplicación del repositorio
 # FIXME: Comprobar si ya existe el repositorio en el directorio
-git clone --recurse-submodules --branch develop https://github.com/iesgrancapitan-proyectos/202021daw_junio_Atlas-de-Conocimiento-Critico-PedroBlanco.git atlas
+
+### 2021-06-15 Al ser un archivo en un repositorio privado, no vamos a poder descargar el archivo si no tenemos acceso al repositorio privado
+### git clone --recurse-submodules --branch develop https://github.com/iesgrancapitan-proyectos/202021daw_junio_Atlas-de-Conocimiento-Critico-PedroBlanco.git atlas
+### cd atlas
 
 # Tomamos la configuración por defecto
 # FIXME: Añadir chequeos para no sobrescribir los cambios ya realizados
-cd atlas
 cp atlas/.env.example atlas/.env
 cp laradock-atlas-daw/.env.example laradock-atlas-daw/.env
 cp laradock-atlas-daw/nginx/sites/atlas.conf.example laradock-atlas-daw/nginx/sites/atlas.conf
