@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => null,
             // 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // 'password' => 'password'
             'password' => Hash::make('password'),
-            'role_id' => Role::where('nombre', 'SuperAdministrador')->first()->id,
+            'role_id' => Role::IS_SUPER,
         ],
         ['email'],
         ['name', 'email', 'email_verified_at', 'password', 'role_id'],
