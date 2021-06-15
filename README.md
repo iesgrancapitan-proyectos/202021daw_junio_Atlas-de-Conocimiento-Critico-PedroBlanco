@@ -27,7 +27,7 @@ Aparte de tener el puerto 80 libre en nuestra máquina, necesitaremos tener inst
 Para desplegar instalar de forma automática la aplicación se puede ejecutar el script ```atlas-quick-start.sh``` que se encuentra en la carpeta raiz del repositorio:
 
 ```shell
-git clone --recurse-submodules --branch develop https://github.com/iesgrancapitan-proyectos/202021daw_junio_Atlas-de-Conocimiento-Critico-PedroBlanco.git atlas
+git clone --recurse-submodules --branch main https://github.com/iesgrancapitan-proyectos/202021daw_junio_Atlas-de-Conocimiento-Critico-PedroBlanco.git atlas
 cd atlas
 bash atlas-quick-start.sh
 ```
@@ -39,7 +39,7 @@ Una vez se ha ejecutado el script, deberíamos poder acceder a la aplicación in
 Alternativamente, se pueden seguir los siguientes pasos ejecutando en un shell ```bash```:
 
 ```shell
-~$ git clone --recurse-submodules --branch develop https://github.com/iesgrancapitan-proyectos/202021daw_junio_Atlas-de-Conocimiento-Critico-PedroBlanco.git atlas
+~$ git clone --recurse-submodules --branch main https://github.com/iesgrancapitan-proyectos/202021daw_junio_Atlas-de-Conocimiento-Critico-PedroBlanco.git atlas
 ~$ cd atlas
 ~/atlas$ cp atlas/.env.example atlas/.env
 ~/atlas$ cp laradock-atlas-daw/.env.example laradock-atlas-daw/.env

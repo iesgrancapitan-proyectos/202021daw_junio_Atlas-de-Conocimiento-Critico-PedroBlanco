@@ -6,7 +6,7 @@
 # FIXME: Comprobar si ya existe el repositorio en el directorio
 
 ### 2021-06-15 Al ser un archivo en un repositorio privado, no vamos a poder descargar el archivo si no tenemos acceso al repositorio privado
-### git clone --recurse-submodules --branch develop https://github.com/iesgrancapitan-proyectos/202021daw_junio_Atlas-de-Conocimiento-Critico-PedroBlanco.git atlas
+### git clone --recurse-submodules --branch main https://github.com/iesgrancapitan-proyectos/202021daw_junio_Atlas-de-Conocimiento-Critico-PedroBlanco.git atlas
 ### cd atlas
 
 echo
