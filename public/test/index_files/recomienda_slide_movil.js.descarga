@@ -1,0 +1,1 @@
+$(document).ready(function(){var a=window.innerWidth;if(a>959&&$("#recomienda_slide").length>0){$("#recomienda_slide").slides({width:580,height:200,navigation:true,pagination:false})}});

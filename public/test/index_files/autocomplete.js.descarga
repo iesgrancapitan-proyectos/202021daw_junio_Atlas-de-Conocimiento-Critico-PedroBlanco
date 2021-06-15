@@ -1,0 +1,141 @@
+/*jslint white: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, bitwise: true, regexp: true, newcap: true, immed: true, strict: true */
+/*global $, window, autocompleteInput */
+"use strict";
+
+// Copyright 2011 Junta de Andalucia
+//
+// Developed by Yaco Sistemas <ablanco@yaco.es>
+//
+// Licensed under the EUPL, Version 1.1 or - as soon they
+// will be approved by the European Commission - subsequent
+// versions of the EUPL (the "Licence");
+// You may not use this work except in compliance with the
+// Licence.
+// You may obtain a copy of the Licence at:
+//
+// http://ec.europa.eu/idabc/eupl
+//
+// Unless required by applicable law or agreed to in
+// writing, software distributed under the Licence is
+// distributed on an "AS IS" basis,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+// express or implied.
+// See the Licence for the specific language governing
+// permissions and limitations under the Licence.
+
+function getAutocompleteOptions(autocompleteData, maxSuggestions) {
+    var sortNumberDesc,
+        checkWord,
+        autocompleteCallback,
+        options;
+
+    // DEFAULT OPTIONS
+
+    options = {
+        minLength: 3
+    };
+    maxSuggestions = maxSuggestions ? maxSuggestions : 5;
+
+    if (autocompleteData === undefined) {
+        return options;
+    } else if (!autocompleteData.length) {
+        // Not an array, or an empty one
+        return options;
+    }
+
+    // UTILITIES
+
+    sortNumberDesc = function (a, b) {
+        return parseFloat(b) - parseFloat(a);
+    };
+
+    checkWord = function (reference, toTest) {
+        return toTest.indexOf(reference) === 0;
+    };
+
+    // MAIN FUNCTION
+
+    autocompleteCallback = function (request, responseCallbak) {
+        var term = request.term.toLowerCase(),
+            filteredData = {},
+            keys = [],
+            data = [],
+            condition = false,
+            match = false,
+            item, words, i, j, idx, previdx;
+
+        // FILTER SUGGESTIONS
+
+        // Binary search for the first word that fits
+
+        idx = Math.floor(autocompleteData.length / 2);
+        i = 0;
+        j = autocompleteData.length - 1;
+        previdx = -1;
+        while (!condition) {
+            item = autocompleteData[idx];
+            if (term < item[0].toLowerCase()) {
+                // term goes before
+                j = idx;
+            } else {
+                // term goes after
+                i = idx;
+            }
+
+            match = checkWord(term, item[0].toLowerCase());
+
+            if (match && idx === 0) {
+                // Found the first word that fits
+                condition = true;
+            } else if (match && !checkWord(term, autocompleteData[idx - 1][0].toLowerCase())) {
+                // Found the first word that fits
+                condition = true;
+            } else if (idx === previdx || (j - i) < 1) {
+                // None word fits
+                return;
+            } else {
+                // Keep looking
+                previdx = idx;
+                idx = i + ((j - i) / 2);
+                if (idx < 1) {
+                    idx = 0; // Limit case
+                } else {
+                    idx = Math.ceil(idx);
+                }
+            }
+        }
+
+        // Get all the words that fits
+
+        for (i = idx; condition && i < autocompleteData.length; i += 1) {
+            item = autocompleteData[i];
+            if (checkWord(term, item[0].toLowerCase())) {
+                if (!filteredData.hasOwnProperty(item[1])) {
+                    filteredData[item[1]] = [];
+                    keys.push(item[1]);
+                }
+
+                filteredData[item[1]].push(item[0].toLowerCase());
+            } else {
+                condition = false;
+            }
+        }
+
+        // SORT SUGGESTIONS
+
+        keys = keys.sort(sortNumberDesc);
+
+        for (i = 0; i < keys.length && data.length < maxSuggestions; i += 1) {
+            words = filteredData[keys[i]];
+            for (j = 0; j < words.length && data.length < maxSuggestions; j += 1) {
+                data.push(words[j]);
+            }
+        }
+
+        responseCallbak(data);
+    };
+
+    options.source = autocompleteCallback;
+
+    return options;
+}

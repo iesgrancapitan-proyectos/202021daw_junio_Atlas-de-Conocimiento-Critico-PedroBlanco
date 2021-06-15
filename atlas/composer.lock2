@@ -1728,6 +1728,7 @@
             "time": "2020-06-13T08:05:20+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "laravel/fortify",
             "version": "v1.7.13",
             "source": {
@@ -1739,6 +1740,19 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/fortify/zipball/1753d05c80f930cc2715051858900965b49f32d9",
                 "reference": "1753d05c80f930cc2715051858900965b49f32d9",
+=======
+            "name": "guzzlehttp/psr7",
+            "version": "1.8.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/psr7.git",
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/dc960a912984efb74d0a90222870c72c87f10c91",
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91",
+>>>>>>> main
                 "shasum": ""
             },
             "require": {
@@ -1785,10 +1799,17 @@
                 "laravel"
             ],
             "support": {
+<<<<<<< HEAD
                 "issues": "https://github.com/laravel/fortify/issues",
                 "source": "https://github.com/laravel/fortify"
             },
             "time": "2021-05-25T16:35:21+00:00"
+=======
+                "issues": "https://github.com/guzzle/psr7/issues",
+                "source": "https://github.com/guzzle/psr7/tree/1.8.2"
+            },
+            "time": "2021-04-26T09:17:50+00:00"
+>>>>>>> main
         },
         {
             "name": "laravel/framework",
@@ -2151,7 +2172,11 @@
                 "issues": "https://github.com/laravel/telescope/issues",
                 "source": "https://github.com/laravel/telescope/tree/v4.4.10"
             },
+<<<<<<< HEAD
             "time": "2021-06-01T17:35:45+00:00"
+=======
+            "time": "2021-06-08T13:36:46+00:00"
+>>>>>>> main
         },
         {
             "name": "laravel/tinker",
@@ -6665,6 +6690,66 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
+<<<<<<< HEAD
+=======
+            "name": "laravel/breeze",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/breeze.git",
+                "reference": "31083193c2050a970bfd38378a93ecf166b5c985"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/31083193c2050a970bfd38378a93ecf166b5c985",
+                "reference": "31083193c2050a970bfd38378a93ecf166b5c985",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/filesystem": "^8.42",
+                "illuminate/support": "^8.42",
+                "illuminate/validation": "^8.42",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Breeze\\BreezeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Breeze\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Minimal Laravel authentication scaffolding with Blade and Tailwind.",
+            "keywords": [
+                "auth",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/breeze/issues",
+                "source": "https://github.com/laravel/breeze"
+            },
+            "time": "2021-06-08T20:27:33+00:00"
+        },
+        {
+>>>>>>> main
             "name": "laravel/sail",
             "version": "v1.8.1",
             "source": {
