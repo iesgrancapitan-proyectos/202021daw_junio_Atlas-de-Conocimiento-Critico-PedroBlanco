@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
+# La mayoría de los FIXME están relacionados con la posibilidad de actualización sobre un despliegue existente
+
 # Descargamos la aplicación del repositorio
+# FIXME: Comprobar si ya existe el repositorio en el directorio
 git clone --recurse-submodules --branch develop https://github.com/iesgrancapitan-proyectos/202021daw_junio_Atlas-de-Conocimiento-Critico-PedroBlanco.git atlas
 
 # Tomamos la configuración por defecto
+# FIXME: Añadir chequeos para no sobrescribir los cambios ya realizados
 cd atlas
 cp atlas/.env.example atlas/.env
 cp laradock-atlas-daw/.env.example laradock-atlas-daw/.env
@@ -14,6 +18,7 @@ cd laradock-atlas-daw
 docker-compose up -d
 
 # Creamos la base de datos y el usuario que usaremos
+# FIXME: Aunque el SQL comprueba si la BD y usuario ya existen, habría que comprobar si sirve para sobrescribir/cambiar la contraseña de usuario
 cd ..
 set -a
 source atlas/.env
