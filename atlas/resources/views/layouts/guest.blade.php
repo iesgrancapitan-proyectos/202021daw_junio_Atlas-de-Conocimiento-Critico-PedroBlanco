@@ -11,14 +11,31 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+        @livewireStyles
+
+        @bukStyles
+
+        <x-load-leaflet></x-load-leaflet>
+
+        <style>
+            #map { height: 400px; }
+        </style>
 
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
+
+        @livewireScripts
+
+        @bukScripts
+
+        <x-init-leaflet></x-init-leaflet>
+
     </body>
 </html>

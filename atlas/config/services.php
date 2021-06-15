@@ -30,4 +30,12 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'unsplash' => [
+        'access_key' => env('UNSPLASH_ACCESS_KEY'),
+    ],
+
+    'mapbox' => [
+        'public_token' => env('MAPBOX_PUBLIC_TOKEN'),
+    ],
+
 ];

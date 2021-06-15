@@ -12,7 +12,8 @@ class Geo extends Model
     protected $table = 'Geo';
 
     protected $fillable = [
-        'dir3', 'nombre'
+        'dir3', 'nombre',
+        'longitud', 'latitud',
     ];
 
     public function mapas()
