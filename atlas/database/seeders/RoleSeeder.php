@@ -25,17 +25,17 @@ class RoleSeeder extends Seeder
                 [
                     'id' => Role::IS_ADMIN,
                     'nombre' => 'Administrador',
-                    'descripcion' => 'Usuario con todos los permisos sobre todas las entidades relacionadas con los mapas y todos los usuarios.',
+                    'descripcion' => 'Usuario con todos los permisos sobre todas las entidades relacionadas con los mapas y todos los usuarios (menos los superusuarios).',
                 ],
                 [
                     'id' => Role::IS_SITE_EDITOR,
                     'nombre' => 'Editor de sitio',
-                    'descripcion' => 'Usuario con permiso de edición de todas las entidades relacionadas con los mapas.',
+                    'descripcion' => 'Usuario con permiso de creación/edición/borrado de todas las entidades relacionadas con los Mapas.',
                 ],
                 [
                     'id' => Role::IS_MAP_EDITOR,
                     'nombre' => 'Editor de mapas',
-                    'descripcion' => 'Usuario con permiso de edición de Mapas, de Localizaciones Geográficas y de Autores.',
+                    'descripcion' => 'Usuario con permiso de creación/edición/borrado de Mapas, de Localizaciones Geográficas y de Autores.',
                 ],
                 [
                     'id' => Role::IS_USER,
