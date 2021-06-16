@@ -8,7 +8,7 @@ return [
     'LogIn' => 'Entrar',
     'LogOut' => 'Salir',
     'Confirm' => 'Confirmar',
-    'Dashboard' => 'Panel de mandos',
+    'Dashboard' => 'Inicio',
     'Done' => 'Hecho.',
     'Profile' => 'Perfil',
     'Saved' => 'Guardado.',
