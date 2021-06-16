@@ -17,7 +17,7 @@
                       </div>
                     </div>
                 @endif
-                @can('create', $model )
+                @can('create', $model)
                     <button wire:click="create()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">{{$mensajes['boton_crear']}}</button>
                     @if($isOpen)
                         @include('livewire.generic.create')
@@ -29,7 +29,7 @@
                             {{-- <th class="px-4 py-2 w-20">Número</th> --}}
                             <th class="px-4 py-2">Nombre</th>
                             <th class="px-4 py-2">Descripci&oacute;n</th>
-                            @can('update', $item)
+                            @can('create', $model)
                             <th class="px-4 py-2">Acci&oacute;n</th>
                             @endcan
                         </tr>
