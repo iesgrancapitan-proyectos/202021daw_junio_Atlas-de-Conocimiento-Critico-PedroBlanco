@@ -64,12 +64,12 @@
                     @endcan
                 </td>
                 <td class="border px-4 py-2">
-                    <a href=""><x-fluentui-person-info-16 class="h-6 w-6" /></a>
+                    <a href=""><x-fluentui-info-16 class="h-6 w-6" /></a>
                     @can('update', $user)
-                        <a href=""><x-fluentui-person-settings-16 class="h-6 w-6" /></a>
+                        <a href=""><x-fluentui-settings-16 class="h-6 w-6" /></a>
                     @endcan
                     @can('delete', $user)
-                        <a href=""><x-fluentui-person-delete-16 class="h-6 w-6" /></a>
+                        <a href=""><x-fluentui-delete-16 class="h-6 w-6" /></a>
                     @endcan
                 </td>
             </tr>
