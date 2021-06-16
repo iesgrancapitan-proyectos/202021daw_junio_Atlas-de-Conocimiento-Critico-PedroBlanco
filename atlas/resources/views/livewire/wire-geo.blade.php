@@ -39,6 +39,7 @@
                             <td class="border px-4 py-2">{{ $item->nombre }}</td>
                             <td class="border px-4 py-2">{{ $item->dir3 }}</td>
                             <td class="border px-4 py-2">
+                                <button {{--wire:click="edit({{ $item->id }})"--}} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Centrar en el mapa</button>
                                 @can('update', $item)
                                     <button wire:click="edit({{ $item->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Editar</button>
                                 @endcan
