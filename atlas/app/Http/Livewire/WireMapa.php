@@ -11,12 +11,19 @@ use App\Models\Estado;
 use App\Models\Autor;
 use App\Models\Geo;
 
+use App\Models\Autor_Mapa;
+use App\Models\Geo_Mapa;
+
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 use Illuminate\Support\Facades\Log;
 
 use Illuminate\Support\Collection;
 
 class WireMapa extends Component
 {
+    use AuthorizesRequests;
+
     public $contenedor;
     public  $nombre,
             $descripcion,
@@ -74,6 +81,9 @@ class WireMapa extends Component
 
     public function render()
     {
+        $this->authorize('viewAny', Mapa::class);
+        $this->authorize('viewAny', Geo::class);
+
         $this->contenedor = Mapa::latest()->get();
 
         $this->geos_markers = $this->get_geos_markers();
@@ -83,6 +93,10 @@ class WireMapa extends Component
 
     public function create()
     {
+        $this->authorize('create', Mapa::class);
+        $this->authorize('create', Autor_Mapa::class);
+        $this->authorize('create', Geo_Mapa::class);
+
         $this->resetInputFields();
         $this->emitTo ( 'livewire.mapa.create', 'mount', null );
         $this->openModal();
@@ -134,6 +148,16 @@ class WireMapa extends Component
         // dd(array_keys($this->autores_id));
         // dd(array_keys($this->selected_autores_id));
 
+        if ( $this->_id !== null ) {
+            $this->authorize('update', Mapa::findOrFail($id));
+        } else {
+            $this->authorize('create', Mapa::class);
+        }
+
+        // Las operaciones ->sync() qué tipo de permisos requieren y cuándo?
+        $this->authorize('create', Autor_Mapa::class);
+        $this->authorize('create', Geo_Mapa::class);
+
         $this->validate();
 
         $temp_mapa = Mapa::updateOrCreate(['id' => $this->_id], [
@@ -164,7 +188,16 @@ class WireMapa extends Component
 
     public function edit($id)
     {
+        // FIXME: Habría que devolver error si no se encuentra el mapa
         $mapa = Mapa::findOrFail($id);
+
+        $this->authorize('update', $mapa);
+
+        // Las operaciones ->sync() qué tipo de permisos requieren y cuándo?
+        $this->authorize('create', Autor_Mapa::class);
+        $this->authorize('create', Geo_Mapa::class);
+
+
         $this->_id = $id;
         $this->nombre = $mapa->nombre;
         $this->descripcion = $mapa->descripcion;
@@ -197,7 +230,12 @@ class WireMapa extends Component
 
     public function delete($id)
     {
-        Mapa::find($id)->delete();
+        $mapa = Mapa::find($id);
+
+        $this->authorize('delete', $mapa);
+
+        $mapa->delete();
+
         session()->flash('message', 'Mapa borrado correctamente.');
     }
 
@@ -236,6 +274,7 @@ class WireMapa extends Component
 
     protected function get_geos_markers ()
     {
+        $this->authorize('viewAny', Geo::class);
 
         $geos_array = [];
 

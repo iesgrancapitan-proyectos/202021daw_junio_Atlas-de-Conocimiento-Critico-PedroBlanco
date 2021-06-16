@@ -2,14 +2,19 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 use Livewire\Component;
 use App\Models\Administracion;
 
 class WireAdministracion extends Component
 {
+    use AuthorizesRequests;
+
     public $contenedor;
     public $nombre, $descripcion, $_id;
     public $isOpen = 0;
+    public $model = App\Models\Administracion::class;
 
     public $mensajes = array(
         'titulo_pagina' => 'Gestión de Administraciones',
@@ -18,14 +23,17 @@ class WireAdministracion extends Component
 
     public function render()
     {
-        $this->contenedor = Administracion::latest()->get();;
+        $this->authorize('viewAny', Administracion::class);
 
-        // return view('livewire.wire-administracion');
+        $this->contenedor = Administracion::latest()->get();
+
         return view('livewire.generic.list');
     }
 
     public function create()
     {
+        $this->authorize('create', Administracion::class);
+
         $this->resetInputFields();
         $this->openModal();
     }
@@ -48,6 +56,12 @@ class WireAdministracion extends Component
 
     public function store()
     {
+        if ( null !== $this->_id ) {
+            $this->authorize('update', Administracion::findOrFail($this->_id));
+        } else {
+            $this->authorize('create', Administracion::class);
+        }
+
         $this->validate([
             'nombre' => 'required',
             'descripcion' => 'required',
@@ -68,6 +82,9 @@ class WireAdministracion extends Component
     public function edit($id)
     {
         $administracion = Administracion::findOrFail($id);
+
+        $this->authorize('update', $administracion);
+
         $this->_id = $id;
         $this->nombre = $administracion->nombre;
         $this->descripcion = $administracion->descripcion;
@@ -77,7 +94,11 @@ class WireAdministracion extends Component
 
     public function delete($id)
     {
-        Administracion::find($id)->delete();
+        $administracion = Administracion::find($id);
+
+        $this->authorize('delete', $administracion);
+
+        $administracion->delete();
         session()->flash('message', 'Administración borrada correctamente.');
     }
 }

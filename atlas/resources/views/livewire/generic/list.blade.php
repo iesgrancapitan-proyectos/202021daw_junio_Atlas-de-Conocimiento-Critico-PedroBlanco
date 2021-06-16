@@ -17,10 +17,12 @@
                       </div>
                     </div>
                 @endif
-                <button wire:click="create()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">{{$mensajes['boton_crear']}}</button>
-                @if($isOpen)
-                    @include('livewire.generic.create')
-                @endif
+                @can('create', $model )
+                    <button wire:click="create()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">{{$mensajes['boton_crear']}}</button>
+                    @if($isOpen)
+                        @include('livewire.generic.create')
+                    @endif
+                @endcan
                 <table class="table-fixed w-full">
                     <thead>
                         <tr class="bg-gray-100">
@@ -37,8 +39,12 @@
                             <td class="border px-4 py-2">{{ $item->nombre }}</td>
                             <td class="border px-4 py-2">{{ $item->descripcion }}</td>
                             <td class="border px-4 py-2">
-                            <button wire:click="edit({{ $item->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Editar</button>
-                                <button wire:click="delete({{ $item->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Borrar</button>
+                                @can('update', $item)
+                                    <button wire:click="edit({{ $item->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Editar</button>
+                                @endcan
+                                @can('delete', $item)
+                                    <button wire:click="delete({{ $item->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Borrar</button>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach

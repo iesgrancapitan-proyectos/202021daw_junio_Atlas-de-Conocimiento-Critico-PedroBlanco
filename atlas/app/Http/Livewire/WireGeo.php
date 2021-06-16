@@ -5,8 +5,12 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Geo;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 class WireGeo extends Component
 {
+    use AuthorizesRequests;
+
     public $contenedor;
     public $nombre, $dir3, $_id;
     public $isOpen = 0;
@@ -21,11 +25,12 @@ class WireGeo extends Component
         $this->contenedor = Geo::latest()->get();;
 
         return view('livewire.wire-geo');
-        //return view('livewire.generic.list');
     }
 
     public function create()
     {
+        $this->authorize('create', Geo::class);
+
         $this->resetInputFields();
         $this->openModal();
     }
@@ -48,6 +53,12 @@ class WireGeo extends Component
 
     public function store()
     {
+        if ( $this->_id !== null ) {
+            $this->authorize('update', Geo::findOrFail($this->_id));
+        } else {
+            $this->authorize('create', Geo::class);
+        }
+
         $this->validate([
             'nombre' => 'required',
             'dir3' => 'required',
@@ -68,6 +79,9 @@ class WireGeo extends Component
     public function edit($id)
     {
         $geo = Geo::findOrFail($id);
+
+        $this->authorize ('update', $geo);
+
         $this->_id = $id;
         $this->nombre = $geo->nombre;
         $this->dir3 = $geo->dir3;
@@ -77,7 +91,11 @@ class WireGeo extends Component
 
     public function delete($id)
     {
-        Geo::find($id)->delete();
+        $geo = Geo::find($id);
+
+        $this->authorize ('delete', $geo);
+
+        $geo->delete();
         session()->flash('message', 'Localización Geográfica borrada correctamente.');
     }
 }

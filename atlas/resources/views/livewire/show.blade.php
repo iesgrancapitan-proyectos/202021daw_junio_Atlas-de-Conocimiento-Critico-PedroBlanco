@@ -65,8 +65,10 @@
                 </td>
                 <td class="border px-4 py-2">
                     <a href=""><x-fluentui-person-info-16 class="h-6 w-6" /></a>
-                    @can('admin-users')
+                    @can('update', $user)
                         <a href=""><x-fluentui-person-settings-16 class="h-6 w-6" /></a>
+                    @endcan
+                    @can('delete', $user)
                         <a href=""><x-fluentui-person-delete-16 class="h-6 w-6" /></a>
                     @endcan
                 </td>

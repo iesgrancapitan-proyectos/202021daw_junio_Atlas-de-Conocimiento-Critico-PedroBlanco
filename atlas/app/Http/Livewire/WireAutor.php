@@ -5,8 +5,12 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Autor;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 class WireAutor extends Component
 {
+    use AuthorizesRequests;
+
     public $contenedor;
     public $nombre, $apellidos, $url, $_id;
     public $isOpen = 0;
@@ -21,12 +25,12 @@ class WireAutor extends Component
         $this->contenedor = Autor::latest()->get();;
 
         return view('livewire.wire-autor');
-        // No podemos usar la vista genérica si no usamos una lista de campos
-        //return view('livewire.generic.list');
     }
 
     public function create()
     {
+        $this->authorize('create', Autor::class);
+
         $this->resetInputFields();
         $this->openModal();
     }
@@ -50,6 +54,12 @@ class WireAutor extends Component
 
     public function store()
     {
+        if ( $this->_id !== null ) {
+            $this->authorize('update', Autor::findOrFail($this->_id));
+        } else {
+            $this->authorize('create', Autor::class);
+        }
+
         $this->validate([
             'nombre' => 'required',
             'apellidos' => 'required',
@@ -72,6 +82,9 @@ class WireAutor extends Component
     public function edit($id)
     {
         $autor = Autor::findOrFail($id);
+
+        $this->authorize('update', $autor);
+
         $this->_id = $id;
         $this->nombre = $autor->nombre;
         $this->apellidos = $autor->apellidos;
@@ -82,7 +95,11 @@ class WireAutor extends Component
 
     public function delete($id)
     {
-        Autor::find($id)->delete();
+        $autor = Autor::find($id);
+
+        $this->authorize('delete', $autor);
+
+        $autor->delete();
         session()->flash('message', 'Autor/a borrado correctamente.');
     }
 }
