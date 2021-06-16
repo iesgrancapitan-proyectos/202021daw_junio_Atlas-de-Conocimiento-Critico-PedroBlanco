@@ -13,11 +13,14 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "http-interop/http-factory-guzzle": "^1.0",
         "laravel/framework": "^8.40",
         "laravel/jetstream": "^2.3",
         "laravel/sanctum": "^2.6",
+        "laravel/scout": "^9.1",
         "laravel/tinker": "^2.5",
-        "livewire/livewire": "^2.0"
+        "livewire/livewire": "^2.0",
+        "meilisearch/meilisearch-php": "^0.18.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
