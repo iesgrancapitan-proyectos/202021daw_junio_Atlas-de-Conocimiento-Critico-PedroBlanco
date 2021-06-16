@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Mapa extends Model
 {
     use HasFactory;
+
+    use Searchable;
 
     protected $table = "Mapas";
 
@@ -51,5 +54,10 @@ class Mapa extends Model
     public function autores()
     {
         return $this->belongsToMany(Autor::class, 'Autores_Mapas', 'mapa_id', 'autor_id')->using(Autor_Mapa::class);
+    }
+
+    public function searchableAs()
+    {
+        return 'mapas_index';
     }
 }
