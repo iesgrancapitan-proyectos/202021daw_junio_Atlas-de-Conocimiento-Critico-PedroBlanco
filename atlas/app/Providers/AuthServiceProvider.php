@@ -36,17 +36,19 @@ class AuthServiceProvider extends ServiceProvider
             return in_array(explode('@', $value)[1], config('misc.valid_register_domains'));
         }, __('messages.invalid_register_domain') );
 
-        Gate::define( 'admin-users', function (User $user) {
-            // Se podría hacer un str_contains( $user->role()->first()->nombre, 'Administrador' ), pero no me gusta la idea
-            // return ( null !== $user->role()->first() )
-            //     && ( ( $user->role()->first()->nombre == 'SuperAdministrador' )
-            //             || ( $user->role()->first()->nombre == 'Administrador' ) );
-            return in_array ( $user->role()->first()->nombre, ['SuperAdministrador', 'Administrador'], true );
-        });
+        // Se sustituye por UserPolicy
+        // Gate::define( 'admin-users', function (User $user) {
+        //     // Se podría hacer un str_contains( $user->role()->first()->nombre, 'Administrador' ), pero no me gusta la idea
+        //     // return ( null !== $user->role()->first() )
+        //     //     && ( ( $user->role()->first()->nombre == 'SuperAdministrador' )
+        //     //             || ( $user->role()->first()->nombre == 'Administrador' ) );
+        //     return in_array ( $user->role()->first()->nombre, ['SuperAdministrador', 'Administrador'], true );
+        // });
 
-        Gate::define( 'show-users', function (User $user) {
-            // Se podría hacer un str_contains( $user->role()->first()->nombre, 'Administrador' ), pero no me gusta la idea
-            return ( null !== $user->role()->first() );
-        });
+        // Se sustituye por UserPolicy
+        // Gate::define( 'show-users', function (User $user) {
+        //     // Se podría hacer un str_contains( $user->role()->first()->nombre, 'Administrador' ), pero no me gusta la idea
+        //     return ( null !== $user->role()->first() );
+        // });
     }
 }
