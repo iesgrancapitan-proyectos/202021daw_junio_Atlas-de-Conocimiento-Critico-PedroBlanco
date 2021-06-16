@@ -98,6 +98,9 @@ echo
 docker exec -w /var/www/atlas atlas_workspace_1 php artisan key:generate
 docker exec -w /var/www/atlas atlas_workspace_1 php artisan migrate
 docker exec -w /var/www/atlas atlas_workspace_1 php artisan db:seed --force
+docker exec -w /var/www/atlas atlas_workspace_1 php artisan scout:import "App\Models\Autor"
+docker exec -w /var/www/atlas atlas_workspace_1 php artisan scout:import "App\Models\Geo"
+docker exec -w /var/www/atlas atlas_workspace_1 php artisan scout:import "App\Models\Mapa"
 docker exec -w /var/www/atlas atlas_workspace_1 php artisan config:cache
 
 echo
