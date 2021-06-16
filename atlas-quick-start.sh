@@ -16,10 +16,35 @@ echo "*****************************************************"
 echo
 
 # Tomamos la configuración por defecto
-# FIXME: Añadir chequeos para no sobrescribir los cambios ya realizados
-cp atlas/.env.example atlas/.env
-cp laradock-atlas-daw/.env.example laradock-atlas-daw/.env
-cp laradock-atlas-daw/nginx/sites/atlas.conf.example laradock-atlas-daw/nginx/sites/atlas.conf
+# Pero respetamos los archivo existentes para poder usar el script para actualizar la aplicación
+
+if [[ ! -f atlas/.env ]]; then
+    cp atlas/.env.example atlas/.env
+    echo "++++++ Creamos atlas/.env (con los valores por defecto)"
+else
+    echo "===== Respetamos atlas/.env existente"
+    echo "========== Borrar manualmente para regenerar"
+    echo "========== Comprobar contenido en caso de actualización"
+fi
+
+if [[ ! -f laradock-atlas-daw/.env ]]; then
+    cp laradock-atlas-daw/.env.example laradock-atlas-daw/.env
+    echo "++++++ laradock-atlas-daw/.env (con los valores por defecto)"
+else
+    echo "===== Respetamos laradock-atlas-daw/.env"
+    echo "========== Borrar manualmente para regenerar"
+    echo "========== Comprobar contenido en caso de actualización"
+fi
+
+if [[ ! -f laradock-atlas-daw/nginx/sites/atlas.conf ]]; then
+    cp laradock-atlas-daw/nginx/sites/atlas.conf.example laradock-atlas-daw/nginx/sites/atlas.conf
+    echo "++++++ Creamos laradock-atlas-daw/nginx/sites/atlas.conf (con los valores por defecto)"
+else
+    echo "===== Respetamos laradock-atlas-daw/nginx/sites/atlas.conf existente"
+    echo "========== Borrar manualmente para regenerar"
+    echo "========== Comprobar contenido en caso de actualización"
+fi
+
 
 echo
 echo "*****************************************************"
@@ -71,7 +96,8 @@ echo "*****************************************************"
 echo
 
 docker exec -w /var/www/atlas atlas_workspace_1 php artisan key:generate
-docker exec -w /var/www/atlas atlas_workspace_1 php artisan migrate --seed
+docker exec -w /var/www/atlas atlas_workspace_1 php artisan migrate
+docker exec -w /var/www/atlas atlas_workspace_1 php artisan db:seed --force
 docker exec -w /var/www/atlas atlas_workspace_1 php artisan config:cache
 
 echo
