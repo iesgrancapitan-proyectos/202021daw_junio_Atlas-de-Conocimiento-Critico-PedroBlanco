@@ -30,44 +30,34 @@
                 <td class="border px-4 py-2">{{ $user->name }}</td>
                 <td class="border px-4 py-2">{{ $user->email }}</td>
                 <td class="border px-4 py-2">
-                    @can('admin-users')
-                    <form x-data="{show_{{$user->id}}: true, selected_role_{{$user->id}}: -2}"
-                        {{-- wire:init="loadRole({{$user->id}})" --}}
-                        >
+                    @can('update', $user)
+                    <form x-data="{show_{{$user->id}}: true, selected_role_{{$user->id}}: -2}">
                         @csrf
-                        <select name="role_{{$user->id}}" id="role_{{$user->id}}"
-                            x-on:change="$wire.selected_role[{{$user->id}}] = this.value; show_{{$user->id}} = false;"
-                            {{-- wire:model="selected_role" --}}
-                            required>
+                        <select name="role_{{$user->id}}" id="role_{{$user->id}}" required>
                             <option value="-1">Sin rol asignado</option>
                             @foreach ($roles as $role)
+                            @if ($role->id >= Auth::user()->role_id )
                             <option value="{{$role->id}}"
                                 @if ( ( null !== $user->role()->get()->first() ) && ( $role->id === $user->role()->first()->id ) )
                                     selected
                                 @endif
                                 >{{$role->nombre}}</option>
+                            @endif
                             @endforeach
                         </select>
-                        <x-jet-danger-button class="ml-2" x-bind:disabled="show_{{$user->id}}"
-                            {{-- x-bind:value="selected_role_{{$user->id}}" --}}
-                            x-on:click="$wire.changeRole({{$user->id}})"
-                            {{-- x-on:click="$wire.changeRole({{$user->id}},selected_role_{{$user->id}})" --}}
-                            >Guardar</x-jet-danger-button>
-                        {{-- <x-jet-danger-button class="ml-2" x-bind:disabled="show_{{$user->id}}" wire:click="changeRole">Guardar</x-jet-danger-button> --}}
-                        {{-- <button x-show="show_{{$user->id}}" x-on:click=""
-                            type="button" class="inline-flex justify-center rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                            Guardar
-                        </button> --}}
+                        <x-jet-danger-button class="ml-2" x-bind:disabled="show_{{$user->id}}">Guardar</x-jet-danger-button>
                     </form>
                     @else
                         {{ $user->role()->get()->first() ? $user->role()->get()->first()->nombre : 'Sin rol asignado' }}
                     @endcan
                 </td>
                 <td class="border px-4 py-2">
-                    <a href=""><x-fluentui-person-info-16 class="h-6 w-6" /></a>
-                    @can('admin-users')
-                        <a href=""><x-fluentui-person-settings-16 class="h-6 w-6" /></a>
-                        <a href=""><x-fluentui-person-delete-16 class="h-6 w-6" /></a>
+                    <a href=""><x-fluentui-info-16 class="h-6 w-6" /></a>
+                    @can('update', $user)
+                        <a href=""><x-fluentui-settings-16 class="h-6 w-6" /></a>
+                    @endcan
+                    @can('delete', $user)
+                        <a href=""><x-fluentui-delete-16 class="h-6 w-6" /></a>
                     @endcan
                 </td>
             </tr>
