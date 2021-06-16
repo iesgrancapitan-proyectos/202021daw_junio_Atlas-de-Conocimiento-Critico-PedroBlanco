@@ -22,7 +22,7 @@ return [
     'update_password_desc' => 'Asegúrese de que la cuenta tiene una contraseña larga y aleatoria, para mantenerla segura.',
     'current_password' => 'Contraseña actual',
     'new_password' => 'Nueva contraseña',
-    'confirm_password' => 'Confirmar nueva contraseña',
+    'confirm_password' => 'Confirmar contraseña',
     '2FA' => 'Autenticación de dos factores (2FA)',
     '2FA_desc' => 'Añade seguridad adicional a la cuenta usando autenticación de dos factores.',
     '2FA_enabled' => 'Se ha activado la autenticación de dos factores.',
@@ -34,4 +34,6 @@ return [
     '2FA_regenerate_codes' => 'Regenerar Códigos de Recuperación',
     '2FA_show_codes' => 'Mostrar Códigos de Recuperación',
     'disable' => 'Deshabilitar',
+    'confirm' => 'Confirmar',
+    'confirm_password_action' => 'Por su seguridad, por favor confirme su contraseña para continuar.',
 ];

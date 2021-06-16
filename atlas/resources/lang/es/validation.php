@@ -122,6 +122,8 @@ return [
     'uploaded'              => 'El campo :attribute no ha podido ser cargado.',
     'url'                   => 'El formato de :attribute es inválido.',
     'uuid'                  => 'El :attribute debe ser un UUID valido.',
+    'Whoops'                => '¡Ups! Algo salió mal...',
+    'Saved'                 => 'Guardado.',
 
     /*
     |--------------------------------------------------------------------------
