@@ -21,6 +21,9 @@ class Show extends Component
 
     public function mount ( $users, $roles )
     {
+        $this->authorize('viewAny', User::class);
+        $this->authorize('viewAny', Role::class);
+
         $this->users = $users;
         $this->roles = $roles;
 
@@ -34,7 +37,7 @@ class Show extends Component
 
     public function render()
     {
-        $this->authorize('show-users', $this->users);
+        $this->authorize('viewAny', User::class);
 
         return view('livewire.users.show');
     }
@@ -52,6 +55,8 @@ class Show extends Component
     public function loadRole($id)
     {
         $_user = $this->users->find($id)->role()->first();
+
+        $this->authorize('view', $_user);
 
         if ( null !== $_user ) {
             $this->selected_role[$id] = $_user->id;

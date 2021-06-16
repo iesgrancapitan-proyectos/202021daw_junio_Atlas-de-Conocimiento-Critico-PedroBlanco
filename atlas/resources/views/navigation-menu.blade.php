@@ -49,7 +49,7 @@
             </div>
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                 {{-- @if ( (null !== auth()->user()->role()->first()) && ((auth()->user()->role()->first()->nombre == 'Administrador') || (auth()->user()->role()->first()->nombre == 'SuperAdministrador')) ) --}}
-                @can('show-users')
+                @can('viewAny', \App\Models\User::class)
                     <x-jet-nav-link href="{{ route('livewire.users') }}" :active="request()->routeIs('livewire.users')">
                         {{ __('messages.Users') }}
                     </x-jet-nav-link>
@@ -206,7 +206,7 @@
 
         <div class="pt-1 pb-1 border-t border-gray-200">
             <div class="mt-3 space-y-1">
-                @can('show-users')
+                @can('viewAny', \App\Models\User::class)
                 <x-jet-responsive-nav-link href="{{ route('livewire.users') }}" :active="request()->routeIs('livewire.users')">
                     {{ __('messages.Users') }}
                 </x-jet-responsive-nav-link>
