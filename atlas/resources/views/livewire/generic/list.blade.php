@@ -1,10 +1,12 @@
 <div>
     {{-- If your happiness depends on money, you will never be happy with yourself. --}}
-    <x-slot name="header" class="flex">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight flex-2">
-            {{ $mensajes['titulo_pagina'] }}
-        </h2>
-        <div class="flex-1 text-right">@include('livewire.inline-search', ['model' => $model])</div>
+    <x-slot name="header">
+        <div class="flex">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight flex-2">
+                {{ $mensajes['titulo_pagina'] }}
+            </h2>
+            <div class="flex-1 text-right">@include('livewire.inline-search', ['model' => $model])</div>
+        </div>
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
