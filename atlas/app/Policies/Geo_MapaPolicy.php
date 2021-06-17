@@ -2,12 +2,13 @@
 
 namespace App\Policies;
 
-use App\Models\Geo_Mapa;
-use App\Models\User;
 use App\Models\Role;
+use App\Models\User;
+use App\Models\Geo_Mapa;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class GeoMapaPolicy
+class Geo_MapaPolicy
 {
     use HandlesAuthorization;
 
@@ -44,8 +45,10 @@ class GeoMapaPolicy
      */
     public function create(User $user)
     {
+        Log::debug('Geo_MapaPolicy->create: '.$user->role_id);
         // Para poder crear una relación, se debe ser, como poco, Editor de Mapa
         return ( $user->role_id <= Role::IS_MAP_EDITOR );
+        // return true;
     }
 
     /**

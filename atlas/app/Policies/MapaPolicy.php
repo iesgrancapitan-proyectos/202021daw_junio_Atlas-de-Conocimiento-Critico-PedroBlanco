@@ -3,8 +3,9 @@
 namespace App\Policies;
 
 use App\Models\Mapa;
-use App\Models\User;
 use App\Models\Role;
+use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class MapaPolicy
@@ -44,6 +45,7 @@ class MapaPolicy
      */
     public function create(User $user)
     {
+        Log::debug('MapaPolicy->create: '.$user->role_id. '<= '.Role::IS_MAP_EDITOR);
         // Para poder crear un mapa, se debe ser, como poco, Editor de Mapas
         return ( $user->role_id <= Role::IS_MAP_EDITOR );
     }
