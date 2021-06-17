@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
+use Illuminate\Http\Request;
 use App\Models\Administracion;
 use App\Http\Traits\InlineSearch;
 use Illuminate\Support\Facades\Log;
@@ -25,16 +26,24 @@ class WireAdministracion extends Component
         'boton_crear' => 'Crear nueva Administración'
     );
 
-    public function mount ()
+    public function mount (Request $request)
     {
         $this->model = App\Models\Administracion::class;
-        Log::debug($this->model.'->mount()');
+        // Log::debug($this->model.'->mount()');
+
+        if ( $request->get('query') ) {
+            $this->query = $request->get('query');
+            Log::debug($this->model.'->mount() | query = '.$request->get('query') );
+        } else {
+            Log::debug($this->model.'->mount() | query vacía' );
+        }
+
     }
 
     public function render()
     {
-        Log::debug($this->model.'->render()');
-
+        // Log::debug($this->model.'->render()');
+        Log::debug($this->model.'->render() | '.$this->query );
         $this->authorize('viewAny', Administracion::class);
 
         if ( $this->query != '' ) {
