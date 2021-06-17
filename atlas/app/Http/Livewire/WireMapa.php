@@ -98,7 +98,6 @@ class WireMapa extends Component
         $this->authorize('create', Geo_Mapa::class);
 
         $this->resetInputFields();
-        $this->emitTo ( 'livewire.mapa.create', 'mount', null );
         $this->openModal();
     }
 
