@@ -17,7 +17,11 @@ class Show extends Component
     public $users;
     public $roles;
 
-    public $selected_role = [];
+    public $selected_role = null;
+    public $selected_user = [];
+
+    public $abrir_modal = false;
+    public $user_modal = [];
 
     public function mount ( $users, $roles )
     {
@@ -29,10 +33,14 @@ class Show extends Component
 
         $_role = null;
 
-        foreach ( $this->users as $_user ) {
-            $_role = $_user->role()->first();
-            $this->selected_role[$_user->id] = ( null !== $_role ) ? $_role->id : null ;
-        }
+        $this->selected_user = $users->pluck('role_id','id')->toArray();
+
+        Log:debug(print_r( $this->selected_user, true ));
+
+        // foreach ( $this->users as $_user ) {
+        //     $_role = $_user->role()->first();
+        //     $this->selected_role[$_user->id] = ( null !== $_role ) ? $_role->id : null ;
+        // }
     }
 
     public function render()
@@ -49,19 +57,32 @@ class Show extends Component
 
     public function changeRole( $user_id )
     {
-        Log::debug("changeRole($user_id) => ".$this->selected_role[$user_id]);
+        // Log::debug("changeRole($user_id) => ".$this->selected_role[$user_id]);
+        // Log::debug("changeRole($user_id) -> ". $this->selected_role[$user_id]);
+        // dd($user);
+        // Log::debug("changeRole($user_id)");
+
+        $this->user_modal = $this->users->find($user_id);
+        //dd($this->user_modal);
+
+        $this->selected_role = $this->user_modal->role_id;
+
+        Log::debug("changeRole($user_id) desde ".$this->selected_role );
+
+        $this->abrir_modal = true;
     }
 
-    public function loadRole($id)
+    public function saveRole()
     {
-        $_user = $this->users->find($id)->role()->first();
+        Log::debug("saveRole: ".$this->user_modal->name." -> ".$this->selected_role );
+        $this->abrir_modal = false;
 
-        $this->authorize('view', $_user);
+        $this->user_modal->role_id = $this->selected_role;
 
-        if ( null !== $_user ) {
-            $this->selected_role[$id] = $_user->id;
-        } else {
-            $this->selected_role[$id] = -1;
-        }
+        $this->user_modal->save();
+
+        $this->emit('render');
+
+        Log::debug("saved! ".$this->user_modal->name." -> ".$this->user_modal->role_id );
     }
 }

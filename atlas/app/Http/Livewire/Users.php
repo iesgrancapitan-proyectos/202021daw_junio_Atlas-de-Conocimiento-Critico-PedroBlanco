@@ -10,6 +10,7 @@ class Users extends Component
 {
     public $users, $roles;
 
+    protected $listeners = ['render' => 'render'];
 
     public function render()
     {

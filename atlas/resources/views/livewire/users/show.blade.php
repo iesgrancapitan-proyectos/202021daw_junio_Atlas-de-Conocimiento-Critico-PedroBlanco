@@ -20,7 +20,7 @@
                 <th class="px-4 py-2">{{ __('messages.Name')}}</th>
                 <th class="px-4 py-2">{{ __('messages.Email')}}</th>
                 <th class="px-4 py-2">{{ __('messages.Role')}}</th>
-                <th class="px-4 py-2 w-20">{{ __('messages.Actions')}}</th>
+                {{-- <th class="px-4 py-2 w-20">{{ __('messages.Actions')}}</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -29,39 +29,19 @@
                 {{-- <td class="border px-4 py-2">{{ $user->id }}</td> --}}
                 <td class="border px-4 py-2">{{ $user->name }}</td>
                 <td class="border px-4 py-2">{{ $user->email }}</td>
-                <td class="border px-4 py-2">
+                <td class="border px-4 py-2 text-center">
                     @can('update', $user)
-                    <form x-data="{show_{{$user->id}}: true, selected_role_{{$user->id}}: -2}">
-                        @csrf
-                        <select name="role_{{$user->id}}" id="role_{{$user->id}}" required>
-                            <option value="-1">Sin rol asignado</option>
-                            @foreach ($roles as $role)
-                            @if ($role->id >= Auth::user()->role_id )
-                            <option value="{{$role->id}}"
-                                @if ( ( null !== $user->role()->get()->first() ) && ( $role->id === $user->role()->first()->id ) )
-                                    selected
-                                @endif
-                                >{{$role->nombre}}</option>
-                            @endif
-                            @endforeach
-                        </select>
-                        <x-jet-danger-button class="ml-2" x-bind:disabled="show_{{$user->id}}">Guardar</x-jet-danger-button>
-                    </form>
+                    <x-jet-danger-button class="ml-2"
+                        wire:click="changeRole('{{$user->id}}')">{{ $user->role()->get()->first() ? $user->role()->get()->first()->nombre : 'Sin rol asignado' }}</x-jet-danger-button>
                     @else
                         {{ $user->role()->get()->first() ? $user->role()->get()->first()->nombre : 'Sin rol asignado' }}
-                    @endcan
-                </td>
-                <td class="border px-4 py-2">
-                    <a href=""><x-fluentui-info-16 class="h-6 w-6" /></a>
-                    @can('update', $user)
-                        <a href=""><x-fluentui-settings-16 class="h-6 w-6" /></a>
-                    @endcan
-                    @can('delete', $user)
-                        <a href=""><x-fluentui-delete-16 class="h-6 w-6" /></a>
                     @endcan
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+    @if ( $abrir_modal )
+        @include('livewire.users.role')
+    @endif
 </div>
