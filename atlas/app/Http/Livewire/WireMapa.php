@@ -51,6 +51,7 @@ class WireMapa extends Component
     public $geos_markers;
 
     public $isOpen = 0;
+    public $model = App\Models\Mapa::class;
 
     public $mensajes = array(
         'titulo_pagina' => 'Gestión de Mapas',

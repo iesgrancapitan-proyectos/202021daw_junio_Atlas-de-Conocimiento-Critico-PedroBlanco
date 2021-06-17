@@ -9,6 +9,7 @@ use App\Models\Role;
 class Users extends Component
 {
     public $users, $roles;
+    public $model = App\Models\User::class;
 
     protected $listeners = ['users_render' => 'render'];
 

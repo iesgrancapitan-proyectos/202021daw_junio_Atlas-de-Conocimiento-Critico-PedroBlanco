@@ -14,6 +14,7 @@ class WireGeo extends Component
     public $contenedor;
     public $nombre, $dir3, $_id;
     public $isOpen = 0;
+    public $model = App\Models\Geo::class;
 
     public $mensajes = array(
         'titulo_pagina' => 'Gestión de Localizaciones Geográficas',

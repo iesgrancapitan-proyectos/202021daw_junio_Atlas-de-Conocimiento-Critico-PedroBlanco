@@ -14,6 +14,7 @@ class WireAutor extends Component
     public $contenedor;
     public $nombre, $apellidos, $url, $_id;
     public $isOpen = 0;
+    public $model = App\Models\Autor::class;
 
     public $mensajes = array(
         'titulo_pagina' => 'Gestión de Autores/as de Mapas',
