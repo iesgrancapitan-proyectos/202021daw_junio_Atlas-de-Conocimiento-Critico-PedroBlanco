@@ -91,7 +91,7 @@ atlas_config () {
     echo
 
     docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace npm -g install npm
-    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace mkdir -p /root/.npm/_logs
+    # docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace mkdir -p /root/.npm/_logs
     docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace npm install
     docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace npm run dev
 
@@ -168,4 +168,3 @@ update)
 esac
 
 exit 0
-
