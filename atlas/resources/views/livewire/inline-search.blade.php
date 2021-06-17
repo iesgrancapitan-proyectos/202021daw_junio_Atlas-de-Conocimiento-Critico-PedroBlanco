@@ -1,6 +1,6 @@
 <div>
     {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
-    <form action="#" method="GET" wire:submit.prevent="search">
+    <form action="#" method="GET" wire:submit.prevent="inline_search">
         @csrf
         <div class="block space-x-4 space-y-4">
             {{-- <x-jet-label for="search" value="{{ __('Buscar') }}" /> --}}

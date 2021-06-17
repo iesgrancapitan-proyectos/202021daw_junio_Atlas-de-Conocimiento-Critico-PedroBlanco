@@ -15,10 +15,10 @@ trait InlineSearch
 
     // public function search_model( $busqueda, $model )
     // public function search( $busqueda )
-    public function search()
+    public function inline_search()
     {
         // Log:debug ( 'search_model ("'. $busqueda .'", "'. $model .'")' );
-        Log::debug ( $this->model.'->search () + "'. $this->query .'")' );
+        Log::debug ( $this->model.'->inline_search () + "'. $this->query .'")' );
 
         // if ( $busqueda != '' ) {
         if ( $this->query != '' ) {
@@ -27,8 +27,8 @@ trait InlineSearch
             $this->results = $this->model::search($this->query)->get();
         }
 
-        $this->emit($this->model.'_search');
-        Log::debug ( $this->model.'->emit ("'. $this->model .'_search")' );
+        $this->emit($this->model.'_inline_search');
+        Log::debug ( $this->model.'->emit ("'. $this->model .'_inline_search")' );
 
         return $this->results;
     }

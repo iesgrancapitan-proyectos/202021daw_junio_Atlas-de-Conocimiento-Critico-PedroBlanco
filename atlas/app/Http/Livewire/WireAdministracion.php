@@ -18,7 +18,7 @@ class WireAdministracion extends Component
     public $nombre, $descripcion, $_id;
     public $isOpen = 0;
 
-    protected $listeners = [ 'App\Models\Administracion_search' => 'render' ];
+    protected $listeners = [ 'App\Models\Administracion_inline_search' => 'render' ];
 
     public $mensajes = array(
         'titulo_pagina' => 'Gestión de Administraciones',
@@ -47,7 +47,7 @@ class WireAdministracion extends Component
         $this->authorize('viewAny', Administracion::class);
 
         if ( $this->query != '' ) {
-            $this->contenedor = $this->search ();
+            $this->contenedor = $this->inline_search ();
         } else {
             $this->contenedor = Administracion::latest()->get();
         }
