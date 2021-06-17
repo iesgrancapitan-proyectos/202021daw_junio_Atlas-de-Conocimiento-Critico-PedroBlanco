@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
 use Livewire\Component;
+
 use App\Models\Administracion;
 use App\Http\Traits\InlineSearch;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class WireAdministracion extends Component
 {
