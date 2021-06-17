@@ -22,9 +22,9 @@ class WireGeo extends Component
 
     protected $rules = [
         'nombre' => 'required',
-        'dir3' => 'sometimes|size:9|starts_with:E,A,L,U,I,J',
-//        'longitud' => 'sometimes|numeric',
-//        'latitud' => 'sometimes|numeric',
+        'dir3' => 'nullable|size:9|starts_with:E,A,L,U,I,J',
+//        'longitud' => 'nullable|numeric',
+//        'latitud' => 'nullable|numeric',
 ];
 
 
@@ -69,9 +69,9 @@ class WireGeo extends Component
 
         $this->validate([
             'nombre' => 'required',
-            'dir3' => 'sometimes|size:9|starts_with:E,A,L,U,I,J',
-            // 'longitud' => 'numeric',
-            // 'latitud' => 'numeric',
+            'dir3' => 'nullable|size:9|starts_with:E,A,L,U,I,J',
+            // 'longitud' => 'nullable|numeric',
+            // 'latitud' => 'nullable|numeric',
         ]);
 
         Geo::updateOrCreate(['id' => $this->_id], [
