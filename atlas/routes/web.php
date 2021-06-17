@@ -1,14 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Livewire\Users;
-use App\Http\Livewire\WireAdministracion;
-use App\Http\Livewire\WireAmbito;
-use App\Http\Livewire\WireEstado;
-use App\Http\Livewire\WireAutor;
+// use App\Http\Livewire\Search;
 use App\Http\Livewire\WireGeo;
 use App\Http\Livewire\WireMapa;
+use App\Http\Livewire\WireAutor;
+use App\Http\Livewire\WireAmbito;
+use App\Http\Livewire\WireEstado;
+use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\WireAdministracion;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +57,5 @@ Route::group(['middleware' => 'auth'], function () {
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/users', Users::class)
     ->name('livewire.users');
+
+// Route::get('search', Search::class)->name('search');
