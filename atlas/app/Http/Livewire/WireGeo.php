@@ -69,7 +69,7 @@ class WireGeo extends Component
 
         $this->validate([
             'nombre' => 'required',
-            'dir3' => 'size:9|starts_with:E,A,L,U,I,J',
+            'dir3' => 'sometimes|size:9|starts_with:E,A,L,U,I,J',
             // 'longitud' => 'numeric',
             // 'latitud' => 'numeric',
         ]);
