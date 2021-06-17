@@ -105,6 +105,6 @@ docker exec -w /var/www/atlas atlas_workspace_1 php artisan config:cache
 
 echo
 echo "*****************************************************"
-echo "***** FIN: Pruebe a acceder a http://localhost/ *****"
+echo "***** FIN: Pruebe a acceder a $APP_URL "
 echo "*****************************************************"
 echo
