@@ -33,6 +33,7 @@ class WireAdministracion extends Component
 
         if ( $request->get('query') ) {
             $this->initial_query = $request->get('query');
+            $this->query = $this->initial_query;
             Log::debug($this->model.'->mount() | query = '.$request->get('query') );
         } else {
             Log::debug($this->model.'->mount() | query vacía' );
