@@ -73,7 +73,7 @@ atlas_config () {
     echo "*****************************************************"
     echo
 
-    envsubst < install/atlas-init.sql | docker exec -i atlas_mariadb_1 mysql -v -v -u root --password=$MARIADB_ROOT_PASSWORD
+    envsubst < install/atlas-init.sql | docker exec -i ${COMPOSE_PROJECT_NAME}_mariadb mysql -v -v -u root --password=$MARIADB_ROOT_PASSWORD
 
     # Configuramos la parte Laravel de la aplicación
     echo
@@ -82,7 +82,7 @@ atlas_config () {
     echo "*****************************************************"
     echo
 
-    docker exec -w /var/www/atlas atlas_workspace_1 composer install
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace composer install
 
     echo
     echo "*****************************************************"
@@ -90,10 +90,10 @@ atlas_config () {
     echo "*****************************************************"
     echo
 
-    docker exec -w /var/www/atlas atlas_workspace_1 npm -g install npm
-    docker exec -w /var/www/atlas atlas_workspace_1 mkdir -p /root/.npm/_logs
-    docker exec -w /var/www/atlas atlas_workspace_1 npm install
-    docker exec -w /var/www/atlas atlas_workspace_1 npm run dev
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace npm -g install npm
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace mkdir -p /root/.npm/_logs
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace npm install
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace npm run dev
 
     echo
     echo "*****************************************************"
@@ -101,15 +101,15 @@ atlas_config () {
     echo "*****************************************************"
     echo
 
-    docker exec -w /var/www/atlas atlas_workspace_1 php artisan key:generate
-    docker exec -w /var/www/atlas atlas_workspace_1 php artisan migrate
-    docker exec -w /var/www/atlas atlas_workspace_1 php artisan db:seed --force
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan key:generate
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan migrate
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan db:seed --force
     curl -X GET 'http://localhost:7700/health'
     echo
-    docker exec -w /var/www/atlas atlas_workspace_1 php artisan scout:import "App\Models\Autor"
-    docker exec -w /var/www/atlas atlas_workspace_1 php artisan scout:import "App\Models\Geo"
-    docker exec -w /var/www/atlas atlas_workspace_1 php artisan scout:import "App\Models\Mapa"
-    docker exec -w /var/www/atlas atlas_workspace_1 php artisan config:cache
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan scout:import "App\Models\Autor"
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan scout:import "App\Models\Geo"
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan scout:import "App\Models\Mapa"
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan config:cache
 
     echo
     echo "*****************************************************"
@@ -158,7 +158,7 @@ restart)
 update)
     atlas_stop
     atlas_init
-    atlas-start
+    atlas_start
     atlas_config
     ;;
 *)
