@@ -60,4 +60,21 @@ class Mapa extends Model
     {
         return 'mapas_index';
     }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+
+        $array['autores'] = $this->autores()->get(['nombre','apellidos']);
+
+        $array['geo'] = $this->geo()->get(['nombre']);
+
+        $array['ambito'] = $this->ambito()->get(['nombre']);
+
+        $array['administracion'] = $this->administracion()->get(['nombre']);
+
+        $array['estado'] = $this->estado()->get(['nombre']);
+
+        return $array;
+    }
 }
