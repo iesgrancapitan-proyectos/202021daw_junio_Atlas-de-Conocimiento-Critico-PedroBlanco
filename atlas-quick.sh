@@ -57,12 +57,12 @@ atlas_up() {
     # Generamos y levantamos los contenedores
     cd laradock-atlas-daw
     docker-compose up -d
+    cd ..
 }
 
 atlas_config () {
     # Creamos la base de datos y el usuario que usaremos
     # FIXME: Aunque el SQL comprueba si la BD y usuario ya existen, habría que comprobar si sirve para sobrescribir/cambiar la contraseña de usuario
-    cd ..
     set -a
     source atlas/.env
     source laradock-atlas-daw/.env
@@ -146,12 +146,14 @@ down)
     atlas_down
     ;;
 start)
-    atlas_init
-    atlas_up
-    atlas_config
+    atlas_start
     ;;
 stop)
     atlas_stop
+    ;;
+restart)
+    atlas_stop
+    atlas_start
     ;;
 update)
     atlas_stop
@@ -160,7 +162,7 @@ update)
     atlas_config
     ;;
 *)
-    echo "Uso: atlas-guick {up|down|start|stop|update)"
+    echo "Uso: atlas-guick {up|down|start|stop|restart|update)"
     exit 1
     ;;
 esac
