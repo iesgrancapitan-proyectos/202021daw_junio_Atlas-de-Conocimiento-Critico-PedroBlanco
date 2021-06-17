@@ -44,7 +44,8 @@ class WireAdministracion extends Component
     public function render()
     {
         // Log::debug($this->model.'->render()');
-        Log::debug($this->model.'->render() | '.$this->query );
+        Log::debug($this->model.'->render() | initial_query: '.$this->initial_query );
+        Log::debug($this->model.'->render() | query:'.$this->query );
         $this->authorize('viewAny', Administracion::class);
 
         if ( $this->query != '' ) {
