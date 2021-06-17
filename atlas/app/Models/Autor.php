@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Mapa;
+use App\Models\Autor_Mapa;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

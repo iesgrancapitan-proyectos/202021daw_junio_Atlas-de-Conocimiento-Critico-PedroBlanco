@@ -109,6 +109,10 @@ atlas_config () {
     docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan scout:import "App\Models\Autor"
     docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan scout:import "App\Models\Geo"
     docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan scout:import "App\Models\Mapa"
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan scout:import "App\Models\Ambito"
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan scout:import "App\Models\Administracion"
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan scout:import "App\Models\Estado"
+    docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan scout:import "App\Models\User"
     docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan config:cache
 
     echo

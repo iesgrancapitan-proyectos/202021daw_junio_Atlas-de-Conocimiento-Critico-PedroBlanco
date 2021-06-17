@@ -17,6 +17,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -63,5 +64,22 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function searchableAs()
+    {
+        return 'users_index';
+    }
+
+    public function toSearchableArray()
+    {
+        $temp_array = $this->toArray();
+
+        $array['name'] = $temp_array['name'];
+        $array['email'] = $temp_array['email'];
+
+        $array['rol'] = $this->role()->get(['nombre']);
+
+        return $array;
     }
 }

@@ -2,7 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Geo;
+use App\Models\Autor;
+use App\Models\Ambito;
+use App\Models\Estado;
+use App\Models\Geo_Mapa;
+use App\Models\Autor_Mapa;
 use Laravel\Scout\Searchable;
+use App\Models\Administracion;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
