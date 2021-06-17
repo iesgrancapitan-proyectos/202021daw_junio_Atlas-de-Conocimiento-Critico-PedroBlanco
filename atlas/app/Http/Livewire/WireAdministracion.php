@@ -32,7 +32,7 @@ class WireAdministracion extends Component
         // Log::debug($this->model.'->mount()');
 
         if ( $request->get('query') ) {
-            $initial_query = $request->get('query');
+            $this->initial_query = $request->get('query');
             Log::debug($this->model.'->mount() | query = '.$request->get('query') );
         } else {
             Log::debug($this->model.'->mount() | query vacía' );
