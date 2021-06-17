@@ -26,7 +26,8 @@ class WireAdministracion extends Component
 
     public function mount ()
     {
-        $model = App\Models\Administracion::class;
+        $this->model = App\Models\Administracion::class;
+        Log::debug($this->model.'->mount()');
     }
 
     public function render()
