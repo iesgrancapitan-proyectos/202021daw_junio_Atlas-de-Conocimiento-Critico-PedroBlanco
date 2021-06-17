@@ -9,6 +9,7 @@ trait InlineSearch
     public $query = '';
     public $results = null;
     public $model = '';
+    public $contenedor = null;
 
 //    protected $listeners = [ $model.'_search' => 'render' ];
 

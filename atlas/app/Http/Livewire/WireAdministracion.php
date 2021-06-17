@@ -15,7 +15,6 @@ class WireAdministracion extends Component
     use AuthorizesRequests;
     use InlineSearch;
 
-    public $contenedor;
     public $nombre, $descripcion, $_id;
     public $isOpen = 0;
 
