@@ -2,29 +2,30 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
-
-use App\Models\Mapa;
-use App\Models\Administracion;
-use App\Models\Ambito;
-use App\Models\Estado;
-use App\Models\Autor;
 use App\Models\Geo;
 
-use App\Models\Autor_Mapa;
+use App\Models\Mapa;
+use App\Models\Autor;
+use App\Models\Ambito;
+use App\Models\Estado;
+use Livewire\Component;
 use App\Models\Geo_Mapa;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Models\Autor_Mapa;
+use App\Models\Administracion;
 
-use Illuminate\Support\Facades\Log;
+use App\Http\Traits\InlineSearch;
 
 use Illuminate\Support\Collection;
+
+use Illuminate\Support\Facades\Log;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class WireMapa extends Component
 {
     use AuthorizesRequests;
+    use InlineSearch;
 
-    public $contenedor;
     public  $nombre,
             $descripcion,
             $url,
@@ -51,7 +52,8 @@ class WireMapa extends Component
     public $geos_markers;
 
     public $isOpen = 0;
-    public $model = App\Models\Mapa::class;
+
+    protected $listeners = [ 'App\Models\Mapa_inline_search' => 'render' ];
 
     public $mensajes = array(
         'titulo_pagina' => 'Gestión de Mapas',
@@ -80,12 +82,32 @@ class WireMapa extends Component
         'select_geos_id.*' => 'required',
     ];
 
+    public function mount (Request $request)
+    {
+        $this->model = 'App\Models\Mapa';
+
+        if ( $request->get('query') ) {
+            $this->initial_query = $request->get('query');
+            $this->query = $this->initial_query;
+            Log::debug($this->model.'->mount() | query = '.$request->get('query') );
+        } else {
+            Log::debug($this->model.'->mount() | query vacía' );
+        }
+
+    }
+
     public function render()
     {
+        Log::debug($this->model.'->render() | initial_query: '.$this->initial_query );
+        Log::debug($this->model.'->render() | query:'.$this->query );
         $this->authorize('viewAny', Mapa::class);
         $this->authorize('viewAny', Geo::class);
 
-        $this->contenedor = Mapa::latest()->get();
+        if ( $this->query != '' ) {
+            $this->contenedor = $this->inline_search ();
+        } else {
+            $this->contenedor = Mapa::latest()->get();
+        }
 
         $this->geos_markers = $this->get_geos_markers();
 
@@ -237,11 +259,6 @@ class WireMapa extends Component
         $mapa->delete();
 
         session()->flash('message', 'Mapa borrado correctamente.');
-    }
-
-    public function mount()
-    {
-
     }
 
     public function toggleAutor($id)

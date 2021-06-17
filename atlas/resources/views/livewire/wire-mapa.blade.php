@@ -1,9 +1,12 @@
 <div>
     {{-- Close your eyes. Count to one. That is how long forever feels. --}}
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $mensajes['titulo_pagina'] }}
-        </h2>
+        <div class="flex">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight flex-2">
+                {{ $mensajes['titulo_pagina'] }}
+            </h2>
+            <div class="flex-1 text-right">@include('livewire.inline-search', ['model' => $model])</div>
+        </div>
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

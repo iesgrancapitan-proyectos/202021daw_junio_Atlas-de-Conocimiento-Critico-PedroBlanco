@@ -14,7 +14,7 @@ trait InlineSearch
 
     public function inline_search()
     {
-        Log::debug ( $this->model.'->inline_search () + "'. $this->query .'")' );
+        Log::debug ( $this->model.'->inline_search () + "'. $this->query .'"' );
 
         if ( $this->query != '' ) {
             $this->results = $this->model::search($this->query)->get();

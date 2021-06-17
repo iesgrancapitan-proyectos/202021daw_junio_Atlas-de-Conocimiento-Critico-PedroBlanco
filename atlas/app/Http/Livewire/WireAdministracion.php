@@ -27,9 +27,7 @@ class WireAdministracion extends Component
 
     public function mount (Request $request)
     {
-        // $this->model = App\Models\Administracion::class;
         $this->model = 'App\Models\Administracion';
-        // Log::debug($this->model.'->mount()');
 
         if ( $request->get('query') ) {
             $this->initial_query = $request->get('query');
@@ -43,7 +41,6 @@ class WireAdministracion extends Component
 
     public function render()
     {
-        // Log::debug($this->model.'->render()');
         Log::debug($this->model.'->render() | initial_query: '.$this->initial_query );
         Log::debug($this->model.'->render() | query:'.$this->query );
         $this->authorize('viewAny', Administracion::class);
