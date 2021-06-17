@@ -104,7 +104,7 @@ atlas_config () {
     docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan key:generate
     docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan migrate
     docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan db:seed --force
-    curl -X GET 'http://localhost:7700/health'
+    echo -n "Meilisearch: " ; docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace curl -sSX GET http://meilisearch:7700/health
     echo
     docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan scout:import "App\Models\Autor"
     docker exec -w /var/www/atlas ${COMPOSE_PROJECT_NAME}_workspace php artisan scout:import "App\Models\Geo"
