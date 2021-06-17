@@ -86,6 +86,8 @@ echo "***** Instalando dependencias con NPM ***************"
 echo "*****************************************************"
 echo
 
+docker exec -w /var/www/atlas atlas_workspace_1 npm -g install npm
+docker exec -w /var/www/atlas atlas_workspace_1 mkdir -p /root/.npm/_logs
 docker exec -w /var/www/atlas atlas_workspace_1 npm install
 docker exec -w /var/www/atlas atlas_workspace_1 npm run dev
 
@@ -98,6 +100,8 @@ echo
 docker exec -w /var/www/atlas atlas_workspace_1 php artisan key:generate
 docker exec -w /var/www/atlas atlas_workspace_1 php artisan migrate
 docker exec -w /var/www/atlas atlas_workspace_1 php artisan db:seed --force
+curl -X GET 'http://localhost:7700/health'
+echo
 docker exec -w /var/www/atlas atlas_workspace_1 php artisan scout:import "App\Models\Autor"
 docker exec -w /var/www/atlas atlas_workspace_1 php artisan scout:import "App\Models\Geo"
 docker exec -w /var/www/atlas atlas_workspace_1 php artisan scout:import "App\Models\Mapa"
