@@ -14,14 +14,17 @@ trait InlineSearch
 //    protected $listeners = [ $model.'_search' => 'render' ];
 
     // public function search_model( $busqueda, $model )
-    public function search( $busqueda )
+    // public function search( $busqueda )
+    public function search()
     {
         // Log:debug ( 'search_model ("'. $busqueda .'", "'. $model .'")' );
-        Log::debug ( $this->model.'->search ("'. $busqueda .'")' );
+        Log::debug ( $this->model.'->search () + "'. $this->query .'")' );
 
-        if ( $busqueda != '' ) {
+        // if ( $busqueda != '' ) {
+        if ( $this->query != '' ) {
             // $this->results = $model::search($busqueda)->get();
-            $this->results = $this->model::search($busqueda)->get();
+            // $this->results = $this->model::search($busqueda)->get();
+            $this->results = $this->model::search($this->query)->get();
         }
 
         $this->emit($this->model.'_search');

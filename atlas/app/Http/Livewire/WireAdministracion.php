@@ -47,7 +47,7 @@ class WireAdministracion extends Component
         $this->authorize('viewAny', Administracion::class);
 
         if ( $this->query != '' ) {
-            $this->contenedor = $this->search ( $this->query );
+            $this->contenedor = $this->search ();
         } else {
             $this->contenedor = Administracion::latest()->get();
         }

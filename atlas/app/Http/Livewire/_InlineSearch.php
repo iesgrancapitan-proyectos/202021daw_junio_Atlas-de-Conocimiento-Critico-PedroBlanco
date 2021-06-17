@@ -41,7 +41,7 @@ class InlineSearch extends Component
 
     public function search ()
     {
-        Log::debug('Search: '.$this->query );
+        Log::debug('InlineSearch: '.$this->query );
 //        return $this->results = User::where('name', $this->query)->get();
     }
 
