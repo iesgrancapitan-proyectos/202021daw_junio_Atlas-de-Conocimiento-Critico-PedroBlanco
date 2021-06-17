@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 trait InlineSearch
 {
     public $query = '';
+    public $initial_query = '';
     public $results = null;
     public $model = '';
     public $contenedor = null;
