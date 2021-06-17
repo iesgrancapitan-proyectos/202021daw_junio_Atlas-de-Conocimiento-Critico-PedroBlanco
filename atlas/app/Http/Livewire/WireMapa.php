@@ -12,12 +12,13 @@ use Livewire\Component;
 use App\Models\Geo_Mapa;
 
 use App\Models\Autor_Mapa;
+use Illuminate\Http\Request;
+
 use App\Models\Administracion;
 
 use App\Http\Traits\InlineSearch;
 
 use Illuminate\Support\Collection;
-
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
