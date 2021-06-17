@@ -69,7 +69,7 @@ echo "***** Configurando Base de datos  *******************"
 echo "*****************************************************"
 echo
 
-envsubst < install/atlas-init.sql | docker exec -i atlas_mariadb_1 mysql -u root --password=$MARIADB_ROOT_PASSWORD
+envsubst < install/atlas-init.sql | docker exec -i atlas_mariadb_1 mysql -v -v -u root --password=$MARIADB_ROOT_PASSWORD
 
 # Configuramos la parte Laravel de la aplicación
 echo
