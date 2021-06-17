@@ -3,9 +3,12 @@
     <form action="#" method="GET" wire:submit.prevent="search">
         @csrf
 
-        <div class="block space-x-4 space-y-4">
+        <div class="block space-x-4 space-y-4 flex">
             {{-- <x-jet-label for="search" value="{{ __('Buscar') }}" /> --}}
-            <input class='cthulhu border-gray-300 focus:border-pink-300 focus:ring focus:ring-pink-300 focus:ring-opacity-50 rounded-md shadow-sm w-1/2' name="query" id="query" wire:model="query" type="search" placeholder="Buscar..." value="{{$query}}"/>
+            <input class='cthulhu flex-1 border-gray-300 focus:border-pink-300 focus:ring focus:ring-pink-300 focus:ring-opacity-50 rounded-md shadow-sm w-1/2' name="query" id="query" wire:model="query" type="search" placeholder="Buscar..." value="{{$query}}"/>
+            <div class="font-semibold text-m text-gray-800 leading-tight">
+                {{$query}}
+            </div>
         </div>
     </form>
     @if ($mapas)
