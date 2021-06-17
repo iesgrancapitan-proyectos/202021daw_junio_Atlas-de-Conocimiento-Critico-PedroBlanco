@@ -23,6 +23,10 @@ class Show extends Component
     public $abrir_modal = false;
     public $user_modal = [];
 
+    public $count_refresh = 0;
+
+    protected $listeners = ['users_render' => 'render'];
+
     public function mount ( $users, $roles )
     {
         $this->authorize('viewAny', User::class);
@@ -81,11 +85,17 @@ class Show extends Component
 
         $this->user_modal->save();
 
+        $this->count_refresh++;
+
+        $this->user_modal->refresh();
+
         if ( $this->user_modal->wasChanged('role_id')) {
-            $this->emit('render');
+            $this->emit('users_render');
             Log::debug("saved! ".$this->user_modal->name.": ".$this->selected_role." -> ".$this->user_modal->role_id );
         } else {
             Log::debug("not saved? ".$this->user_modal->name.": ".$this->selected_role." -> ".$this->user_modal->role_id );
         }
+
+        $this->render();
     }
 }

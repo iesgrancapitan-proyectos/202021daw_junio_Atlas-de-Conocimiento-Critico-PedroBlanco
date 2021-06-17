@@ -13,6 +13,7 @@
     {{-- @if($isOpen)
         @include('livewire.generic.create')
     @endif --}}
+    <input type="hidden" wire:model="count_refresh" name="count_refresh"/>
     <table class="table-fixed w-full">
         <thead>
             <tr class="bg-gray-100">
