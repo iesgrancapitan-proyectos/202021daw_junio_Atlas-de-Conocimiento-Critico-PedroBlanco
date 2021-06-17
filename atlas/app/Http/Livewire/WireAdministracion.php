@@ -16,7 +16,6 @@ class WireAdministracion extends Component
     public $contenedor;
     public $nombre, $descripcion, $_id;
     public $isOpen = 0;
-    public $model = App\Models\Administracion::class;
 
     protected $listeners = [ 'App\Models\Administracion_search' => 'render' ];
 
@@ -24,6 +23,11 @@ class WireAdministracion extends Component
         'titulo_pagina' => 'Gestión de Administraciones',
         'boton_crear' => 'Crear nueva Administración'
     );
+
+    public function mount ()
+    {
+        $model = App\Models\Administracion::class;
+    }
 
     public function render()
     {
