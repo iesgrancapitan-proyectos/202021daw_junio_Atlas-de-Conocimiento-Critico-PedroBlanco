@@ -20,6 +20,14 @@ class WireGeo extends Component
         'boton_crear' => 'Crear nueva Localización Geográfica'
     );
 
+    protected $rules = [
+        'nombre' => 'required',
+        'dir3' => 'sometimes|size:9|starts_with:E,A,L,U,I,J',
+        'longitud' => 'sometimes|numeric',
+        'latitud' => 'sometimes|numeric',
+];
+
+
     public function render()
     {
         $this->contenedor = Geo::latest()->get();;
@@ -61,7 +69,9 @@ class WireGeo extends Component
 
         $this->validate([
             'nombre' => 'required',
-            'dir3' => 'required',
+            'dir3' => 'size:9|starts_with:E,A,L,U,I,J',
+            'longitud' => 'numeric',
+            'latitud' => 'numeric',
         ]);
 
         Geo::updateOrCreate(['id' => $this->_id], [
