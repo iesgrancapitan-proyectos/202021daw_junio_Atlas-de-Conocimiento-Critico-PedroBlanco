@@ -17,10 +17,13 @@ class InlineSearch extends Component
 {
     public $query = '';
     public $results = null;
+    public $model = null;
 
     public function mount ( $model )
     {
-        Log::debug('InlineSearch Mount:'. $model);
+        Log::debug('InlineSearch Mount:'. var_dump( $model ) );
+
+        $this->model = $model;
     }
 
     public function render ()

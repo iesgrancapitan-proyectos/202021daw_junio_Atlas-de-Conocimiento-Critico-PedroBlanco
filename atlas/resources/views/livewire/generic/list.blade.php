@@ -4,7 +4,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ $mensajes['titulo_pagina'] }}
         </h2>
-        @include('livewire.inline-search', $model)
+        @include('livewire.inline-search', ['model' => $model])
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
