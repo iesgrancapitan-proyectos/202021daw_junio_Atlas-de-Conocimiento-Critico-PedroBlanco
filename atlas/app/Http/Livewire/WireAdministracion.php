@@ -6,15 +6,19 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use Livewire\Component;
 use App\Models\Administracion;
+use App\Http\Traits\InlineSearch;
 
 class WireAdministracion extends Component
 {
     use AuthorizesRequests;
+    use InlineSearch;
 
     public $contenedor;
     public $nombre, $descripcion, $_id;
     public $isOpen = 0;
     public $model = App\Models\Administracion::class;
+
+    protected $listeners = [ 'App\Models\Administracion_search' => 'render' ];
 
     public $mensajes = array(
         'titulo_pagina' => 'Gestión de Administraciones',
@@ -25,7 +29,11 @@ class WireAdministracion extends Component
     {
         $this->authorize('viewAny', Administracion::class);
 
-        $this->contenedor = Administracion::latest()->get();
+        if ( $this->query != '' ) {
+            $this->contenedor = $this->search ( $this->query );
+        } else {
+            $this->contenedor = Administracion::latest()->get();
+        }
 
         return view('livewire.generic.list');
     }
