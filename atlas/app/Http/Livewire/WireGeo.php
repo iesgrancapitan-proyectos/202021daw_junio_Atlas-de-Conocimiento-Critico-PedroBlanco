@@ -23,8 +23,8 @@ class WireGeo extends Component
     protected $rules = [
         'nombre' => 'required',
         'dir3' => 'sometimes|size:9|starts_with:E,A,L,U,I,J',
-        'longitud' => 'sometimes|numeric',
-        'latitud' => 'sometimes|numeric',
+//        'longitud' => 'sometimes|numeric',
+//        'latitud' => 'sometimes|numeric',
 ];
 
 
