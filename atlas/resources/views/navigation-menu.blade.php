@@ -22,7 +22,18 @@
                     </x-jet-nav-link>
                 </div>
             </div>
-
+            <div class="flex float-right">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                        {{ __('messages.LogIn') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('atlas') }}" :active="request()->routeIs('register')">
+                        {{ __('messages.Register') }}
+                    </x-jet-nav-link>
+                </div>
+            </div>
             {{-- <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">

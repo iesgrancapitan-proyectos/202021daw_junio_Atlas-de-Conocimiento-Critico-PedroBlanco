@@ -45,9 +45,6 @@
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg space-y-4 p-6">
                         @livewire('search')
                     </div>
-                    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                        <div id="map"></div>
-                    </div>
                 </div>
             </div>
         </div>
