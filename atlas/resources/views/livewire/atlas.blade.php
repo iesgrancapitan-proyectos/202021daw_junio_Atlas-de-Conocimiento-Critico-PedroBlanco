@@ -57,15 +57,14 @@
                 <tbody>
                     @foreach($contenedor as $item)
                     <tr>
-                        @if ( !empty($item->url))
-                        <a href="{{$item->url}}"><x-fluentui-globe-16-o  class="h-6 w-6"/></a>
-                        @endif
                         {{-- <td class="border px-4 py-2">{{ $item->id }}</td> --}}
                         <td class="border px-4 py-2">
-                            @if ( !empty($item->url))
-                            <a href="{{$item->url}}"><x-fluentui-globe-16-o  class="h-6 w-6"/></a>
-                            @endif
-                            {{ $item->nombre }}
+                            <div class="inline-flex">
+                                @if ( !empty($item->url))
+                                    <a href="{{$item->url}}"><x-fluentui-globe-16-o  class="h-6 w-6"/></a>
+                                @endif
+                                {{ $item->nombre }}
+                            </div>
                         </td>
                         <td class="border px-4 py-2">{{ $item->descripcion }}
                         <br/>
