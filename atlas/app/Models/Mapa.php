@@ -72,6 +72,17 @@ class Mapa extends Model
     {
         $array = $this->toArray();
 
+        // Eliminamos de los criterios de búsqueda:
+        // - cuándo se actualizaron los registros (los cambios los registramos en otros campos)
+        // - claves foráneas
+        $array = array_diff_key ( $array, [
+            'estado_id' => '',
+            'administracion_id' => '',
+            'ambito_id' => '',
+            'created_at' => '',
+            'updated_at' => '',
+        ] );
+
         $array['autores'] = $this->autores()->get(['nombre','apellidos']);
 
         $array['geo'] = $this->geo()->get(['nombre']);
