@@ -17,7 +17,6 @@ class Search extends Component
 
     public function render ()
     {
-        //$results = User::where('name', $this->query)->get();
 
         Log::debug('Render: '.$this->query );
 

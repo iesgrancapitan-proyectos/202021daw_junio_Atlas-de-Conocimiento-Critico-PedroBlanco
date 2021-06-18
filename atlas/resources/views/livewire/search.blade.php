@@ -5,10 +5,11 @@
 
         <div class="block space-x-4 space-y-4 flex">
             {{-- <x-jet-label for="search" value="{{ __('Buscar') }}" /> --}}
-            <input class='cthulhu flex-1 border-gray-300 focus:border-pink-300 focus:ring focus:ring-pink-300 focus:ring-opacity-50 rounded-md shadow-sm w-1/2' name="query" id="query" wire:model.defer="query" type="search" placeholder="Buscar..." value="{{$query}}"/>
+            <input class='cthulhu flex-1 border-gray-300 focus:border-pink-300 focus:ring focus:ring-pink-300 focus:ring-opacity-50 rounded-md shadow-sm w-1/2' name="query" id="query" wire:model.defer="query" type="search" placeholder="Buscar..." value="{{$initial_query}}"/>
+            <x-jet-button wire:click="search" class="mt-0"><x-fluentui-search-12 class="h-6 w-6" /></x-jet-button>
         </div>
     </form>
-    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+    <div wire:ignore class="bg-white overflow-hidden shadow-xl sm:rounded-lg space-y-4">
         <div id="map"></div>
     </div>
     @if ($mapas)
