@@ -29,17 +29,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('administracion', WireAdministracion::class)->name('administracion');
+Route::middleware(['auth:sanctum', 'verified'])->get('administracion', WireAdministracion::class)->name('administracion');
 
-Route::get('ambito', WireAmbito::class)->name('ambito');
+Route::middleware(['auth:sanctum', 'verified'])->get('ambito', WireAmbito::class)->name('ambito');
 
-Route::get('estado', WireEstado::class)->name('estado');
+Route::middleware(['auth:sanctum', 'verified'])->get('estado', WireEstado::class)->name('estado');
 
-Route::get('autor', WireAutor::class)->name('autor');
+Route::middleware(['auth:sanctum', 'verified'])->get('autor', WireAutor::class)->name('autor');
 
-Route::get('geo', WireGeo::class)->name('geo');
+Route::middleware(['auth:sanctum', 'verified'])->get('geo', WireGeo::class)->name('geo');
 
-Route::get('mapa', WireMapa::class)->name('mapa');
+Route::middleware(['auth:sanctum', 'verified'])->get('mapa', WireMapa::class)->name('mapa');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/users', function () {
 //     return view('livewire.users');
