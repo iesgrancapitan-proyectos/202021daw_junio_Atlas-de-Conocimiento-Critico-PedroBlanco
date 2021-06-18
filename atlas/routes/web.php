@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Livewire\Users;
+use App\Http\Livewire\Atlas;
 // use App\Http\Livewire\Search;
+use App\Http\Livewire\Users;
 use App\Http\Livewire\WireGeo;
 use App\Http\Livewire\WireMapa;
 use App\Http\Livewire\WireAutor;
