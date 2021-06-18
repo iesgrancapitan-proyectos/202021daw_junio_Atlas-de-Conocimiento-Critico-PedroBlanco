@@ -8,6 +8,6 @@ class Atlas extends Component
 {
     public function render()
     {
-        return view('livewire.atlas')->layout('layouts.guest');
+        return view('livewire.atlas')->layout('layouts.base');
     }
 }
