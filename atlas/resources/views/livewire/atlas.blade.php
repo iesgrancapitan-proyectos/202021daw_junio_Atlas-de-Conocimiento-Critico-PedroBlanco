@@ -88,13 +88,13 @@
                         <td class="border px-4 py-2">
                             <dl>
                                 <dt>Ámbito/Alcance</dt>
-                                <dd>{{$item->ambito}}</dd>
+                                <dd>{{$item->ambito->nombre}}</dd>
 
                                 <dt>Estado</dt>
-                                <dd>{{$item->estado}}</dd>
+                                <dd>{{$item->estado->nombre}}</dd>
 
                                 <dt>Administración</dt>
-                                <dd>{{$item->administracion}}</dd>
+                                <dd>{{$item->administracion->nombre}}</dd>
                             </dl>
                         </td>
                     </tr>
