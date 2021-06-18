@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
 {{-- Nothing in the world is as soft and yielding as water. --}}
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -11,9 +11,9 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg space-y-4 p-6">
                 @livewire('search')
             </div>
-            {{-- <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div id="map"></div>
-            </div> --}}
+            </div>
         </div>
     </div>
-</x-app-layout>
+</x-guest-layout>

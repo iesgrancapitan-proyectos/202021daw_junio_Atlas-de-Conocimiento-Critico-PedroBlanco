@@ -42,10 +42,14 @@
                         <x-slot name="content">
                             @if (Route::has('login'))
                             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">{{ __('messages.LogIn') }}</a>
+                                <x-jet-dropdown-link href="{{ route('login') }}">
+                                    {{ __('messages.LogIn') }}
+                                </x-jet-dropdown-link>
                                 <div class="border-t border-gray-100"></div>
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">{{ __('messages.Register') }}</a>
+                                <x-jet-dropdown-link href="{{ route('register') }}">
+                                    {{ __('messages.Register') }}
+                                </x-jet-dropdown-link>
                                 @endif
                             </div>
                             @endif
