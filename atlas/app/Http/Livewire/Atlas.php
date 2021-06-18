@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Geo;
 use App\Models\Mapa;
 use Livewire\Component;
 use Illuminate\Http\Request;
@@ -47,8 +48,6 @@ class Atlas extends Component
 
     protected function get_geos_markers ()
     {
-        $this->authorize('viewAny', Geo::class);
-
         $geos_array = [];
 
         $geos_collection = Geo::get(['longitud','latitud'])->toArray();
@@ -56,7 +55,6 @@ class Atlas extends Component
         foreach ( $geos_collection as $geo ) {
             $geos_array[] = [(double)$geo['longitud'],(double)$geo['latitud']];
         };
-
 
         // $geos_array = [
         //     [-4.84772405594904,37.9567116],[-3.49205561203722,37.9557275]
