@@ -49,14 +49,20 @@
                 <thead>
                     <tr class="bg-gray-100">
                         {{-- <th class="px-4 py-2 w-20">Número</th> --}}
+                        <th class="px-4 py-2"></th>
                         <th class="px-4 py-2">Nombre</th>
                         <th class="px-4 py-2">Descripci&oacute;n</th>
-                        <th class="px-4 py-2">Acci&oacute;n</th>
+                        <th class="px-4 py-2">Datos varios</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($contenedor as $item)
                     <tr>
+                        <td class="border px-4 py-2">
+                        @if ( !empty($item->url))
+                        <a href="{{$item->url}}"><x-fluentui-globe-16-o  class="h-6 w-6"/></a>
+                        @endif
+                        </td>
                         {{-- <td class="border px-4 py-2">{{ $item->id }}</td> --}}
                         <td class="border px-4 py-2">{{ $item->nombre }}</td>
                         <td class="border px-4 py-2">{{ $item->descripcion }}
@@ -80,7 +86,16 @@
                         @endforeach
                         </td>
                         <td class="border px-4 py-2">
-                                <a href="{{ $item->url }}" target="_blank" rel="noreferrer noopener" class="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Visitar web</a>
+                            <dl>
+                                <dt>Ámbito/Alcance</dt>
+                                <dd>{{$item->ambito}}</dd>
+
+                                <dt>Estado</dt>
+                                <dd>{{$item->estado}}</dd>
+
+                                <dt>Administración</dt>
+                                <dd>{{$item->administracion}}</dd>
+                            </dl>
                         </td>
                     </tr>
                     @endforeach
