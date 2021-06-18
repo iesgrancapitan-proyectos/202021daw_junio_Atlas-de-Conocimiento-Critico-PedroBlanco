@@ -172,7 +172,7 @@ class WireMapa extends Component
         // dd(array_keys($this->selected_autores_id));
 
         if ( $this->_id !== null ) {
-            $this->authorize('update', Mapa::findOrFail($id));
+            $this->authorize('update', Mapa::findOrFail($this->_id));
         } else {
             $this->authorize('create', Mapa::class);
         }
