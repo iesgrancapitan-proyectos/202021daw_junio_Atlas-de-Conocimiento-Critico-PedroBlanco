@@ -23,9 +23,9 @@ Aparte de tener el puerto 80 libre en nuestra máquina, necesitaremos tener inst
   - 80, 443:
     - Aplicación Atlas.
 - 8081: (opcional)
-  - Adminer, gestión de la BD (contenedor ```atlas_adminer_1```).
+  - Adminer, gestión de la BD (contenedor ```atlas_adminer```).
 - 2222: (opcional)
-  - Acceso SSH al contenedor ```atlas_workspace_1```.
+  - Acceso SSH al contenedor ```atlas_workspace```.
 - Software:
   - Sistema de contenedores ```docker```:
     - Recomiendo usar la versión ```community``` actualizada disponible desde el [repositorio oficial de Docker](https://docs.docker.com/engine/install/).
@@ -36,12 +36,23 @@ Aparte de tener el puerto 80 libre en nuestra máquina, necesitaremos tener inst
 
 ### Instalación y despliegue automáticos
 
-Para desplegar instalar de forma automática la aplicación se puede ejecutar el script ```atlas-quick-start.sh``` que se encuentra en la carpeta raiz del repositorio:
+Para desplegar instalar de forma automática la aplicación se recomienda usar el script ```atlas-quick.sh``` que se encuentra en la carpeta raiz del repositorio y al que podemos darle permisos de ejecución o ejecutarlo mediate ```bash```.
+
+Cuenta con las siguientes opciones:
+
+- ```up```: Inicializa la instalación desde el principio, crea los contenedores y configura el entorno.
+- ```down```: Elimina los contenedores.
+- ```start```: Arranca los contenedores (deben existir).
+- ```stop```:  Para los contenedores (siguen existiendo).
+- ```restart```: Reinicia los contenedores (a veces hace falta para que recarguen la configuración).
+- ```update```: Para los contenedores, reconfigura y monta de nuevo el entorno, y vuelve a iniciar los contenedores.
+
+Primero de todo tenemos que de
 
 ```shell
 git clone --recurse-submodules --branch main https://github.com/iesgrancapitan-proyectos/202021daw_junio_Atlas-de-Conocimiento-Critico-PedroBlanco.git atlas
 cd atlas
-bash atlas-quick-start.sh
+bash atlas-quick.sh up
 ```
 
 Una vez se ha ejecutado el script, deberíamos poder acceder a la aplicación instalada en [http://localhost/].
@@ -77,6 +88,13 @@ docker exec -w /var/www/atlas atlas_workspace npm install
 docker exec -w /var/www/atlas atlas_workspace npm run dev
 docker exec -w /var/www/atlas atlas_workspace php artisan key:generate
 docker exec -w /var/www/atlas atlas_workspace php artisan migrate
+docker exec -w /var/www/atlas atlas_workspace php artisan scout:import "App\Models\Autor"
+docker exec -w /var/www/atlas atlas_workspace php artisan scout:import "App\Models\Geo"
+docker exec -w /var/www/atlas atlas_workspace php artisan scout:import "App\Models\Mapa"
+docker exec -w /var/www/atlas atlas_workspace php artisan scout:import "App\Models\Ambito"
+docker exec -w /var/www/atlas atlas_workspace php artisan scout:import "App\Models\Administracion"
+docker exec -w /var/www/atlas atlas_workspace php artisan scout:import "App\Models\Estado"
+docker exec -w /var/www/atlas atlas_workspace php artisan scout:import "App\Models\User"
 docker exec -w /var/www/atlas atlas_workspace php artisan db:seed --force
 docker exec -w /var/www/atlas atlas_workspace php artisan config:cache
 ```
