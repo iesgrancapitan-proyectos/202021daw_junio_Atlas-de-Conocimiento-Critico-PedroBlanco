@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Mapa;
 use Livewire\Component;
 use Illuminate\Http\Request;
 use App\Http\Traits\InlineSearch;
