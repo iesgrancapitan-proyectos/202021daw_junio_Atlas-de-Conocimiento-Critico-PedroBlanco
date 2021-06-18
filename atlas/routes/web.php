@@ -24,7 +24,7 @@ use App\Http\Livewire\WireAdministracion;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('/');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
