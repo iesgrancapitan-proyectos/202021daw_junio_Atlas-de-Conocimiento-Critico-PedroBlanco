@@ -44,4 +44,30 @@ class Atlas extends Component
 
         return view('livewire.atlas')->layout('layouts.base');
     }
+
+    protected function get_geos_markers ()
+    {
+        $this->authorize('viewAny', Geo::class);
+
+        $geos_array = [];
+
+        $geos_collection = Geo::get(['longitud','latitud'])->toArray();
+
+        foreach ( $geos_collection as $geo ) {
+            $geos_array[] = [(double)$geo['longitud'],(double)$geo['latitud']];
+        };
+
+
+        // $geos_array = [
+        //     [-4.84772405594904,37.9567116],[-3.49205561203722,37.9557275]
+        // ];
+
+        // return json_encode ( $geos_array );
+
+        // dd ( $geos_array, json_encode ( $geos_array ) );
+        return $geos_array;
+
+        // return [[-4.84772405594904,37.9567116],[-3.49205561203722,37.9557275]];
+
+    }
 }
