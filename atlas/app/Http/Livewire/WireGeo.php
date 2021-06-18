@@ -2,19 +2,23 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use App\Models\Geo;
+use Livewire\Component;
 
+use Illuminate\Http\Request;
+use App\Http\Traits\InlineSearch;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class WireGeo extends Component
 {
     use AuthorizesRequests;
+    use InlineSearch;
 
-    public $contenedor;
     public $nombre, $dir3, $_id;
     public $isOpen = 0;
-    public $model = App\Models\Geo::class;
+
+    protected $listeners = [ 'App\Models\Geo_inline_search' => 'render' ];
 
     public $mensajes = array(
         'titulo_pagina' => 'Gestión de Localizaciones Geográficas',
@@ -29,9 +33,31 @@ class WireGeo extends Component
 ];
 
 
-    public function render()
-    {
-        $this->contenedor = Geo::latest()->get();;
+public function mount (Request $request)
+{
+    $this->model = 'App\Models\Geo';
+
+    if ( $request->get('query') ) {
+        $this->initial_query = $request->get('query');
+        $this->query = $this->initial_query;
+        Log::debug($this->model.'->mount() | query = '.$request->get('query') );
+    } else {
+        Log::debug($this->model.'->mount() | query vacía' );
+    }
+
+}
+
+public function render()
+{
+    Log::debug($this->model.'->render() | initial_query: '.$this->initial_query );
+    Log::debug($this->model.'->render() | query:'.$this->query );
+    $this->authorize('viewAny', Geo::class);
+
+    if ( $this->query != '' ) {
+        $this->contenedor = $this->inline_search ();
+    } else {
+        $this->contenedor = Geo::latest()->get();
+    }
 
         return view('livewire.wire-geo');
     }
