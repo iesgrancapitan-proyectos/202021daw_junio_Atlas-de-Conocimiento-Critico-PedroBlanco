@@ -2,30 +2,53 @@
 
 namespace App\Http\Livewire;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Models\Ambito;
 
 use Livewire\Component;
-use App\Models\Ambito;
+use Illuminate\Http\Request;
+use App\Http\Traits\InlineSearch;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class WireAmbito extends Component
 {
     use AuthorizesRequests;
+    use InlineSearch;
 
-    public $contenedor;
     public $nombre, $descripcion, $_id;
     public $isOpen = 0;
-    public $model = App\Models\Ambito::class;
+
+    protected $listeners = [ 'App\Models\Ambito_inline_search' => 'render' ];
 
     public $mensajes = array(
         'titulo_pagina' => 'Gestión de Ámbitos',
         'boton_crear' => 'Crear nuevo Ámbito'
     );
 
+    public function mount (Request $request)
+    {
+        $this->model = 'App\Models\Ambito';
+
+        if ( $request->get('query') ) {
+            $this->initial_query = $request->get('query');
+            $this->query = $this->initial_query;
+            Log::debug($this->model.'->mount() | query = '.$request->get('query') );
+        } else {
+            Log::debug($this->model.'->mount() | query vacía' );
+        }
+
+    }
+
     public function render()
     {
+        Log::debug($this->model.'->render() | initial_query: '.$this->initial_query );
+        Log::debug($this->model.'->render() | query:'.$this->query );
         $this->authorize('viewAny', Ambito::class);
 
-        $this->contenedor = Ambito::latest()->get();;
+        if ( $this->query != '' ) {
+            $this->contenedor = $this->inline_search ();
+        } else {
+            $this->contenedor = Ambito::latest()->get();
+        }
 
         return view('livewire.generic.list');
     }
