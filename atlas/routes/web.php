@@ -61,4 +61,4 @@ Route::middleware(['auth:sanctum', 'verified'])
 
 // Route::get('search', Search::class)->name('search');
 
-Route::get('/atlas', Atlas::class);
+Route::get('atlas', Atlas::class)->name('atlas');
