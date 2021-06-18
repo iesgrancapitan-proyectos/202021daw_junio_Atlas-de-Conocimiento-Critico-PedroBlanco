@@ -7,6 +7,7 @@ use App\Models\Ambito;
 use Livewire\Component;
 use Illuminate\Http\Request;
 use App\Http\Traits\InlineSearch;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class WireAmbito extends Component
