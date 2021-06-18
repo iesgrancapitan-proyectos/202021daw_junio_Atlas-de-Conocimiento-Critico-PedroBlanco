@@ -2,28 +2,53 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use App\Models\Autor;
+use Livewire\Component;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class WireAutor extends Component
 {
     use AuthorizesRequests;
+    use InlineSearch;
 
-    public $contenedor;
     public $nombre, $apellidos, $url, $_id;
     public $isOpen = 0;
-    public $model = App\Models\Autor::class;
+
+    protected $listeners = [ 'App\Models\Autor_inline_search' => 'render' ];
 
     public $mensajes = array(
         'titulo_pagina' => 'Gestión de Autores/as de Mapas',
         'boton_crear' => 'Crear nuevo Autor/a'
     );
 
+    public function mount (Request $request)
+    {
+        $this->model = 'App\Models\Autor';
+
+        if ( $request->get('query') ) {
+            $this->initial_query = $request->get('query');
+            $this->query = $this->initial_query;
+            Log::debug($this->model.'->mount() | query = '.$request->get('query') );
+        } else {
+            Log::debug($this->model.'->mount() | query vacía' );
+        }
+
+    }
+
     public function render()
     {
-        $this->contenedor = Autor::latest()->get();;
+        Log::debug($this->model.'->render() | initial_query: '.$this->initial_query );
+        Log::debug($this->model.'->render() | query:'.$this->query );
+        $this->authorize('viewAny', Autor::class);
+
+        if ( $this->query != '' ) {
+            $this->contenedor = $this->inline_search ();
+        } else {
+            $this->contenedor = Autor::latest()->get();
+        }
 
         return view('livewire.wire-autor');
     }
