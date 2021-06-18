@@ -80,7 +80,7 @@ class WireAmbito extends Component
 
     public function store()
     {
-        if ( null !== $this->_id ) {
+        if ( ! empty ( $this->_id ) ) {
             $this->authorize('update', Ambito::findOrFail($this->_id));
         } else {
             $this->authorize('create', Ambito::class);

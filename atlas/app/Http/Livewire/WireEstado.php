@@ -80,7 +80,7 @@ class WireEstado extends Component
 
     public function store()
     {
-        if ( null !== $this->_id ) {
+        if ( ! empty ( $this->_id ) ) {
             $this->authorize('update', Estado::findOrFail($this->_id));
         } else {
             $this->authorize('create', Estado::class);

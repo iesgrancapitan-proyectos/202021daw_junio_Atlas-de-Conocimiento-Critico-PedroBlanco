@@ -80,10 +80,14 @@ class WireAdministracion extends Component
 
     public function store()
     {
-        if ( null !== $this->_id ) {
+        if ( ! empty ( $this->_id ) ) {
+            // Log::debug('Administracion::store - Autorizado para actualizar '. $this->_id . '???');
             $this->authorize('update', Administracion::findOrFail($this->_id));
+            // Log::debug('Administracion::store - Autorizado para actualizar '. $this->_id . '!!!');
         } else {
+            // Log::debug('Administracion::store - Autorizado para crear ???');
             $this->authorize('create', Administracion::class);
+            // Log::debug('Administracion::store - Autorizado para crear !!!');
         }
 
         $this->validate([
@@ -113,6 +117,7 @@ class WireAdministracion extends Component
         $this->nombre = $administracion->nombre;
         $this->descripcion = $administracion->descripcion;
 
+        // Log::debug('Administracion::edit - Abriendo modal de '. $this->_id .'|'.$this->nombre.'|'.$this->descripcion);
         $this->openModal();
     }
 
