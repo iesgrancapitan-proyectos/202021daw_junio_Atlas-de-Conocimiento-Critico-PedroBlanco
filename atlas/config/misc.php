@@ -11,7 +11,7 @@ return [
     |
     */
     'valid_register_domains' => [
-        'gmail.com',
-        'juntadeandalucia.es'
+        'juntadeandalucia.es',
+        'iesgrancapitan.org',
     ],
 ];
