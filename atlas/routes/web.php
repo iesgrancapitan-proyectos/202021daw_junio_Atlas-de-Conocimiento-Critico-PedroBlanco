@@ -59,3 +59,5 @@ Route::middleware(['auth:sanctum', 'verified'])
     ->name('livewire.users');
 
 // Route::get('search', Search::class)->name('search');
+
+Route::get('/atlas', Atlas::class);
