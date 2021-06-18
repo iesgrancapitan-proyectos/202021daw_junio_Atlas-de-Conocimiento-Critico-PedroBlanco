@@ -22,13 +22,13 @@
             @push('scripts')
             <script>
                 console.group();
-                console.log('{{$item->nombre}}');
+                console.log('{{$mapa->nombre}}');
                 console.log([{{$valor->latitud}},{{$valor->longitud}}]);
                 console.groupEnd();
                 //L.marker(center).addTo(map);
                 L.marker([{{$valor->latitud}},{{$valor->longitud}}],
                     {icon: default_icon})
-                    .bindPopup('{{$item->nombre}}<br/><em>{{$valor->nombre}}</em>')
+                    .bindPopup('{{$mapa->nombre}}<br/><em>{{$valor->nombre}}</em>')
                     .addTo(map);
             </script>
             @endpush
