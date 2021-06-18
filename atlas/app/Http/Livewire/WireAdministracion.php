@@ -88,7 +88,7 @@ class WireAdministracion extends Component
 
         $this->validate([
             'nombre' => 'required',
-            'descripcion' => 'required',
+            'descripcion' => 'nullable',
         ]);
 
         Administracion::updateOrCreate(['id' => $this->_id], [

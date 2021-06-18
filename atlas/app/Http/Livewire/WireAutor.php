@@ -89,8 +89,8 @@ class WireAutor extends Component
 
         $this->validate([
             'nombre' => 'required',
-            'apellidos' => 'required',
-            'url' => 'required',
+            'apellidos' => 'nullable',
+            'url' => 'nullable|url',
         ]);
 
         Autor::updateOrCreate(['id' => $this->_id], [

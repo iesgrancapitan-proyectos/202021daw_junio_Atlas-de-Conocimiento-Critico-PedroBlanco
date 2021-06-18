@@ -88,7 +88,7 @@ class WireAmbito extends Component
 
         $this->validate([
             'nombre' => 'required',
-            'descripcion' => 'required',
+            'descripcion' => 'nullable',
         ]);
 
         Ambito::updateOrCreate(['id' => $this->_id], [

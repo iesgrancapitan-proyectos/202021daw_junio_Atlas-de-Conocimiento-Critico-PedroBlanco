@@ -63,11 +63,11 @@ class WireMapa extends Component
 
     protected $rules = [
         'nombre' => 'required',
-        'descripcion' => 'required',
-        'url' => 'required',
-        'comentario' => 'required',
-        'f_creacion' => 'required',
-        'f_actualizado' => 'required',
+        'descripcion' => 'nullable',
+        'url' => 'nullable|url',
+        'comentario' => 'nullable',
+        'f_creacion' => 'nullable|date_format:Y-m-d',
+        'f_actualizado' => 'nullable|date_format:Y-m-d',
         'administracion_id' => 'required',
         'ambito_id' => 'required',
         'estado_id' => 'required',
@@ -75,12 +75,12 @@ class WireMapa extends Component
         // FIXME: Comprobar si funciona aquí o no
         // 'autores_id' => 'required',
         // 'geos_id' => 'required',
-        'autores_id.*' => 'required',
-        'geos_id.*' => 'required',
-        'autores' => 'required',
-        'geos' => 'required',
-        'select_autores_id.*' => 'required',
-        'select_geos_id.*' => 'required',
+        'autores_id.*' => 'nullable',
+        'geos_id.*' => 'nullable',
+        'autores' => 'nullable',
+        'geos' => 'nullable',
+        'select_autores_id.*' => 'nullable',
+        'select_geos_id.*' => 'nullable',
     ];
 
     public function mount (Request $request)

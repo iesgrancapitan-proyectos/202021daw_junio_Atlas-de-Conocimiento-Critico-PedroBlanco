@@ -88,7 +88,7 @@ class WireEstado extends Component
 
         $this->validate([
             'nombre' => 'required',
-            'descripcion' => 'required',
+            'descripcion' => 'nullable',
         ]);
 
         Estado::updateOrCreate(['id' => $this->_id], [
