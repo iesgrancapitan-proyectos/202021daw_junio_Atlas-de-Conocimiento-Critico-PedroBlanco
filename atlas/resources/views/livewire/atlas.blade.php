@@ -32,21 +32,65 @@
         <div class="min-h-screen bg-gray-100">
             @livewire('navigation-menu')
 
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <header class="bg-white shadow flex">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex-1">
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                         {{ __('Atlas de Conocimiento Crítico') }}
                     </h2>
                 </div>
+                <div class="flex-1 text-right">@include('livewire.inline-search', ['model' => $model])</div>
             </header>
 
-            <div class="py-6">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg space-y-4 p-6">
-                        @livewire('search')
-                    </div>
-                </div>
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                <div id="map"></div>
             </div>
+
+            <table class="table-fixed w-full">
+                <thead>
+                    <tr class="bg-gray-100">
+                        {{-- <th class="px-4 py-2 w-20">Número</th> --}}
+                        <th class="px-4 py-2">Nombre</th>
+                        <th class="px-4 py-2">Descripci&oacute;n</th>
+                        <th class="px-4 py-2">Acci&oacute;n</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($contenedor as $item)
+                    <tr>
+                        {{-- <td class="border px-4 py-2">{{ $item->id }}</td> --}}
+                        <td class="border px-4 py-2">{{ $item->nombre }}</td>
+                        <td class="border px-4 py-2">{{ $item->descripcion }}
+                        <br/>
+                        @foreach($item->geo()->get(['nombre','latitud','longitud']) as $valor)
+                        {{-- {{$valor->latitud}},{{$valor->longitud}} --}}
+{{--                                console.log({!! json_encode([$valor->latitud,$valor->longitud]) !!});--}}
+                        @push('scripts')
+                        <script>
+                            console.group();
+                            console.log('{{$item->nombre}}');
+                            console.log([{{$valor->latitud}},{{$valor->longitud}}]);
+                            console.groupEnd();
+                            //L.marker(center).addTo(map);
+                            L.marker([{{$valor->latitud}},{{$valor->longitud}}],
+                                {icon: default_icon})
+                                .bindPopup('{{$item->nombre}}<br/><em>{{$valor->nombre}}</em>')
+                                .addTo(map);
+                        </script>
+                        @endpush
+                        @endforeach
+                        </td>
+                        <td class="border px-4 py-2">
+                                <a href="{{ $item->url }}" target="_blank" rel="noreferrer noopener" class="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Visitar web</a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+
+
+
+
         </div>
 
 
