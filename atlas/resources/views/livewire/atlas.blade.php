@@ -52,12 +52,15 @@
 
         @stack('modals')
 
+        <div name="contenedor_mapas">
+            <x-init-leaflet></x-init-leaflet>
+
+            @stack('scripts')
+        </div>
+
         @livewireScripts
 
         @bukScripts
 
-        <x-init-leaflet></x-init-leaflet>
-
-        @stack('scripts')
     </x-slot>
 </div>
