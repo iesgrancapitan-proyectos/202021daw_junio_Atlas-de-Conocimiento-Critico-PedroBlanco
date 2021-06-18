@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
+<div>
+    {{-- The Master doesn't talk, he acts. --}}
+    <x-slot name="head">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -27,8 +27,8 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
+    </x-slot>
+    <x-slot name="body">
         <div class="min-h-screen bg-gray-100">
             @livewire('navigation-menu')
 
@@ -44,9 +44,10 @@
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg space-y-4 p-6">
                         @livewire('search')
-                </div>
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div id="map"></div>
+                    </div>
+                    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                        <div id="map"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,5 +62,5 @@
         <x-init-leaflet></x-init-leaflet>
 
         @stack('scripts')
-    </body>
-</html>
+    </x-slot>
+</div>
