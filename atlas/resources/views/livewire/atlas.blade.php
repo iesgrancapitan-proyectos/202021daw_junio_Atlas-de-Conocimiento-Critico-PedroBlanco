@@ -49,7 +49,6 @@
                 <thead>
                     <tr class="bg-gray-100">
                         {{-- <th class="px-4 py-2 w-20">Número</th> --}}
-                        <th class="px-4 py-2"></th>
                         <th class="px-4 py-2">Nombre</th>
                         <th class="px-4 py-2">Descripci&oacute;n</th>
                         <th class="px-4 py-2">Datos varios</th>
@@ -58,13 +57,16 @@
                 <tbody>
                     @foreach($contenedor as $item)
                     <tr>
-                        <td class="border px-4 py-2">
                         @if ( !empty($item->url))
                         <a href="{{$item->url}}"><x-fluentui-globe-16-o  class="h-6 w-6"/></a>
                         @endif
-                        </td>
                         {{-- <td class="border px-4 py-2">{{ $item->id }}</td> --}}
-                        <td class="border px-4 py-2">{{ $item->nombre }}</td>
+                        <td class="border px-4 py-2">
+                            @if ( !empty($item->url))
+                            <a href="{{$item->url}}"><x-fluentui-globe-16-o  class="h-6 w-6"/></a>
+                            @endif
+                            {{ $item->nombre }}
+                        </td>
                         <td class="border px-4 py-2">{{ $item->descripcion }}
                         <br/>
                         @foreach($item->geo()->get(['nombre','latitud','longitud']) as $valor)
