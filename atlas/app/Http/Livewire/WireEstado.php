@@ -2,30 +2,54 @@
 
 namespace App\Http\Livewire;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Models\Estado;
 
 use Livewire\Component;
-use App\Models\Estado;
+use Illuminate\Http\Request;
+use App\Http\Traits\InlineSearch;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class WireEstado extends Component
 {
     use AuthorizesRequests;
+    use InlineSearch;
 
-    public $contenedor;
     public $nombre, $descripcion, $_id;
     public $isOpen = 0;
-    public $model = App\Models\Estado::class;
+
+    protected $listeners = [ 'App\Models\Administracion_inline_search' => 'render' ];
 
     public $mensajes = array(
         'titulo_pagina' => 'Gestión de Estados',
         'boton_crear' => 'Crear nuevo Estado'
     );
 
+    public function mount (Request $request)
+    {
+        $this->model = 'App\Models\Estado';
+
+        if ( $request->get('query') ) {
+            $this->initial_query = $request->get('query');
+            $this->query = $this->initial_query;
+            Log::debug($this->model.'->mount() | query = '.$request->get('query') );
+        } else {
+            Log::debug($this->model.'->mount() | query vacía' );
+        }
+
+    }
+
     public function render()
     {
+        Log::debug($this->model.'->render() | initial_query: '.$this->initial_query );
+        Log::debug($this->model.'->render() | query:'.$this->query );
         $this->authorize('viewAny', Estado::class);
 
-        $this->contenedor = Estado::latest()->get();;
+        if ( $this->query != '' ) {
+            $this->contenedor = $this->inline_search ();
+        } else {
+            $this->contenedor = Estado::latest()->get();
+        }
 
         return view('livewire.generic.list');
     }
