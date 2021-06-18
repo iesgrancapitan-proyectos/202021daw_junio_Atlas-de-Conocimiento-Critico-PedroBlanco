@@ -88,7 +88,7 @@ public function render()
 
     public function store()
     {
-        if ( $this->_id !== null ) {
+        if ( ! empty ( $this->_id ) ) {
             $this->authorize('update', Geo::findOrFail($this->_id));
         } else {
             $this->authorize('create', Geo::class);

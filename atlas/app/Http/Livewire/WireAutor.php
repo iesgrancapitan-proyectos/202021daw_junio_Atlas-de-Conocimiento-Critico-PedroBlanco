@@ -81,7 +81,7 @@ class WireAutor extends Component
 
     public function store()
     {
-        if ( $this->_id !== null ) {
+        if ( ! empty ( $this->_id ) ) {
             $this->authorize('update', Autor::findOrFail($this->_id));
         } else {
             $this->authorize('create', Autor::class);
