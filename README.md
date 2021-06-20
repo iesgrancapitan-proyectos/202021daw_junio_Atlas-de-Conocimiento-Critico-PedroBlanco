@@ -8,6 +8,8 @@ La idea fue propuesta al Grupo de Gestión de Conocimiento [Identificación del 
 
 El nombre _Atlas de Conocimiento Crítico_ viene por ser un _Directorio_ o compendio de _Mapas de Conocimiento Crítico_ y consiste en una aplicación web desarrollada en [Laravel] y pensada para ser desplegada mediante contenedores [Docker](https://www.docker.com/) de Linux.
 
+[[eupl_1.2.svg|alt="Licencia EUPLv1.2 o superior"]]
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Datos bajo Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
 ## Instalación
 
 La instrucciones detalladas de instalación y despliegue se encuentran en la sección [Manual de Despliegue] dentro del wiki del proyecto.
@@ -139,11 +141,13 @@ Si hemos seguido los pasos de instalación rápida descritos anteriormente, podr
 
 ### Aplicación Atlas
 
-Por ahora se ha elegido la licencia [MIT](https://choosealicense.com/licenses/mit/), aunque es bastante posible que se escoja finalmente una licencia con _copyleft_.
+Esta aplicación está bajo licencia [EUPL versión EUPL-1.2-o-posterior]. Para cualquier aclaración, sírvase visitar el siguiente enlace: [https://joinup.ec.europa.eu/collection/eupl/news/understanding-eupl-v12](https://joinup.ec.europa.eu/collection/eupl/news/understanding-eupl-v12)
 
 ### Datos de precarga
 
 Los datos precargados en la base de datos de la aplicación de los Mapas de Conocimiento Crítico, de sus autores y demás información son propiedad del [Instituto Andaluz de Administración Pública] ([Junta de Andalucía]) y no pueden usarse con fines comerciales ni distintos a la formación, divulgación, investigación o demostración.
+
+Estos datos están cubiertos bajo la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional</a>.
 
 [Embajadores del Conocimiento]: https://ws168.juntadeandalucia.es/iaap/gestiondelconocimiento/embajadores-del-conocimiento/
 [Instituto Andaluz de Administración Pública]: https://www.juntadeandalucia.es/institutodeadministracionpublica/publico/home.filter
@@ -153,3 +157,4 @@ Los datos precargados en la base de datos de la aplicación de los Mapas de Cono
 [Identificación del Conocimiento Crítico]: https://ws168.juntadeandalucia.es/iaap/gestiondelconocimiento/proyectos/edicion-2019-2020-edicion-2019-2020/gc06-identificacion-del-conocimiento-critico/
 [Manual de Despliegue]: https://github.com/iesgrancapitan-proyectos/202021daw_junio_Atlas-de-Conocimiento-Critico-PedroBlanco/wiki/Manual_Despliegue
 [Laravel]: https://laravel.com/
+[EUPL versión EUPL-1.2-o-posterior]: https://joinup.ec.europa.eu/sites/default/files/inline-files/EUPL%20v1_2%20ES.txt
