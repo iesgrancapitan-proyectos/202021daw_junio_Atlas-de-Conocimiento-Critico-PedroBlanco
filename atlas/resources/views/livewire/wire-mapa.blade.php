@@ -23,7 +23,7 @@
 
                 {{-- <div>{{ json_encode ($geos_markers) }}</div> --}}
 
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                <div wire:ignore class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div id="map"></div>
                 </div>
 
