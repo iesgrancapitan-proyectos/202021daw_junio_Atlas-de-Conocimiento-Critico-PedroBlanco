@@ -2,7 +2,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@layer 'tailwindcss/utilities' {
+@layer 'extra' {
     .z-1000 {
         z-index: 1000;
     }
