@@ -1,5 +1,8 @@
 # Atlas de Conocimiento Crítico
 
+[![Licencia EUPLv1.2 o superior](eupl_1.2.svg)](LICENSE)
+[![Datos bajo Licencia de Creative Commons](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+
 Este es el repositorio del Proyecto Integrado _Atlas de Conocimiento Crítico_ del Ciclo Superior de Formación Profesional _"Desarrollo de Aplicaciones Web"_ del [IES Gran Capitan](https://informatica.iesgrancapitan.org).
 
 El objetivo principal de este proyecto es elaborar un "Directorio de Mapas de Conocimiento Crítico", concretamente con forma de "mapa geolocalizado" de [mapas de conocimiento crítico] y sus datos asociados.
@@ -8,8 +11,6 @@ La idea fue propuesta al Grupo de Gestión de Conocimiento [Identificación del 
 
 El nombre _Atlas de Conocimiento Crítico_ viene por ser un _Directorio_ o compendio de _Mapas de Conocimiento Crítico_ y consiste en una aplicación web desarrollada en [Laravel] y pensada para ser desplegada mediante contenedores [Docker](https://www.docker.com/) de Linux.
 
-[[eupl_1.2.svg|alt="Licencia EUPLv1.2 o superior"]]
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Datos bajo Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
 ## Instalación
 
 La instrucciones detalladas de instalación y despliegue se encuentran en la sección [Manual de Despliegue] dentro del wiki del proyecto.
